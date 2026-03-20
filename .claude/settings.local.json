@@ -8,7 +8,18 @@
       "Bash(kill %%)",
       "Read(//c/Users/Stefan.Nasev/Downloads/Claude Cowork/Claude Code/Projects/**)",
       "Bash(rm -rf gothic-treasures/node_modules gothic-treasures/package.json gothic-treasures/package-lock.json gothic-treasures/tsconfig.json gothic-treasures/next.config.ts gothic-treasures/src gothic-treasures/.next gothic-treasures/next-env.d.ts gothic-treasures/eslint.config.mjs gothic-treasures/AGENTS.md gothic-treasures/temp-next)",
-      "Bash(npx --yes create-next-app@latest . --ts --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --turbopack=false --yes)"
+      "Bash(npx --yes create-next-app@latest . --ts --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --turbopack=false --yes)",
+      "Bash(npm install:*)",
+      "Bash(cd:*)",
+      "Bash(npm run:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(npx --help)",
+      "WebFetch(domain:localhost)",
+      "Bash(npm list:*)",
+      "Bash(npx --yes puppeteer --version)",
+      "Bash(node -e \":*)",
+      "WebSearch",
+      "mcp__claude-memory__save_memory"
     ]
   }
 }
