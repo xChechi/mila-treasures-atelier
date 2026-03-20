@@ -68,11 +68,11 @@ export default function HeroSection() {
           style={{
             backgroundImage:
               "url('/images/cathedral-in-moonlight-stockcake.webp')",
-            filter: "brightness(0.8) contrast(1.1) saturate(1.05)",
+            filter: "brightness(0.85) contrast(1.1) sepia(0.35) saturate(1.2) hue-rotate(-10deg)",
           }}
         />
-        {/* Warm golden tint overlay */}
-        <div className="absolute inset-0 bg-[rgba(201,168,76,0.18)] mix-blend-overlay" />
+        {/* Strong warm gold color overlay */}
+        <div className="absolute inset-0 mix-blend-color" style={{ background: "linear-gradient(to bottom, rgba(201,168,76,0.35) 0%, rgba(139,109,42,0.45) 100%)" }} />
         {/* Light overlay — only darken bottom for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-dark-1/95" />
         {/* Thin top edge fade for navbar blend */}
