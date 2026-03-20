@@ -24,33 +24,49 @@ export interface Category {
   productCount: number;
 }
 
+// Cross images — dramatic cathedral with glowing cross
+const IMG_CROSS = "https://images.unsplash.com/photo-1756080508014-a94fd3c313e5?w=800&q=80";
+const IMG_CROSS_CAT = "https://images.unsplash.com/photo-1756080508014-a94fd3c313e5?w=600&q=80";
+
+// Gargoyle images — dark gargoyle statue close-up
+const IMG_GARGOYLE = "https://images.unsplash.com/photo-1561084746-f360502e5abe?w=800&q=80";
+const IMG_GARGOYLE_CAT = "https://images.unsplash.com/photo-1561084746-f360502e5abe?w=600&q=80";
+
+// Mirror images — dark cathedral interior (ornate arches)
+const IMG_MIRROR = "https://images.unsplash.com/photo-1519677053485-abaa6744a08c?w=800&q=80";
+const IMG_MIRROR_CAT = "https://images.unsplash.com/photo-1519677053485-abaa6744a08c?w=600&q=80";
+
+// Candle holder images — candles in gothic church
+const IMG_CANDLE = "https://images.unsplash.com/photo-1744339700395-fa286ae4c7e6?w=800&q=80";
+const IMG_CANDLE_CAT = "https://images.unsplash.com/photo-1744339700395-fa286ae4c7e6?w=600&q=80";
+
 export const categories: Category[] = [
   {
     name: "Wall Crosses",
     slug: "wall-crosses",
     description: "Handcrafted gothic crosses that transform any wall into a sacred space",
-    image: "https://images.unsplash.com/photo-1445538263394-680d8e43611c?w=600&q=80",
+    image: IMG_CROSS_CAT,
     productCount: 8,
   },
   {
     name: "Gargoyles & Sculptures",
     slug: "gargoyles-sculptures",
     description: "Guardian figures and dark sculptures carved with ancient artistry",
-    image: "https://images.unsplash.com/photo-1570824104453-508955ab713e?w=600&q=80",
+    image: IMG_GARGOYLE_CAT,
     productCount: 6,
   },
   {
     name: "Gothic Mirrors",
     slug: "gothic-mirrors",
     description: "Ornate mirrors framed in dark elegance and baroque grandeur",
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=600&q=80",
+    image: IMG_MIRROR_CAT,
     productCount: 5,
   },
   {
     name: "Candle Holders",
     slug: "candle-holders",
     description: "Cast iron and wrought metal holders for an authentic gothic ambiance",
-    image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=600&q=80",
+    image: IMG_CANDLE_CAT,
     productCount: 7,
   },
 ];
@@ -65,14 +81,12 @@ export const products: Product[] = [
     categorySlug: "wall-crosses",
     description: "A stunning hand-forged iron cross inspired by 13th-century cathedral architecture. Each piece features intricate Gothic tracery patterns with a weathered bronze patina finish. The cross measures 24 inches tall and makes a commanding centerpiece for any wall.",
     shortDescription: "Hand-forged iron cross with Gothic tracery and bronze patina",
-    image: "https://images.unsplash.com/photo-1445538263394-680d8e43611c?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1445538263394-680d8e43611c?w=800&q=80",
-    ],
+    image: IMG_CROSS,
+    images: [IMG_CROSS],
     inStock: true,
     featured: true,
     dimensions: '24" H x 14" W x 2" D',
-    material: "Hand-forged iron, bronze patina",
+    material: "Hand-forged iron",
     weight: "4.2 lbs",
   },
   {
@@ -83,15 +97,13 @@ export const products: Product[] = [
     category: "Gargoyles & Sculptures",
     categorySlug: "gargoyles-sculptures",
     description: "This masterfully sculpted gargoyle draws inspiration from Notre-Dame's guardians. Hand-cast in a special stone composite that develops a natural aged patina over time. Perched on a decorative shelf bracket, it watches over your space with timeless vigilance.",
-    shortDescription: "Hand-cast stone gargoyle inspired by Notre-Dame's guardians",
-    image: "https://images.unsplash.com/photo-1570824104453-508955ab713e?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1570824104453-508955ab713e?w=800&q=80",
-    ],
+    shortDescription: "Hand-cast stone gargoyle inspired by Notre-Dame",
+    image: IMG_GARGOYLE,
+    images: [IMG_GARGOYLE],
     inStock: true,
     featured: true,
     dimensions: '12" H x 8" W x 10" D',
-    material: "Stone composite with aged patina",
+    material: "Stone composite",
     weight: "6.8 lbs",
   },
   {
@@ -102,15 +114,13 @@ export const products: Product[] = [
     category: "Gothic Mirrors",
     categorySlug: "gothic-mirrors",
     description: "An exquisite oval mirror framed in hand-carved dark mahogany with baroque scrollwork. The frame features intertwined ravens and thorned vines, finished in antique black with gold leaf accents. A true statement piece that brings dark elegance to any room.",
-    shortDescription: "Hand-carved baroque mirror with raven and vine motifs",
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=800&q=80",
-    ],
+    shortDescription: "Baroque mirror with raven and vine motifs",
+    image: IMG_MIRROR,
+    images: [IMG_MIRROR],
     inStock: true,
     featured: true,
     dimensions: '36" H x 24" W x 3" D',
-    material: "Dark mahogany, gold leaf accents",
+    material: "Dark mahogany",
     weight: "8.5 lbs",
   },
   {
@@ -121,15 +131,13 @@ export const products: Product[] = [
     category: "Candle Holders",
     categorySlug: "candle-holders",
     description: "A dramatic five-arm wall candelabra forged from wrought iron with a matte black finish. Inspired by medieval monastery fixtures, each arm curves gracefully and holds a standard taper candle. When lit, it casts mesmerizing shadows that dance across your walls.",
-    shortDescription: "Five-arm wrought iron wall candelabra with medieval design",
-    image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=80",
-    ],
+    shortDescription: "Five-arm wrought iron wall candelabra",
+    image: IMG_CANDLE,
+    images: [IMG_CANDLE],
     inStock: true,
     featured: true,
     dimensions: '18" H x 22" W x 8" D',
-    material: "Wrought iron, matte black finish",
+    material: "Wrought iron",
     weight: "5.1 lbs",
   },
   {
@@ -141,12 +149,12 @@ export const products: Product[] = [
     categorySlug: "wall-crosses",
     description: "A magnificent Celtic cross combining Gothic and Celtic artistry. Hand-carved from dark resin stone with intricate knotwork patterns. The aged stone finish gives it an authentically ancient appearance.",
     shortDescription: "Celtic-Gothic fusion cross with intricate knotwork",
-    image: "https://images.unsplash.com/photo-1445538263394-680d8e43611c?w=800&q=80",
+    image: IMG_CROSS,
     images: [],
     inStock: true,
     featured: false,
     dimensions: '28" H x 16" W x 2.5" D',
-    material: "Resin stone, aged finish",
+    material: "Resin stone",
     weight: "5.0 lbs",
   },
   {
@@ -158,12 +166,12 @@ export const products: Product[] = [
     categorySlug: "gargoyles-sculptures",
     description: "A brooding sentinel gargoyle with outstretched wings, designed to mount on a wall or shelf. This imposing guardian features extraordinary detail in every feather and scale.",
     shortDescription: "Winged sentinel gargoyle with extraordinary detail",
-    image: "https://images.unsplash.com/photo-1570824104453-508955ab713e?w=800&q=80",
+    image: IMG_GARGOYLE,
     images: [],
     inStock: false,
     featured: false,
     dimensions: '14" H x 18" W x 12" D',
-    material: "Stone composite, hand-finished",
+    material: "Stone composite",
     weight: "9.2 lbs",
   },
   {
@@ -175,7 +183,7 @@ export const products: Product[] = [
     categorySlug: "candle-holders",
     description: "A matching pair of Gothic wall sconces in blackened iron. Each features a pointed arch design reminiscent of cathedral windows, with a drip-catching base for taper candles.",
     shortDescription: "Pair of Gothic arch wall sconces in blackened iron",
-    image: "https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=80",
+    image: IMG_CANDLE,
     images: [],
     inStock: true,
     featured: false,
@@ -192,12 +200,12 @@ export const products: Product[] = [
     categorySlug: "gothic-mirrors",
     description: "A tall pointed-arch mirror with a hammered iron frame finished in obsidian black. The Gothic arch shape evokes cathedral windows, creating a dramatic focal point.",
     shortDescription: "Pointed-arch mirror with hammered iron frame",
-    image: "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=800&q=80",
+    image: IMG_MIRROR,
     images: [],
     inStock: true,
     featured: false,
     dimensions: '48" H x 24" W x 2" D',
-    material: "Hammered iron, obsidian finish",
+    material: "Hammered iron",
     weight: "12.0 lbs",
   },
 ];

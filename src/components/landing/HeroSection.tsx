@@ -67,7 +67,7 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center scale-110"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&q=80')",
+              "url('https://images.unsplash.com/photo-1680372669294-570f598ce2e5?w=1920&q=80')",
             filter: "brightness(0.3) contrast(1.2) saturate(0.8)",
           }}
         />

@@ -121,13 +121,13 @@ function GalleryProductCard({
             <p className="font-inter text-xs text-foreground/30 mb-3 line-clamp-2 leading-relaxed">
               {product.shortDescription}
             </p>
-            <div className="flex items-center justify-between">
-              <p className="font-cinzel text-lg text-gold/80">
+            <div className="flex items-center justify-between gap-2">
+              <p className="font-cinzel text-lg text-gold/80 shrink-0">
                 ${product.price.toFixed(2)}
               </p>
               {product.material && (
-                <p className="font-inter text-[9px] text-foreground/20 tracking-wider uppercase">
-                  {product.material.split(",")[0]}
+                <p className="font-inter text-[9px] text-foreground/20 tracking-wider uppercase truncate hidden sm:block">
+                  {product.material}
                 </p>
               )}
             </div>

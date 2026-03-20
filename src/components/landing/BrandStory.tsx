@@ -26,7 +26,7 @@ export default function BrandStory() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&q=80')",
+              "url('https://images.unsplash.com/photo-1560682350-050f2624e7b3?w=1920&q=80')",
           }}
         />
         <div className="absolute inset-0 bg-dark-1/85" />
@@ -48,7 +48,7 @@ export default function BrandStory() {
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1603006905003-be475563bc59?w=800&q=80')",
+                    "url('https://images.unsplash.com/photo-1744339700395-fa286ae4c7e6?w=800&q=80')",
                 }}
               />
               {/* Frame effect */}
