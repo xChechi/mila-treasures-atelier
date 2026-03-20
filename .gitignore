@@ -40,6 +40,12 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# screenshots
+# screenshots and test images
 screenshot-*.png
 ss-*.png
+r2-*.png
+final-*.png
+prev-*.png
+preview-*.png
+test-*.png
+verify-*.png

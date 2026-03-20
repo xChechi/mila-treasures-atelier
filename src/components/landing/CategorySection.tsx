@@ -5,11 +5,21 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { categories } from "@/data/products";
 
-function GothicDoor({
+// Real gothic door photos from Unsplash (verified)
+const doorImages = [
+  "https://images.unsplash.com/photo-1683538503472-62b01680f11a?w=600&q=80", // pointed arch wooden door with studs
+  "https://images.unsplash.com/photo-1749131826389-723f6f83af9a?w=600&q=80", // aged ornate iron-studded door
+  "https://images.unsplash.com/photo-1632046890795-10091ef84679?w=600&q=80", // gothic stone arch entrance
+  "https://images.unsplash.com/photo-1678313695469-c24aad90386e?w=600&q=80", // gothic church door with pointed arch
+];
+
+function GothicDoorCard({
   category,
+  doorImage,
   index,
 }: {
   category: (typeof categories)[0];
+  doorImage: string;
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,133 +39,63 @@ function GothicDoor({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative aspect-[3/5] overflow-hidden" style={{ perspective: "1200px" }}>
-          {/* Stone wall background behind the door */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#181614] to-[#0e0c0a]">
-            {/* Stone texture */}
-            <div className="absolute inset-0 opacity-[0.06]" style={{
-              backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255,255,255,0.04) 30px, rgba(255,255,255,0.04) 31px), repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 21px)",
-            }} />
-          </div>
+        <div className="relative aspect-[3/5] overflow-hidden">
+          {/* Door photograph */}
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+            style={{
+              backgroundImage: `url(${doorImage})`,
+              filter: isHovered
+                ? "brightness(0.5) contrast(1.2) saturate(0.7)"
+                : "brightness(0.28) contrast(1.3) saturate(0.5)",
+            }}
+          />
 
-          {/* Warm light spilling from behind door when open */}
+          {/* Dark vignette overlay */}
+          <div className="absolute inset-0 shadow-[inset_0_0_60px_20px_rgba(0,0,0,0.8)]" />
+
+          {/* Bottom gradient for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50" />
+
+          {/* Golden light glow from door cracks on hover */}
           <motion.div
             animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="absolute inset-0 pointer-events-none z-[1]"
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 pointer-events-none"
           >
-            <div className="absolute inset-y-[10%] left-[8%] w-1/2 bg-radial-[at_0%_50%] from-amber-600/20 via-amber-700/8 to-transparent" />
-            <div className="absolute inset-0 bg-radial-[at_30%_50%] from-amber-800/10 via-transparent to-transparent" />
+            {/* Glow around the door edges */}
+            <div className="absolute inset-[15%] rounded-sm shadow-[0_0_40px_8px_rgba(201,168,76,0.12),0_0_80px_20px_rgba(201,168,76,0.06)]" />
+            {/* Warm light from within */}
+            <div className="absolute inset-0 bg-radial-[at_50%_40%] from-amber-700/10 via-transparent to-transparent" />
           </motion.div>
 
-          {/* Product peek behind door */}
-          <motion.div
-            animate={{ opacity: isHovered ? 0.5 : 0 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="absolute inset-0 z-[2]"
-          >
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${category.image})`, filter: "brightness(0.35) sepia(0.4) saturate(0.6)" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-900/40 via-transparent to-dark-1/80" />
-          </motion.div>
+          {/* Ornate gold corner accents */}
+          <div className="absolute top-3 left-3 w-5 h-5 border-t border-l border-gold/20 group-hover:border-gold/40 transition-colors duration-500" />
+          <div className="absolute top-3 right-3 w-5 h-5 border-t border-r border-gold/20 group-hover:border-gold/40 transition-colors duration-500" />
+          <div className="absolute bottom-3 left-3 w-5 h-5 border-b border-l border-gold/20 group-hover:border-gold/40 transition-colors duration-500" />
+          <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r border-gold/20 group-hover:border-gold/40 transition-colors duration-500" />
 
-          {/* The door panel — swings inward on hover */}
-          <motion.div
-            animate={{
-              rotateY: isHovered ? -35 : 0,
-            }}
-            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{ transformOrigin: "left center", transformStyle: "preserve-3d" }}
-            className="absolute inset-0 z-[5]"
-          >
-            {/* Door surface with wood grain depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1c1812] via-[#171310] to-[#100e0a] shadow-[inset_-2px_0_8px_rgba(0,0,0,0.5)]">
-              {/* Wood grain vertical lines */}
-              <div className="absolute inset-0 opacity-[0.08]" style={{
-                backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(139,69,19,0.15) 8px, rgba(139,69,19,0.08) 10px, transparent 10px, transparent 20px)",
-              }} />
-              {/* Wood grain horizontal bands */}
-              <div className="absolute inset-0 opacity-[0.04]" style={{
-                backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(139,69,19,0.1) 60px, rgba(139,69,19,0.05) 62px)",
-              }} />
+          {/* Category name and count — bottom overlay */}
+          <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 z-10">
+            <div className="w-8 h-px bg-gradient-to-r from-gold/30 to-transparent mb-3 group-hover:w-12 transition-all duration-500" />
+            <h3 className="font-cinzel text-base sm:text-lg font-semibold tracking-[0.08em] text-foreground/80 group-hover:text-gold-light transition-colors duration-500">
+              {category.name}
+            </h3>
+            <p className="font-inter text-[10px] tracking-[0.3em] uppercase text-foreground/25 mt-1.5 group-hover:text-foreground/40 transition-colors duration-500">
+              {category.productCount} Pieces
+            </p>
 
-              {/* Gothic pointed arch frame */}
-              <svg viewBox="0 0 200 340" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet">
-                {/* Outer arch */}
-                <path
-                  d="M25,335 L25,145 Q25,45 100,22 Q175,45 175,145 L175,335"
-                  stroke="rgba(201,168,76,0.2)"
-                  strokeWidth="2.5"
-                  fill="none"
-                />
-                {/* Inner arch */}
-                <path
-                  d="M38,335 L38,152 Q38,58 100,38 Q162,58 162,152 L162,335"
-                  stroke="rgba(201,168,76,0.1)"
-                  strokeWidth="1"
-                  fill="none"
-                />
-                {/* Horizontal bands (iron straps) */}
-                <line x1="25" y1="120" x2="175" y2="120" stroke="rgba(201,168,76,0.08)" strokeWidth="3" />
-                <line x1="25" y1="200" x2="175" y2="200" stroke="rgba(201,168,76,0.08)" strokeWidth="3" />
-                <line x1="25" y1="280" x2="175" y2="280" stroke="rgba(201,168,76,0.08)" strokeWidth="3" />
-
-                {/* Iron studs on straps */}
-                {[120, 200, 280].map((y) => (
-                  <g key={y}>
-                    <circle cx="45" cy={y} r="3.5" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.08)" strokeWidth="0.5" />
-                    <circle cx="45" cy={y} r="1.5" fill="rgba(201,168,76,0.08)" />
-                    <circle cx="155" cy={y} r="3.5" fill="rgba(201,168,76,0.12)" stroke="rgba(201,168,76,0.08)" strokeWidth="0.5" />
-                    <circle cx="155" cy={y} r="1.5" fill="rgba(201,168,76,0.08)" />
-                  </g>
-                ))}
-
-                {/* Door ring / handle — glows on hover */}
-                <circle
-                  cx="140" cy="195" r="11"
-                  stroke={isHovered ? "rgba(201,168,76,0.6)" : "rgba(201,168,76,0.2)"}
-                  strokeWidth="2"
-                  fill="none"
-                  style={{ transition: "stroke 0.5s" }}
-                />
-                <circle cx="140" cy="184" r="3.5" fill={isHovered ? "rgba(201,168,76,0.5)" : "rgba(201,168,76,0.15)"} style={{ transition: "fill 0.5s" }} />
-
-                {/* Keyhole */}
-                <ellipse cx="140" cy="215" rx="3" ry="5" fill={isHovered ? "rgba(232,197,122,0.4)" : "rgba(201,168,76,0.1)"} style={{ transition: "fill 0.6s" }} />
-
-                {/* Cross detail in the arch peak */}
-                <line x1="100" y1="50" x2="100" y2="105" stroke="rgba(201,168,76,0.1)" strokeWidth="1.5" />
-                <line x1="75" y1="78" x2="125" y2="78" stroke="rgba(201,168,76,0.1)" strokeWidth="1.5" />
-              </svg>
-
-              {/* Category name engraved on door */}
-              <div className="absolute inset-x-0 bottom-0 flex flex-col items-center pb-8 px-4 z-10">
-                <div className="w-10 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent mb-3" />
-                <h3 className="font-cinzel text-sm sm:text-base font-semibold tracking-[0.1em] text-gold/40 text-center group-hover:text-gold/60 transition-colors duration-500">
-                  {category.name}
-                </h3>
-                <p className="font-inter text-[9px] tracking-[0.3em] uppercase text-foreground/15 mt-2">
-                  {category.productCount} Pieces
-                </p>
-              </div>
-
-              {/* Door edge shadow — gives 3D depth when opening */}
-              <div className="absolute top-0 right-0 w-3 h-full bg-gradient-to-l from-black/40 to-transparent" />
-            </div>
-          </motion.div>
-
-          {/* "Enter" text — fades in after door starts opening */}
-          <motion.div
-            animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
-            transition={{ duration: 0.3, delay: isHovered ? 0.45 : 0 }}
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[10] pointer-events-none"
-          >
-            <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold/50">
-              Enter &rarr;
-            </span>
-          </motion.div>
+            {/* ENTER text — fades in on hover */}
+            <motion.div
+              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 6 }}
+              transition={{ duration: 0.3, delay: isHovered ? 0.2 : 0 }}
+              className="mt-4"
+            >
+              <span className="font-inter text-[10px] tracking-[0.3em] uppercase text-gold/50 group-hover:text-gold/70 transition-colors">
+                Enter &rarr;
+              </span>
+            </motion.div>
+          </div>
         </div>
       </Link>
     </motion.div>
@@ -168,12 +108,12 @@ export default function CategorySection() {
 
   return (
     <section className="relative py-24 lg:py-32 bg-dark-2 overflow-hidden">
-      {/* Stone wall texture */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
+      {/* Subtle texture */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
         backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.03) 50px, rgba(255,255,255,0.03) 51px), repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.02) 50px, rgba(255,255,255,0.02) 51px)",
       }} />
 
-      <div className="relative max-w-5xl mx-auto px-6 lg:px-8">
+      <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
         {/* Heading */}
         <div ref={headingRef} className="text-center mb-16">
           <motion.p
@@ -204,10 +144,15 @@ export default function CategorySection() {
           </motion.div>
         </div>
 
-        {/* Gothic doors grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        {/* Gothic door cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
           {categories.map((category, i) => (
-            <GothicDoor key={category.slug} category={category} index={i} />
+            <GothicDoorCard
+              key={category.slug}
+              category={category}
+              doorImage={doorImages[i]}
+              index={i}
+            />
           ))}
         </div>
       </div>

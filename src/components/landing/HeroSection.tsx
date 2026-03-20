@@ -67,8 +67,8 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center scale-110"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1680372669294-570f598ce2e5?w=1920&q=80')",
-            filter: "brightness(0.3) contrast(1.2) saturate(0.8)",
+              "url('/images/cathedral-in-moonlight-stockcake.webp')",
+            filter: "brightness(0.45) contrast(1.15) saturate(0.85)",
           }}
         />
         {/* Dark overlays */}
