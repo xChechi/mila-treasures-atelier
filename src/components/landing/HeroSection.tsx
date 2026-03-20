@@ -68,26 +68,25 @@ export default function HeroSection() {
           style={{
             backgroundImage:
               "url('/images/cathedral-in-moonlight-stockcake.webp')",
-            filter: "brightness(0.45) contrast(1.15) saturate(0.85)",
+            filter: "brightness(0.8) contrast(1.1) saturate(1.05)",
           }}
         />
-        {/* Dark overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-1/60 via-dark-1/30 to-dark-1" />
-        <div className="absolute inset-0 bg-burgundy/8 mix-blend-multiply" />
-        {/* Warm candlelight overlay at center */}
-        <div className="absolute inset-0 bg-radial-[at_50%_60%] from-amber-900/10 via-transparent to-transparent" />
+        {/* Light overlay — only darken bottom for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-dark-1/95" />
+        {/* Thin top edge fade for navbar blend */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-dark-1/50 to-transparent" />
       </motion.div>
 
       {/* Floating embers */}
       <FloatingEmbers />
 
       {/* Vignette */}
-      <div className="absolute inset-0 shadow-[inset_0_0_200px_80px_rgba(0,0,0,0.9)] pointer-events-none" />
+      <div className="absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(0,0,0,0.4)] pointer-events-none" />
 
       {/* Main content */}
       <motion.div
         style={{ y: textY, opacity }}
-        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6"
+        className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 [text-shadow:_0_2px_20px_rgba(0,0,0,0.8),_0_4px_40px_rgba(0,0,0,0.5)]"
       >
         {/* Small intro text */}
         <motion.p

@@ -40,22 +40,22 @@ function GothicDoorCard({
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="relative aspect-[3/5] overflow-hidden">
-          {/* Door photograph */}
+          {/* Door photograph — clearly visible by default */}
           <div
             className="absolute inset-0 bg-cover bg-center transition-all duration-700"
             style={{
               backgroundImage: `url(${doorImage})`,
               filter: isHovered
-                ? "brightness(0.5) contrast(1.2) saturate(0.7)"
-                : "brightness(0.28) contrast(1.3) saturate(0.5)",
+                ? "brightness(1.15) contrast(1.1) saturate(1.05)"
+                : "brightness(0.75) contrast(1.05) saturate(0.9)",
             }}
           />
 
-          {/* Dark vignette overlay */}
-          <div className="absolute inset-0 shadow-[inset_0_0_60px_20px_rgba(0,0,0,0.8)]" />
+          {/* Subtle vignette */}
+          <div className="absolute inset-0 shadow-[inset_0_0_40px_10px_rgba(0,0,0,0.4)]" />
 
-          {/* Bottom gradient for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/50" />
+          {/* Bottom gradient for text readability only */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
 
           {/* Golden light glow from door cracks on hover */}
           <motion.div
@@ -107,11 +107,18 @@ export default function CategorySection() {
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 lg:py-32 bg-dark-2 overflow-hidden">
-      {/* Subtle texture */}
-      <div className="absolute inset-0 opacity-[0.02]" style={{
-        backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(255,255,255,0.03) 50px, rgba(255,255,255,0.03) 51px), repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(255,255,255,0.02) 50px, rgba(255,255,255,0.02) 51px)",
+    <section className="relative py-24 lg:py-32 overflow-hidden" style={{ background: "radial-gradient(ellipse at 50% 30%, #1a1816 0%, #111010 40%, #0a0a0a 100%)" }}>
+      {/* Gothic stone wall texture */}
+      <div className="absolute inset-0 opacity-[0.06]" style={{
+        backgroundImage: "repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(201,168,76,0.03) 30px, rgba(201,168,76,0.02) 31px), repeating-linear-gradient(0deg, transparent, transparent 25px, rgba(201,168,76,0.02) 25px, rgba(201,168,76,0.015) 26px)",
       }} />
+      {/* Damask-like subtle pattern */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L48 16L64 16L52 28L56 44L40 36L24 44L28 28L16 16L32 16Z' fill='%23C9A84C' opacity='0.3'/%3E%3C/svg%3E\")",
+        backgroundSize: "80px 80px",
+      }} />
+      {/* Vignette for depth */}
+      <div className="absolute inset-0 shadow-[inset_0_0_150px_60px_rgba(0,0,0,0.5)]" />
 
       <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
         {/* Heading */}

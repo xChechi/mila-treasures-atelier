@@ -19,7 +19,13 @@
       "Bash(npx --yes puppeteer --version)",
       "Bash(node -e \":*)",
       "WebSearch",
-      "mcp__claude-memory__save_memory"
+      "mcp__claude-memory__save_memory",
+      "WebFetch(domain:www.pexels.com)",
+      "Bash(gh auth:*)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl:*)",
+      "Bash(GIT_TERMINAL_PROMPT=0 git push origin master)",
+      "WebFetch(domain:stockcake.com)"
     ]
   }
 }
