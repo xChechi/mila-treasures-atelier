@@ -2,10 +2,33 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 import { testimonials } from "@/data/products";
 
-function TestimonialCard({
+function WaxSeal({ className = "" }: { className?: string }) {
+  return (
+    <div className={`relative ${className}`}>
+      <svg width="40" height="40" viewBox="0 0 40 40" className="drop-shadow-lg">
+        <circle cx="20" cy="20" r="18" fill="#6b1020" />
+        <circle cx="20" cy="20" r="16" fill="#8B0000" />
+        <circle cx="20" cy="20" r="12" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="0.5" />
+        {/* GT initials */}
+        <text x="20" y="24" textAnchor="middle" fill="rgba(201,168,76,0.5)" fontSize="10" fontFamily="Cinzel, serif" fontWeight="bold">
+          GT
+        </text>
+        {/* Decorative dots around edge */}
+        {Array.from({ length: 12 }).map((_, i) => {
+          const angle = (i * 30 * Math.PI) / 180;
+          const cx = 20 + 15 * Math.cos(angle);
+          const cy = 20 + 15 * Math.sin(angle);
+          return <circle key={i} cx={cx} cy={cy} r="0.8" fill="rgba(201,168,76,0.2)" />;
+        })}
+      </svg>
+    </div>
+  );
+}
+
+function ParchmentCard({
   testimonial,
   index,
 }: {
@@ -18,42 +41,46 @@ function TestimonialCard({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.15 }}
-      className="relative bg-dark-3/50 border border-foreground/5 p-8 gothic-frame"
+      transition={{ duration: 0.8, delay: index * 0.15 }}
+      className="relative"
     >
-      {/* Quote icon */}
-      <Quote
-        size={32}
-        className="text-gold/15 mb-4"
-        strokeWidth={1}
-      />
+      {/* Parchment background */}
+      <div className="relative bg-gradient-to-br from-[#1e1a14] via-[#1a1610] to-[#16130e] border border-[#2a2418]/60 p-8 sm:p-10">
+        {/* Aged paper texture */}
+        <div className="absolute inset-0 opacity-[0.04]" style={{
+          backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+        }} />
 
-      {/* Stars */}
-      <div className="flex gap-1 mb-4">
-        {Array.from({ length: testimonial.rating }).map((_, i) => (
-          <Star
-            key={i}
-            size={14}
-            className="text-gold fill-gold"
-          />
-        ))}
-      </div>
+        {/* Burnt/worn edges effect */}
+        <div className="absolute inset-0 shadow-[inset_0_0_30px_rgba(0,0,0,0.5)]" />
 
-      {/* Text */}
-      <p className="font-inter text-sm text-foreground/60 leading-relaxed mb-6 italic">
-        &ldquo;{testimonial.text}&rdquo;
-      </p>
+        {/* Wax seal */}
+        <WaxSeal className="absolute -top-4 -right-2 sm:-right-4 z-10" />
 
-      {/* Author */}
-      <div className="border-t border-foreground/5 pt-4">
-        <p className="font-cinzel text-sm text-foreground/80">
+        {/* Stars */}
+        <div className="flex gap-1 mb-5">
+          {Array.from({ length: testimonial.rating }).map((_, i) => (
+            <Star key={i} size={13} className="text-gold/60 fill-gold/60" />
+          ))}
+        </div>
+
+        {/* Quote — handwriting style */}
+        <p className="font-playfair text-sm sm:text-base text-[#c4b896]/60 leading-relaxed mb-8 italic">
+          &ldquo;{testimonial.text}&rdquo;
+        </p>
+
+        {/* Divider — ink line */}
+        <div className="w-12 h-px bg-gradient-to-r from-[#c4b896]/20 to-transparent mb-4" />
+
+        {/* Author */}
+        <p className="font-cinzel text-sm text-[#c4b896]/70">
           {testimonial.name}
         </p>
-        <p className="font-inter text-xs text-foreground/30 mt-1">
+        <p className="font-inter text-[11px] text-[#c4b896]/30 mt-1">
           {testimonial.location} &middot;{" "}
-          <span className="text-gold/40">{testimonial.product}</span>
+          <span className="text-gold/30">{testimonial.product}</span>
         </p>
       </div>
     </motion.div>
@@ -73,9 +100,9 @@ export default function Testimonials() {
             initial={{ opacity: 0 }}
             animate={headingInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8 }}
-            className="font-inter text-xs tracking-[0.5em] uppercase text-gold/50 mb-4"
+            className="font-inter text-[10px] tracking-[0.6em] uppercase text-gold/40 mb-4"
           >
-            Voices from the Dark
+            Words from the Shadows
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -83,7 +110,7 @@ export default function Testimonials() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[0.05em] text-foreground/90 mb-6"
           >
-            What Our Collectors Say
+            Collector&apos;s Testimonies
           </motion.h2>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -91,16 +118,16 @@ export default function Testimonials() {
             transition={{ duration: 1, delay: 0.3 }}
             className="flex items-center justify-center gap-3"
           >
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-gold/40" />
+            <div className="w-12 h-px bg-gradient-to-r from-transparent to-gold/30" />
             <div className="w-1.5 h-1.5 rotate-45 bg-gold/40" />
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold/40" />
+            <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold/30" />
           </motion.div>
         </div>
 
-        {/* Testimonial grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Testimonials — parchment scrolls */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {testimonials.map((t, i) => (
-            <TestimonialCard key={t.id} testimonial={t} index={i} />
+            <ParchmentCard key={t.id} testimonial={t} index={i} />
           ))}
         </div>
       </div>
