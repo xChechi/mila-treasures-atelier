@@ -48,14 +48,14 @@ export default function CustomCursor() {
         <div
           className="relative"
           style={{
-            width: hovering ? 14 : 10,
-            height: hovering ? 14 : 10,
+            width: hovering ? 30 : 22,
+            height: hovering ? 30 : 22,
             transition: "width 0.15s, height 0.15s, transform 0.15s",
             transform: hovering ? "rotate(45deg)" : "none",
           }}
         >
-          <div className="absolute top-1/2 left-0 w-full h-px -translate-y-1/2 bg-gold-light/80" />
-          <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-gold-light/80" />
+          <div className="absolute top-1/2 left-0 w-full h-[1.5px] -translate-y-1/2 bg-gold/90" />
+          <div className="absolute left-1/2 top-0 h-full w-[1.5px] -translate-x-1/2 bg-gold/90" />
         </div>
       </div>
       <style jsx global>{`

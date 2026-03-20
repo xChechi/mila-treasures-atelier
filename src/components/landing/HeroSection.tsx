@@ -71,6 +71,8 @@ export default function HeroSection() {
             filter: "brightness(0.8) contrast(1.1) saturate(1.05)",
           }}
         />
+        {/* Warm golden tint overlay */}
+        <div className="absolute inset-0 bg-[rgba(201,168,76,0.18)] mix-blend-overlay" />
         {/* Light overlay — only darken bottom for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-dark-1/95" />
         {/* Thin top edge fade for navbar blend */}
