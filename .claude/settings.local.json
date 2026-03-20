@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-memory__search_memory",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack)",
+      "Bash(rm -rf node_modules package.json package-lock.json tsconfig.json next.config.ts src .next next-env.d.ts eslint.config.mjs AGENTS.md)",
+      "Bash(npx create-next-app@latest temp-next --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --no-react-compiler --no-agents)",
+      "Bash(kill %%)",
+      "Read(//c/Users/Stefan.Nasev/Downloads/Claude Cowork/Claude Code/Projects/**)",
+      "Bash(rm -rf gothic-treasures/node_modules gothic-treasures/package.json gothic-treasures/package-lock.json gothic-treasures/tsconfig.json gothic-treasures/next.config.ts gothic-treasures/src gothic-treasures/.next gothic-treasures/next-env.d.ts gothic-treasures/eslint.config.mjs gothic-treasures/AGENTS.md gothic-treasures/temp-next)",
+      "Bash(npx --yes create-next-app@latest . --ts --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --turbopack=false --yes)"
+    ]
+  }
+}
