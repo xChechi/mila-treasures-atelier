@@ -205,3 +205,37 @@ body {
   background-clip: text;
   animation: shimmer 4s linear infinite;
 }
+
+/* Film grain overlay for old-world atmosphere */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(1%, 0%); }
+  30% { transform: translate(-1%, 1%); }
+  40% { transform: translate(1%, -1%); }
+  50% { transform: translate(-1%, 0%); }
+  60% { transform: translate(0%, 1%); }
+  70% { transform: translate(1%, -1%); }
+  80% { transform: translate(-1%, 1%); }
+  90% { transform: translate(0%, -1%); }
+}
+
+.grain-overlay {
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 100;
+  animation: grain 0.8s steps(1) infinite;
+}
+
+/* Atmospheric gothic background with subtle color pools */
+.gothic-atmosphere {
+  background:
+    radial-gradient(ellipse at 20% 80%, rgba(61, 31, 86, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(139, 0, 0, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, #111111 0%, #0a0a0a 100%);
+}
