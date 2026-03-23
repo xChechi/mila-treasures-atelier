@@ -1,17 +1,41 @@
+"use client";
+
+import { useState, useMemo } from "react";
+import { products } from "@/data/products";
+import { filterProducts, sortProducts, type SortOption } from "@/lib/products";
+import PageHeader from "@/components/ui/PageHeader";
+import ShopFilters from "@/components/shop/ShopFilters";
+import ProductGrid from "@/components/shop/ProductGrid";
+
 export default function ShopPage() {
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState("");
+  const [sort, setSort] = useState<SortOption>("name-asc");
+
+  const filtered = useMemo(() => {
+    const results = filterProducts(products, search, activeCategory || undefined);
+    return sortProducts(results, sort);
+  }, [search, activeCategory, sort]);
+
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-7xl mx-auto text-center">
-        <p className="font-inter text-xs tracking-[0.5em] uppercase text-gold/50 mb-4">
-          All Pieces
-        </p>
-        <h1 className="font-cinzel text-4xl lg:text-5xl font-semibold text-foreground/90 mb-4">
-          The Collection
-        </h1>
-        <p className="font-inter text-foreground/40">
-          Coming soon — full shop with filtering and search.
-        </p>
+    <section className="relative min-h-screen bg-dark-1">
+      <div className="absolute inset-0 gothic-atmosphere opacity-30" />
+      <div className="relative pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
+        <PageHeader
+          title="The Collection"
+          subtitle="All Pieces"
+          description="Each piece is handcrafted and entirely unique — when it's gone, it's gone forever."
+        />
+        <ShopFilters
+          search={search}
+          onSearchChange={setSearch}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+          sort={sort}
+          onSortChange={setSort}
+        />
+        <ProductGrid products={filtered} />
       </div>
-    </div>
+    </section>
   );
 }

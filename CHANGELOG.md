@@ -1,5 +1,28 @@
 # Changelog — Gothic Treasures
 
+## [0.2.0] - 2026-03-23
+
+### Added — Phase 2: Full Frontend Pages
+- **Shop Page** (`/shop`): Full product grid with search, category filters, and sort (price, name)
+- **Product Detail Page** (`/shop/[slug]`): Image gallery with gothic frame, specs table (material, dimensions, weight), 3-state add-to-cart (Add / In Cart / Sold Out), related products section
+- **Category Page** (`/category/[slug]`): Filtered product grid by category, breadcrumb navigation, sort controls
+- **Cart Page** (`/cart`): Full cart with item management, animated item removal, order summary sidebar, empty state
+- **Checkout Page** (`/checkout`): Guest checkout with shipping form (US address format), form validation, order summary, mock order confirmation with animated success state
+- **Shared Components:**
+  - `ProductCard` — extracted from landing page with 3D tilt, gothic frame, spotlight, "In Cart" state
+  - `ProductGrid` — responsive animated grid wrapper
+  - `ShopFilters` — search input, category filter buttons, sort dropdown
+  - `ProductGallery` — image gallery with gothic frame and thumbnail strip
+  - `RelatedProducts` — "You May Also Like" section
+  - `Breadcrumb` — animated breadcrumb navigation
+  - `PageHeader` — reusable gothic section header with ornament divider
+  - `CheckoutForm` — validated shipping form with US states
+  - `OrderSummary` — compact cart summary for checkout
+- **Data Helpers** (`src/lib/products.ts`): getProductBySlug, getProductsByCategory, getRelatedProducts, getCategoryBySlug, sortProducts, filterProducts
+- **next.config.ts**: Added `images.remotePatterns` for Unsplash
+- Next.js 16 async params pattern (`await params`) on all dynamic routes
+- `generateStaticParams()` for SSG on product and category pages
+
 ## [0.1.0] - 2026-03-20
 
 ### Added

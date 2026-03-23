@@ -1,23 +1,30 @@
+import { notFound } from "next/navigation";
+import { products, categories } from "@/data/products";
+import { getCategoryBySlug, getProductsByCategory } from "@/lib/products";
+import CategoryPageClient from "./CategoryPageClient";
+
+export function generateStaticParams() {
+  return categories.map((c) => ({ slug: c.slug }));
+}
+
 export default async function CategoryPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  const category = getCategoryBySlug(slug);
+
+  if (!category) notFound();
+
+  const categoryProducts = getProductsByCategory(slug);
+  const realCount = categoryProducts.length;
 
   return (
-    <div className="min-h-screen pt-32 pb-20 px-6">
-      <div className="max-w-7xl mx-auto text-center">
-        <p className="font-inter text-xs tracking-[0.5em] uppercase text-gold/50 mb-4">
-          Collection
-        </p>
-        <h1 className="font-cinzel text-4xl font-semibold text-foreground/90 mb-4 capitalize">
-          {slug.replace(/-/g, " ")}
-        </h1>
-        <p className="font-inter text-foreground/40">
-          Coming soon — category page with product grid.
-        </p>
-      </div>
-    </div>
+    <CategoryPageClient
+      category={category}
+      products={categoryProducts}
+      productCount={realCount}
+    />
   );
 }
