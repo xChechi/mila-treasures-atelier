@@ -93,6 +93,16 @@ body {
   display: none;
 }
 
+/* Admin layout — hide public nav/footer/overlays */
+.admin-layout ~ footer,
+.admin-layout ~ nav,
+:has(.admin-layout) > nav,
+:has(.admin-layout) > footer,
+:has(.admin-layout) > .grain-overlay,
+:has(.admin-layout) > .scroll-progress {
+  display: none !important;
+}
+
 /* Prevent iOS zoom on input focus (requires 16px minimum) */
 @media screen and (max-width: 768px) {
   input, select, textarea {

@@ -1,5 +1,16 @@
 # Changelog — Gothic Treasures
 
+## [0.4.0] - 2026-03-23
+
+### Added — Phase 6: Admin Dashboard
+- **Admin Layout** with sidebar navigation (Dashboard, Products, Orders, Settings), mobile hamburger menu, "View Store" link. Admin hides public Navbar/Footer via CSS.
+- **Dashboard** (`/admin`): 4 stats cards (Total Products, In Stock, Sold Out, Revenue), recent orders table, quick actions
+- **Products** (`/admin/products`): Full product table with image thumbnails, category, price, stock status. Add/Edit product modal form with all fields. Delete confirmation.
+- **Orders** (`/admin/orders`): Orders table with expandable rows showing shipping address, email, item breakdown. Status badges (Processing/Shipped/Delivered) with color coding.
+- **Settings** (`/admin/settings`): Store info display, Supabase + Stripe integration placeholders (Coming Soon)
+- Mock order data (6 orders) in `src/data/mock-orders.ts`
+- Reusable `StatsCard` component, `ProductFormModal` with full product form, `AdminSidebar` with active state highlighting
+
 ## [0.3.1] - 2026-03-23
 
 ### Added — Phase 5: Polish + Extras
