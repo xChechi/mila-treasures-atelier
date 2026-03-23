@@ -1,5 +1,12 @@
 # Changelog — Gothic Treasures
 
+## [0.2.1] - 2026-03-23
+
+### Added — Phase 3: About + Contact Pages
+- **About Page** (`/about`): Parallax hero banner, origin story narrative, 3-column "Our Craft" feature grid (Handcrafted, Unique Materials, One of a Kind), stats bar, Shipping & Returns info with 3 detailed sections (Shipping, Returns, Guarantee)
+- **Contact Page** (`/contact`): Contact form (name, email, subject dropdown, message), info sidebar (email, response time, workshop location), FAQ accordion with 4 expandable items, mock submit with animated success state
+- Both pages use `gothic-bg` textured background, scroll-triggered animations, gothic frame corners
+
 ## [0.2.0] - 2026-03-23
 
 ### Added — Phase 2: Full Frontend Pages
