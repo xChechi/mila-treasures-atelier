@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { products } from "@/data/products";
 import { getProductBySlug, getRelatedProducts } from "@/lib/products";
+import { getReviewsByProduct, getAverageRating } from "@/data/reviews";
 import ProductDetailClient from "./ProductDetailClient";
 
 export function generateStaticParams() {
@@ -46,7 +47,9 @@ export default async function ProductPage({
 
   if (!product) notFound();
 
-  const related = getRelatedProducts(product.id, product.categorySlug);
+  const related = getRelatedProducts(product.id, product.categorySlug, 4, product.price);
+  const productReviews = getReviewsByProduct(product.id);
+  const avgRating = getAverageRating(product.id);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -64,6 +67,15 @@ export default async function ProductPage({
     },
     material: product.material,
     brand: { "@type": "Brand", name: "Gothic Treasures" },
+    ...(productReviews.length > 0 && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: avgRating.toFixed(1),
+        reviewCount: productReviews.length,
+        bestRating: 5,
+        worstRating: 1,
+      },
+    }),
   };
 
   return (
@@ -72,7 +84,7 @@ export default async function ProductPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProductDetailClient product={product} relatedProducts={related} />
+      <ProductDetailClient product={product} relatedProducts={related} reviews={productReviews} averageRating={avgRating} />
     </>
   );
 }

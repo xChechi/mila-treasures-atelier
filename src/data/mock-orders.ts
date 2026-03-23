@@ -1,3 +1,11 @@
+export interface OrderTimelineEvent {
+  status: "confirmed" | "crafting" | "shipped" | "delivered";
+  label: string;
+  description: string;
+  date: string | null;
+  completed: boolean;
+}
+
 export interface Order {
   id: string;
   orderNumber: string;
@@ -8,9 +16,53 @@ export interface Order {
   status: "processing" | "shipped" | "delivered";
   date: string;
   shippingAddress: string;
+  timeline: OrderTimelineEvent[];
 }
 
-export const mockOrders: Order[] = [
+function buildTimeline(status: "processing" | "shipped" | "delivered", orderDate: string): OrderTimelineEvent[] {
+  const d = new Date(orderDate);
+  const fmt = (date: Date) => date.toISOString().split("T")[0];
+
+  const craftDate = new Date(d);
+  craftDate.setDate(d.getDate() + 1);
+  const shipDate = new Date(d);
+  shipDate.setDate(d.getDate() + 3);
+  const deliverDate = new Date(d);
+  deliverDate.setDate(d.getDate() + 14);
+
+  return [
+    {
+      status: "confirmed",
+      label: "Order Confirmed",
+      description: "Your order has been received and payment verified",
+      date: fmt(d),
+      completed: true,
+    },
+    {
+      status: "crafting",
+      label: "Handcrafting in Progress",
+      description: "Your unique piece is being carefully prepared in our Bulgarian workshop",
+      date: status !== "processing" ? fmt(craftDate) : null,
+      completed: status !== "processing",
+    },
+    {
+      status: "shipped",
+      label: "Shipped from Bulgaria",
+      description: "Your treasure has departed our workshop, en route to the USA",
+      date: status === "shipped" || status === "delivered" ? fmt(shipDate) : null,
+      completed: status === "shipped" || status === "delivered",
+    },
+    {
+      status: "delivered",
+      label: "Delivered",
+      description: "Your gothic treasure has arrived at its new home",
+      date: status === "delivered" ? fmt(deliverDate) : null,
+      completed: status === "delivered",
+    },
+  ];
+}
+
+const ordersRaw = [
   {
     id: "1",
     orderNumber: "GT-2K7X8A",
@@ -18,7 +70,7 @@ export const mockOrders: Order[] = [
     customerEmail: "victoria@example.com",
     items: [{ productName: "Nocturne Cathedral Cross", price: 189.0 }],
     total: 189.0,
-    status: "delivered",
+    status: "delivered" as const,
     date: "2026-03-18",
     shippingAddress: "Portland, OR 97201",
   },
@@ -32,7 +84,7 @@ export const mockOrders: Order[] = [
       { productName: "Vesper Iron Candelabra", price: 165.0 },
     ],
     total: 410.0,
-    status: "shipped",
+    status: "shipped" as const,
     date: "2026-03-20",
     shippingAddress: "Salem, MA 01970",
   },
@@ -43,7 +95,7 @@ export const mockOrders: Order[] = [
     customerEmail: "elena@example.com",
     items: [{ productName: "Ravenmoor Baroque Mirror", price: 320.0 }],
     total: 320.0,
-    status: "shipped",
+    status: "shipped" as const,
     date: "2026-03-21",
     shippingAddress: "New Orleans, LA 70112",
   },
@@ -54,7 +106,7 @@ export const mockOrders: Order[] = [
     customerEmail: "sebastian@example.com",
     items: [{ productName: "Thornewood Celtic Cross", price: 210.0 }],
     total: 210.0,
-    status: "processing",
+    status: "processing" as const,
     date: "2026-03-22",
     shippingAddress: "Brooklyn, NY 11201",
   },
@@ -68,7 +120,7 @@ export const mockOrders: Order[] = [
       { productName: "Obsidian Arch Mirror", price: 275.0 },
     ],
     total: 420.0,
-    status: "processing",
+    status: "processing" as const,
     date: "2026-03-23",
     shippingAddress: "Savannah, GA 31401",
   },
@@ -79,8 +131,13 @@ export const mockOrders: Order[] = [
     customerEmail: "damien@example.com",
     items: [{ productName: "Vesper Iron Candelabra", price: 165.0 }],
     total: 165.0,
-    status: "delivered",
+    status: "delivered" as const,
     date: "2026-03-15",
     shippingAddress: "Austin, TX 78701",
   },
 ];
+
+export const mockOrders: Order[] = ordersRaw.map((o) => ({
+  ...o,
+  timeline: buildTimeline(o.status, o.date),
+}));

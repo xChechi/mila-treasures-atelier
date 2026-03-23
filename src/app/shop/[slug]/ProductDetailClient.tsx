@@ -3,23 +3,31 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { ShoppingBag, Check, Heart, Package, Ruler, Scale } from "lucide-react";
+import { ShoppingBag, Check, Heart, Package, Ruler, Scale, Star } from "lucide-react";
 import type { Product } from "@/data/products";
+import type { Review } from "@/data/reviews";
 import { useCartStore } from "@/store/cart";
 import { useWishlistStore } from "@/store/wishlist";
+import { useCurrencyStore, formatPrice } from "@/store/currency";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ProductGallery from "@/components/shop/ProductGallery";
 import RelatedProducts from "@/components/shop/RelatedProducts";
 import SizeReference from "@/components/shop/SizeReference";
+import ProductReviews from "@/components/shop/ProductReviews";
+import ShareButtons from "@/components/shop/ShareButtons";
 
 interface ProductDetailClientProps {
   product: Product;
   relatedProducts: Product[];
+  reviews: Review[];
+  averageRating: number;
 }
 
 export default function ProductDetailClient({
   product,
   relatedProducts,
+  reviews,
+  averageRating,
 }: ProductDetailClientProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
@@ -29,6 +37,7 @@ export default function ProductDetailClient({
   const isInCart = cartItems.some((i) => i.product.id === product.id);
   const toggleWishlist = useWishlistStore((s) => s.toggleItem);
   const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
+  const currency = useCurrencyStore((s) => s.currency);
 
   const handleAddToCart = () => {
     addItem(product);
@@ -84,9 +93,36 @@ export default function ProductDetailClient({
             </h1>
 
             {/* Price */}
-            <p className="font-cinzel text-2xl text-gold mb-6">
-              ${product.price.toFixed(2)}
+            <p className="font-cinzel text-2xl text-gold mb-3">
+              {formatPrice(product.price, currency)}
+              {currency !== "USD" && (
+                <span className="text-sm text-foreground/20 ml-2">
+                  (${product.price.toFixed(2)})
+                </span>
+              )}
             </p>
+
+            {/* Star rating */}
+            {reviews.length > 0 && (
+              <div className="flex items-center gap-2 mb-6">
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={14}
+                      className={
+                        i < Math.round(averageRating)
+                          ? "text-gold/60 fill-gold/60"
+                          : "text-foreground/15"
+                      }
+                    />
+                  ))}
+                </div>
+                <span className="font-inter text-xs text-foreground/30">
+                  {averageRating.toFixed(1)} ({reviews.length} {reviews.length === 1 ? "review" : "reviews"})
+                </span>
+              </div>
+            )}
 
             {/* Divider */}
             <div className="flex items-center gap-3 mb-6">
@@ -171,12 +207,25 @@ export default function ProductDetailClient({
               </div>
 
               {/* Unique piece notice */}
-              <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20">
+              <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20 mb-4">
                 One-of-a-kind piece — handcrafted in Bulgaria
               </p>
+
+              {/* Share buttons */}
+              <div className="flex justify-center pt-2 border-t border-gold/5">
+                <ShareButtons
+                  productName={product.name}
+                  productUrl={`/shop/${product.slug}`}
+                  productImage={product.image}
+                  productDescription={product.shortDescription}
+                />
+              </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Reviews */}
+        <ProductReviews reviews={reviews} averageRating={averageRating} />
 
         {/* Related Products */}
         <RelatedProducts products={relatedProducts} />

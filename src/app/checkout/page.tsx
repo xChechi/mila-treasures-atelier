@@ -64,12 +64,20 @@ export default function CheckoutPage() {
                 In production, you would receive a confirmation email.
               </p>
 
-              <Link
-                href="/shop"
-                className="inline-block px-10 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase transition-colors duration-300"
-              >
-                Continue Shopping
-              </Link>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Link
+                  href={`/order/${orderNumber}`}
+                  className="inline-block px-10 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase transition-colors duration-300"
+                >
+                  Track Order
+                </Link>
+                <Link
+                  href="/shop"
+                  className="inline-block px-10 py-4 border border-gold/20 hover:border-gold/40 text-gold-light/60 hover:text-gold-light font-inter text-sm tracking-[0.15em] uppercase transition-all duration-300"
+                >
+                  Continue Shopping
+                </Link>
+              </div>
             </motion.div>
           ) : items.length === 0 && !orderPlaced ? (
             <motion.div

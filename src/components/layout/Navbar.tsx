@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShoppingBag, Heart, Menu, X } from "lucide-react";
 import { useCartStore } from "@/store/cart";
 import { useWishlistStore } from "@/store/wishlist";
+import CurrencyToggle from "@/components/ui/CurrencyToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -70,6 +71,9 @@ export default function Navbar() {
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gold group-hover:w-full transition-all duration-300" />
                 </Link>
               ))}
+
+              {/* Currency Toggle */}
+              <CurrencyToggle />
 
               {/* Wishlist */}
               <Link

@@ -5,8 +5,10 @@ import { motion, useInView, useMotionValue, useSpring, useTransform } from "fram
 import Link from "next/link";
 import { useCartStore } from "@/store/cart";
 import { useWishlistStore } from "@/store/wishlist";
-import { ShoppingBag, Eye, Check, Heart } from "lucide-react";
+import { ShoppingBag, Eye, Check, Heart, Star } from "lucide-react";
 import type { Product } from "@/data/products";
+import { getAverageRating, getReviewCount } from "@/data/reviews";
+import { useCurrencyStore, formatPrice } from "@/store/currency";
 
 export default function ProductCard({
   product,
@@ -22,6 +24,7 @@ export default function ProductCard({
   const isInCart = cartItems.some((i) => i.product.id === product.id);
   const toggleWishlist = useWishlistStore((s) => s.toggleItem);
   const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
+  const currency = useCurrencyStore((s) => s.currency);
   const [isHovered, setIsHovered] = useState(false);
 
   // 3D tilt effect
@@ -148,9 +151,35 @@ export default function ProductCard({
             <p className="font-inter text-xs text-foreground/30 mb-3 line-clamp-2 leading-relaxed">
               {product.shortDescription}
             </p>
+            {/* Star rating */}
+            {(() => {
+              const avg = getAverageRating(product.id);
+              const count = getReviewCount(product.id);
+              if (count === 0) return null;
+              return (
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        size={11}
+                        className={
+                          i < Math.round(avg)
+                            ? "text-gold/60 fill-gold/60"
+                            : "text-foreground/15"
+                        }
+                      />
+                    ))}
+                  </div>
+                  <span className="font-inter text-[10px] text-foreground/25">
+                    ({count})
+                  </span>
+                </div>
+              );
+            })()}
             <div className="flex items-center justify-between gap-2">
               <p className={`font-cinzel text-lg shrink-0 ${product.inStock ? "text-gold/80" : "text-foreground/30 line-through"}`}>
-                ${product.price.toFixed(2)}
+                {formatPrice(product.price, currency)}
               </p>
               {product.material && (
                 <p className="font-inter text-[9px] text-foreground/20 tracking-wider uppercase truncate hidden sm:block">

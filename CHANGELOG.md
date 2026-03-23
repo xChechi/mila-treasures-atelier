@@ -1,5 +1,18 @@
 # Changelog — Gothic Treasures
 
+## [0.5.0] - 2026-03-23
+
+### Added — Section 7.2: Medium-Effort Features
+- **Smart Related Products**: Improved algorithm — prioritizes same category + similar price range (within 15/30/50%), prefers in-stock items, adds randomization for variety. Replaces naive same-category-first approach.
+- **Order Tracking Page** (`/order/[id]`): Gothic-themed status timeline with 4 stages (Confirmed → Handcrafting → Shipped → Delivered). Animated pulse on active step, order details card with frame corners. Linked from checkout success page. `generateStaticParams` for SSG, noindex for privacy.
+- **Real Reviews System**: 12 reviews across 7 products in `src/data/reviews.ts`. Star ratings on product cards (avg rating + count). Full reviews section on product detail pages with "Collector's Verdicts" heading, individual review cards with verified badges, aggregate rating summary. JSON-LD `aggregateRating` added to product schema for SEO.
+- **Currency Preview Toggle**: Client-side USD/EUR/GBP conversion with approximate rates. Globe icon dropdown in navbar. Prices update across product cards and detail pages. Shows original USD in parentheses when non-USD selected. "Approximate rates" disclaimer. Zustand store at `src/store/currency.ts`.
+- **Social Sharing**: Pinterest "Pin It" button, copy-link with success feedback, native Web Share API (mobile) on product detail pages. Pinterest-optimized sharing URL with product image and description.
+- New components: `ProductReviews`, `ShareButtons`, `CurrencyToggle`
+- New stores: `src/store/currency.ts`
+- New data: `src/data/reviews.ts` (12 reviews, helper functions)
+- Updated mock orders with `timeline` field for order tracking
+
 ## [0.4.1] - 2026-03-23
 
 ### Added — Quick Wins (UX Enhancements)
