@@ -67,8 +67,8 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center scale-110"
           style={{
             backgroundImage:
-              "url('/images/cathedral-in-moonlight-stockcake.webp')",
-            filter: "grayscale(0.7) sepia(0.4) brightness(0.85) contrast(1.1)",
+              "url('/images/gothic-cathedral-vault.jpg')",
+            filter: "sepia(0.3) brightness(0.7) contrast(1.15)",
           }}
         />
         {/* Bottom gradient for text readability */}
@@ -93,7 +93,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={loaded ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, delay: 0.5 }}
-          className="font-inter text-[10px] sm:text-xs tracking-[0.5em] uppercase text-gold/50 mb-8"
+          className="font-inter text-[10px] sm:text-xs tracking-[0.5em] uppercase text-gold-light/70 mb-8"
         >
           Handcrafted Dark Elegance
         </motion.p>
@@ -104,9 +104,9 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 0.8 }}
-            className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-bold tracking-[0.08em] leading-[0.9]"
+            className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-bold tracking-[0.08em] leading-[0.9] text-gold-light"
           >
-            <span className="text-shimmer inline-block">Gothic</span>
+            Gothic
           </motion.h1>
         </div>
         <div className="overflow-hidden mt-2">
@@ -166,9 +166,9 @@ export default function HeroSection() {
           </Link>
           <Link
             href="/about"
-            className="group px-10 py-4 border border-gold/20 hover:border-gold/50 transition-all duration-500"
+            className="group px-10 py-4 border border-gold/30 hover:border-gold/60 transition-all duration-500"
           >
-            <span className="font-inter text-sm tracking-[0.2em] uppercase text-gold-light/60 group-hover:text-gold-light transition-colors duration-300">
+            <span className="font-inter text-sm tracking-[0.2em] uppercase text-gold-light group-hover:text-white transition-colors duration-300">
               Our Story
             </span>
           </Link>

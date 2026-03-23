@@ -62,7 +62,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="relative font-inter text-sm tracking-[0.2em] uppercase text-foreground/70 hover:text-gold-light transition-colors duration-300 group"
+                  className="relative font-inter text-sm tracking-[0.2em] uppercase text-foreground/90 hover:text-gold-light transition-colors duration-300 group"
                 >
                   {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gold group-hover:w-full transition-all duration-300" />
@@ -72,7 +72,7 @@ export default function Navbar() {
               {/* Cart */}
               <button
                 onClick={toggleCart}
-                className="relative p-2 text-foreground/70 hover:text-gold-light transition-colors duration-300"
+                className="relative p-2 text-foreground/90 hover:text-gold-light transition-colors duration-300"
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />
                 {totalItems > 0 && (
