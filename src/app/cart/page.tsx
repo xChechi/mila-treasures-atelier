@@ -13,8 +13,7 @@ export default function CartPage() {
   const totalPrice = useCartStore((s) => s.totalPrice);
 
   return (
-    <section className="relative min-h-screen bg-dark-1">
-      <div className="absolute inset-0 gothic-atmosphere opacity-20" />
+    <section className="relative min-h-screen gothic-bg">
       <div className="relative pt-32 pb-20 px-6 lg:px-8 max-w-7xl mx-auto">
         <PageHeader title="Your Cart" />
 

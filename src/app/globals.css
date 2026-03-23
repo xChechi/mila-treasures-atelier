@@ -239,3 +239,45 @@ body {
     radial-gradient(ellipse at 80% 20%, rgba(139, 0, 0, 0.06) 0%, transparent 50%),
     radial-gradient(ellipse at 50% 50%, #111111 0%, #0a0a0a 100%);
 }
+
+/* Rich dark background with visible texture + depth */
+.gothic-bg {
+  background-color: #0a0a0a;
+  background-image:
+    /* SVG noise texture overlay for organic stone feel */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"),
+    /* Diamond lattice pattern — gothic ironwork feel */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(201, 168, 76, 0.04) 30px,
+      rgba(201, 168, 76, 0.04) 31px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 30px,
+      rgba(201, 168, 76, 0.04) 30px,
+      rgba(201, 168, 76, 0.04) 31px
+    ),
+    /* Strong atmospheric color pools */
+    radial-gradient(ellipse at 15% 20%, rgba(61, 31, 86, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 85% 60%, rgba(139, 0, 0, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 30% 80%, rgba(139, 0, 0, 0.06) 0%, transparent 40%),
+    /* Base gradient with more contrast */
+    linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 25%, #070707 60%, #0b0b0b 100%);
+}
+
+/* Top-down ambient light + side vignette */
+.gothic-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% -10%, rgba(201, 168, 76, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 0% 50%, rgba(0, 0, 0, 0.4) 0%, transparent 40%),
+    radial-gradient(ellipse at 100% 50%, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
+  pointer-events: none;
+}
