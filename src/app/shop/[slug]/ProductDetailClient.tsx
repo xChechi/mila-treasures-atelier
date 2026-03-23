@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ShoppingBag, Check, Heart, Package, Ruler, Scale, Star } from "lucide-react";
@@ -15,6 +15,8 @@ import RelatedProducts from "@/components/shop/RelatedProducts";
 import SizeReference from "@/components/shop/SizeReference";
 import ProductReviews from "@/components/shop/ProductReviews";
 import ShareButtons from "@/components/shop/ShareButtons";
+import RecentlyViewed from "@/components/shop/RecentlyViewed";
+import { useRecentlyViewedStore } from "@/store/recentlyViewed";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -38,6 +40,12 @@ export default function ProductDetailClient({
   const toggleWishlist = useWishlistStore((s) => s.toggleItem);
   const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
   const currency = useCurrencyStore((s) => s.currency);
+
+  // Track recently viewed
+  const addRecentlyViewed = useRecentlyViewedStore((s) => s.addItem);
+  useEffect(() => {
+    addRecentlyViewed(product);
+  }, [product, addRecentlyViewed]);
 
   const handleAddToCart = () => {
     addItem(product);
@@ -229,6 +237,9 @@ export default function ProductDetailClient({
 
         {/* Related Products */}
         <RelatedProducts products={relatedProducts} />
+
+        {/* Recently Viewed */}
+        <RecentlyViewed excludeId={product.id} />
       </div>
     </section>
   );

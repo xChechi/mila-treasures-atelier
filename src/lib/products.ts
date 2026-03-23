@@ -59,17 +59,32 @@ export function sortProducts(items: Product[], sort: SortOption): Product[] {
   }
 }
 
+export interface FilterOptions {
+  search: string;
+  categorySlug?: string;
+  material?: string;
+  inStockOnly?: boolean;
+  priceMin?: number;
+  priceMax?: number;
+}
+
 export function filterProducts(
   items: Product[],
-  search: string,
+  searchOrOptions: string | FilterOptions,
   categorySlug?: string
 ): Product[] {
+  // Support both old signature (search, categorySlug) and new FilterOptions
+  const opts: FilterOptions = typeof searchOrOptions === "string"
+    ? { search: searchOrOptions, categorySlug }
+    : searchOrOptions;
+
   let filtered = items;
-  if (categorySlug) {
-    filtered = filtered.filter((p) => p.categorySlug === categorySlug);
+
+  if (opts.categorySlug) {
+    filtered = filtered.filter((p) => p.categorySlug === opts.categorySlug);
   }
-  if (search.trim()) {
-    const q = search.toLowerCase();
+  if (opts.search.trim()) {
+    const q = opts.search.toLowerCase();
     filtered = filtered.filter(
       (p) =>
         p.name.toLowerCase().includes(q) ||
@@ -77,5 +92,28 @@ export function filterProducts(
         p.category.toLowerCase().includes(q)
     );
   }
+  if (opts.material) {
+    filtered = filtered.filter((p) => p.material === opts.material);
+  }
+  if (opts.inStockOnly) {
+    filtered = filtered.filter((p) => p.inStock);
+  }
+  if (opts.priceMin !== undefined) {
+    filtered = filtered.filter((p) => p.price >= opts.priceMin!);
+  }
+  if (opts.priceMax !== undefined) {
+    filtered = filtered.filter((p) => p.price <= opts.priceMax!);
+  }
   return filtered;
+}
+
+export function getUniqueMaterials(items: Product[]): string[] {
+  const materials = new Set<string>();
+  items.forEach((p) => { if (p.material) materials.add(p.material); });
+  return Array.from(materials).sort();
+}
+
+export function getPriceRange(items: Product[]): { min: number; max: number } {
+  const prices = items.map((p) => p.price);
+  return { min: Math.min(...prices), max: Math.max(...prices) };
 }

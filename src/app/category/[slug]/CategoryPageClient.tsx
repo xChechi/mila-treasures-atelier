@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { Product, Category } from "@/data/products";
 import { sortProducts, type SortOption } from "@/lib/products";
 import PageHeader from "@/components/ui/PageHeader";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ProductGrid from "@/components/shop/ProductGrid";
+import QuickViewModal from "@/components/shop/QuickViewModal";
 
 interface CategoryPageClientProps {
   category: Category;
@@ -19,6 +20,8 @@ export default function CategoryPageClient({
   productCount,
 }: CategoryPageClientProps) {
   const [sort, setSort] = useState<SortOption>("name-asc");
+  const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
+  const handleQuickView = useCallback((product: Product) => setQuickViewProduct(product), []);
 
   const sorted = useMemo(() => sortProducts(products, sort), [products, sort]);
 
@@ -56,8 +59,14 @@ export default function CategoryPageClient({
           </select>
         </div>
 
-        <ProductGrid products={sorted} />
+        <ProductGrid products={sorted} onQuickView={handleQuickView} />
       </div>
+
+      <QuickViewModal
+        product={quickViewProduct}
+        isOpen={quickViewProduct !== null}
+        onClose={() => setQuickViewProduct(null)}
+      />
     </section>
   );
 }

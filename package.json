@@ -1,6 +1,6 @@
 {
   "name": "gothic-treasures",
-  "version": "0.4.1",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

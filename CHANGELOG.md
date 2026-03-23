@@ -1,5 +1,18 @@
 # Changelog — Gothic Treasures
 
+## [0.8.0] - 2026-03-23
+
+### Added — High-Impact UX Upgrades
+- **Product Quick View Modal**: Eye icon on product cards opens an overlay with product image, specs, description, rating, add-to-cart — without leaving the shop/category page. Escape to close, click backdrop to dismiss. Available on Shop and Category pages.
+- **Recently Viewed Products**: Zustand store with localStorage persistence (`gothic-recently-viewed`). Horizontal scroll strip on product detail pages (excludes current product) and shop page. Tracks last 8 viewed products.
+- **Advanced Filters**: New filter panel on shop page — price range (dual slider), material dropdown (auto-populated from product data), in-stock toggle. Filter button with active indicator dot, "Clear Filters" action. Backwards-compatible with existing category + search filters.
+- **Product Image Zoom / Lightbox**: Click product gallery image to open full-screen lightbox. Scroll wheel or +/- keys to zoom (up to 4x). Click-drag to pan when zoomed. Keyboard shortcuts (ESC close, 0 reset). Zoom controls bar, zoom level indicator, thumbnail strip.
+- **Product Badges**: "New", "Bestseller", "Limited Edition", "Last One" tags on product cards and Quick View modal. Gold/burgundy styling per badge type. Assigned to: Nocturne Cross (Bestseller), Ravenmoor Mirror (Limited Edition), Thornewood Cross (New), Shadowveil Sconces (Last One).
+- New Zustand store: `src/store/recentlyViewed.ts`
+- New components: `QuickViewModal`, `RecentlyViewed`
+- New helpers: `getUniqueMaterials()`, `getPriceRange()`, `FilterOptions` interface
+- `ProductBadge` type added to Product interface
+
 ## [0.7.0] - 2026-03-23
 
 ### Added — Quality of Life + Analytics

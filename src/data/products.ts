@@ -1,3 +1,5 @@
+export type ProductBadge = "new" | "bestseller" | "limited" | "last-one";
+
 export interface Product {
   id: string;
   name: string;
@@ -11,6 +13,7 @@ export interface Product {
   images: string[];
   inStock: boolean;
   featured: boolean;
+  badge?: ProductBadge;
   dimensions?: string;
   material?: string;
   weight?: string;
@@ -85,6 +88,7 @@ export const products: Product[] = [
     images: [IMG_CROSS],
     inStock: true,
     featured: true,
+    badge: "bestseller",
     dimensions: '24" H x 14" W x 2" D',
     material: "Hand-forged iron",
     weight: "4.2 lbs",
@@ -119,6 +123,7 @@ export const products: Product[] = [
     images: [IMG_MIRROR],
     inStock: true,
     featured: true,
+    badge: "limited",
     dimensions: '36" H x 24" W x 3" D',
     material: "Dark mahogany",
     weight: "8.5 lbs",
@@ -153,6 +158,7 @@ export const products: Product[] = [
     images: [],
     inStock: true,
     featured: false,
+    badge: "new",
     dimensions: '28" H x 16" W x 2.5" D',
     material: "Resin stone",
     weight: "5.0 lbs",
@@ -187,6 +193,7 @@ export const products: Product[] = [
     images: [],
     inStock: true,
     featured: false,
+    badge: "last-one",
     dimensions: '14" H x 6" W x 5" D (each)',
     material: "Blackened iron",
     weight: "2.8 lbs (pair)",

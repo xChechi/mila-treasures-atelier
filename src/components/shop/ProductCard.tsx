@@ -6,16 +6,25 @@ import Link from "next/link";
 import { useCartStore } from "@/store/cart";
 import { useWishlistStore } from "@/store/wishlist";
 import { ShoppingBag, Eye, Check, Heart, Star } from "lucide-react";
-import type { Product } from "@/data/products";
+import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
 import { useCurrencyStore, formatPrice } from "@/store/currency";
+
+const BADGE_CONFIG: Record<ProductBadge, { label: string; bg: string; text: string }> = {
+  new: { label: "New", bg: "bg-gold/90", text: "text-dark-1" },
+  bestseller: { label: "Bestseller", bg: "bg-burgundy/90", text: "text-white" },
+  limited: { label: "Limited Edition", bg: "bg-gold/20 border border-gold/40", text: "text-gold-light" },
+  "last-one": { label: "Last One", bg: "bg-burgundy/80", text: "text-white" },
+};
 
 export default function ProductCard({
   product,
   index = 0,
+  onQuickView,
 }: {
   product: Product;
   index?: number;
+  onQuickView?: (product: Product) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -100,6 +109,15 @@ export default function ProductCard({
               />
             </button>
 
+            {/* Product badge */}
+            {product.badge && product.inStock && (
+              <div className="absolute top-4 right-4 z-10">
+                <span className={`inline-block px-2.5 py-1 font-inter text-[9px] tracking-[0.15em] uppercase ${BADGE_CONFIG[product.badge].bg} ${BADGE_CONFIG[product.badge].text}`}>
+                  {BADGE_CONFIG[product.badge].label}
+                </span>
+              </div>
+            )}
+
             {/* CLAIMED overlay for sold items */}
             {!product.inStock && (
               <div className="absolute inset-0 bg-dark-1/70 flex items-center justify-center z-[5]">
@@ -129,12 +147,16 @@ export default function ProductCard({
                       Add to Cart
                     </button>
                   )}
-                  <Link
-                    href={`/shop/${product.slug}`}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onQuickView ? onQuickView(product) : window.location.href = `/shop/${product.slug}`;
+                    }}
+                    aria-label="Quick view"
                     className="py-3 px-4 bg-dark-1/80 hover:bg-dark-1 backdrop-blur-sm text-foreground/80 transition-colors flex items-center border border-gold/10"
                   >
                     <Eye size={14} />
-                  </Link>
+                  </button>
                 </div>
               </div>
             )}
