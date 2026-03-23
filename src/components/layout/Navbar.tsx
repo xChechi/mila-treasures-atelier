@@ -23,6 +23,7 @@ export default function Navbar() {
 
   const navLinks = [
     { href: "/shop", label: "Shop" },
+    { href: "/journal", label: "Journal" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];

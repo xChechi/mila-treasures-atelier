@@ -1,5 +1,16 @@
 # Changelog — Gothic Treasures
 
+## [0.6.0] - 2026-03-23
+
+### Added — Blog / Journal ("Tales from the Workshop")
+- **Journal listing page** (`/journal`): Category filter (All, Workshop, Culture, Inspiration, Behind the Scenes), featured post hero card with 2-column layout, post grid with cover images, read times, category tags, gold frame corners, hover effects
+- **Article pages** (`/journal/[slug]`): Full-width hero image with dark overlay, breadcrumb navigation, custom markdown renderer (H2/H3, bold, italic, bullet lists with gold dots, block quotes), lead excerpt with gold border, author card, previous/next article navigation, share button
+- **5 articles** covering craftsmanship, gothic architecture in decor, Notre-Dame gargoyles, Bulgaria shipping process, and the cross in gothic art (5-8 min reads each)
+- **SEO**: Per-article metadata with OG/Twitter cards (type: article), JSON-LD BlogPosting schema, journal routes added to sitemap, canonical URLs
+- **Navigation**: "Journal" link added to navbar between Shop and About
+- Journal data at `src/data/journal.ts` with helper functions (getPostBySlug, getFeaturedPosts, getPostsByCategory)
+- `generateStaticParams()` for SSG on all article pages
+
 ## [0.5.0] - 2026-03-23
 
 ### Added — Section 7.2: Medium-Effort Features
