@@ -1,5 +1,21 @@
 # Changelog — Gothic Treasures
 
+## [0.3.0] - 2026-03-23
+
+### Added — Phase 4: SEO + Performance
+- **Per-page metadata** for all routes via title template (`%s — Gothic Treasures`)
+- **Dynamic metadata** (`generateMetadata()`) for product and category pages with unique titles, descriptions, OG/Twitter cards
+- **OpenGraph + Twitter** metadata on root layout with branded OG image
+- **robots.ts** — programmatic robots.txt (allows all, disallows /admin, /cart, /checkout)
+- **sitemap.ts** — programmatic XML sitemap with all static routes, products, and categories
+- **JSON-LD structured data** — Organization + WebSite on root, Product schema on product detail pages
+- **Custom 404 page** — gothic-styled "Lost in the Shadows" not-found page
+- **OG image** (`public/og-image.jpg`) — branded social sharing image
+- Canonical URLs on all pages
+- Cart/checkout pages set `noindex, nofollow`
+- Server layouts for `'use client'` pages to enable metadata exports
+- Removed unused old hero image (cathedral-in-moonlight-stockcake.webp)
+
 ## [0.2.1] - 2026-03-23
 
 ### Added — Phase 3: About + Contact Pages

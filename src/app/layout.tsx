@@ -7,8 +7,14 @@ import GrainOverlay from "@/components/ui/GrainOverlay";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CustomCursor from "@/components/ui/CustomCursor";
 
+const SITE_URL = "https://gothictreasures.com";
+
 export const metadata: Metadata = {
-  title: "Gothic Treasures | Handcrafted Dark Elegance",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Gothic Treasures | Handcrafted Dark Elegance",
+    template: "%s — Gothic Treasures",
+  },
   description:
     "Unique handmade gothic home wall decor — crosses, gargoyles, mirrors, candle holders. Crafted in Bulgaria, shipped to the USA.",
   keywords: [
@@ -19,7 +25,39 @@ export const metadata: Metadata = {
     "candle holder",
     "handmade",
     "dark home decor",
+    "gothic wall art",
+    "handcrafted decor",
   ],
+  authors: [{ name: "Gothic Treasures" }],
+  creator: "Gothic Treasures",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: SITE_URL,
+    siteName: "Gothic Treasures",
+    title: "Gothic Treasures | Handcrafted Dark Elegance",
+    description:
+      "Unique handmade gothic home wall decor — crosses, gargoyles, mirrors, candle holders. Crafted in Bulgaria, shipped to the USA.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Gothic Treasures — Handcrafted Dark Elegance",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gothic Treasures | Handcrafted Dark Elegance",
+    description:
+      "Unique handmade gothic home wall decor — crosses, gargoyles, mirrors, candle holders.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +67,31 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  name: "Gothic Treasures",
+                  url: SITE_URL,
+                  logo: `${SITE_URL}/og-image.jpg`,
+                  description:
+                    "Handcrafted gothic home wall decor — unique crosses, gargoyles, mirrors, and candle holders. Made in Bulgaria, shipped to the USA.",
+                },
+                {
+                  "@type": "WebSite",
+                  name: "Gothic Treasures",
+                  url: SITE_URL,
+                },
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className="min-h-screen flex flex-col bg-dark-1 text-foreground antialiased">
         <GrainOverlay />
         <ScrollProgress />
