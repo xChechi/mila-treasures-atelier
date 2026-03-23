@@ -1,5 +1,20 @@
 # Changelog — Gothic Treasures
 
+## [0.3.1] - 2026-03-23
+
+### Added — Phase 5: Polish + Extras
+- **Loading skeletons** for shop, product detail, and category pages with gothic frame corners and pulse animations
+- **Scroll-to-top** on route navigation (instant reset)
+- **Back-to-top button** — floating gothic-styled button appears after 500px scroll, smooth scroll back
+- **Skip-to-content** link for keyboard accessibility
+- **Focus-visible styles** — gold outline on all interactive elements for keyboard navigation
+- **Cart in mobile menu** — cart button with badge count added to mobile slide-in navigation
+- **Horizontal scroll** on category filter buttons for mobile screens
+- **iOS zoom prevention** — inputs forced to 16px on mobile to prevent auto-zoom
+- **Aria-labels** on icon-only buttons (cart, menu toggle, close, back-to-top)
+- **Pexels** added to `next.config.ts` remotePatterns
+- Deleted unused 3.2MB pexels image from public/images
+
 ## [0.3.0] - 2026-03-23
 
 ### Added — Phase 4: SEO + Performance

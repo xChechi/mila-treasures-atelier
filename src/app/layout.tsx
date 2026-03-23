@@ -6,6 +6,8 @@ import CartDrawer from "@/components/layout/CartDrawer";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CustomCursor from "@/components/ui/CustomCursor";
+import ScrollToTop from "@/components/ui/ScrollToTop";
+import BackToTop from "@/components/ui/BackToTop";
 
 const SITE_URL = "https://gothictreasures.com";
 
@@ -93,13 +95,16 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-dark-1 text-foreground antialiased">
+        <a href="#main-content" className="skip-to-content">Skip to content</a>
         <GrainOverlay />
         <ScrollProgress />
+        <ScrollToTop />
         <CustomCursor />
         <Navbar />
         <CartDrawer />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <BackToTop />
       </body>
     </html>
   );

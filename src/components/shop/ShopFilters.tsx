@@ -55,7 +55,7 @@ export default function ShopFilters({
       </div>
 
       {/* Category filters */}
-      <div className="flex flex-wrap gap-2">
+      <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-none sm:flex-wrap sm:overflow-visible sm:pb-0">
         <button
           onClick={() => onCategoryChange("")}
           className={`px-5 py-2 font-inter text-xs tracking-[0.15em] uppercase transition-all duration-300 border ${

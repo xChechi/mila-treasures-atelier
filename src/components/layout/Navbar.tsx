@@ -91,7 +91,8 @@ export default function Navbar() {
             <div className="flex md:hidden items-center gap-4">
               <button
                 onClick={toggleCart}
-                className="relative p-2 text-foreground/70"
+                aria-label={`Shopping cart${totalItems > 0 ? ` (${totalItems} items)` : ""}`}
+                className="relative p-2 text-foreground/90"
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />
                 {totalItems > 0 && (
@@ -102,7 +103,8 @@ export default function Navbar() {
               </button>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="p-2 text-foreground/70"
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
+                className="p-2 text-foreground/90"
               >
                 {mobileOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -124,6 +126,7 @@ export default function Navbar() {
             <div className="flex justify-end p-6">
               <button
                 onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
                 className="p-2 text-foreground/70"
               >
                 <X size={24} />
@@ -146,6 +149,24 @@ export default function Navbar() {
                   </Link>
                 </motion.div>
               ))}
+              {/* Cart link in mobile menu */}
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+              >
+                <button
+                  onClick={() => { setMobileOpen(false); toggleCart(); }}
+                  className="font-cinzel text-xl tracking-[0.2em] text-foreground/80 hover:text-gold-light transition-colors flex items-center gap-3"
+                >
+                  Cart
+                  {totalItems > 0 && (
+                    <span className="w-6 h-6 bg-burgundy text-white text-[10px] font-semibold rounded-full flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </button>
+              </motion.div>
             </div>
             {/* Gothic ornament at bottom */}
             <div className="absolute bottom-12 left-0 right-0 flex justify-center">
