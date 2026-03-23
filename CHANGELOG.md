@@ -1,5 +1,13 @@
 # Changelog — Gothic Treasures
 
+## [0.7.0] - 2026-03-23
+
+### Added — Quality of Life + Analytics
+- **VIP Early Access Newsletter**: Tier selector on newsletter section — "Newsletter" (new arrivals & stories) or "VIP Early Access" (see new pieces 48 hours before public). VIP badge, tier-specific success messages, burgundy accent for VIP selection.
+- **Admin Analytics Dashboard** (`/admin/analytics`): Revenue area chart (30-day mock data), daily visitors chart, top products by revenue (horizontal bar chart), category breakdown (donut chart), conversion funnel visualization (Visitors → Viewed → Cart → Checkout → Purchased with drop-off percentages). 4 KPI cards (conversion rate, avg order value, reviews, visitors). Recharts library added. Analytics link in admin sidebar.
+- **Cart Persistence**: Cart now persists across page refreshes and browser restarts via Zustand `persist` middleware with localStorage (key: `gothic-cart`). Only cart items are persisted (not drawer open state). Matches existing wishlist persistence pattern.
+- **Page Transitions**: Smooth fade + subtle upward slide on every route change via Framer Motion. `PageTransition` wrapper component in root layout keyed to pathname.
+
 ## [0.6.0] - 2026-03-23
 
 ### Added — Blog / Journal ("Tales from the Workshop")

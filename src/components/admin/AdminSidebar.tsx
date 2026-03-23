@@ -9,6 +9,7 @@ import {
   Package,
   ShoppingCart,
   Settings,
+  BarChart3,
   ExternalLink,
   Menu,
   X,
@@ -16,6 +17,7 @@ import {
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
   { href: "/admin/settings", label: "Settings", icon: Settings },

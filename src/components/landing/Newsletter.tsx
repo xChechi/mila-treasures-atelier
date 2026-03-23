@@ -33,11 +33,14 @@ function WaxSealButton({ onClick, submitted }: { onClick: () => void; submitted:
   );
 }
 
+type Tier = "standard" | "vip";
+
 export default function Newsletter() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [tier, setTier] = useState<Tier>("standard");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,11 +117,57 @@ export default function Newsletter() {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.6 }}
-              className="font-inter text-sm text-foreground/30 mb-10 max-w-sm mx-auto leading-relaxed"
+              className="font-inter text-sm text-foreground/30 mb-8 max-w-sm mx-auto leading-relaxed"
             >
               Receive word of new arrivals, exclusive pieces, and the tales
               behind our handcrafted gothic treasures.
             </motion.p>
+
+            {/* Tier selector */}
+            {!submitted && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={inView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.65 }}
+                className="flex gap-3 max-w-md mx-auto mb-8"
+              >
+                <button
+                  type="button"
+                  onClick={() => setTier("standard")}
+                  className={`flex-1 py-3 px-4 border text-center transition-all duration-300 ${
+                    tier === "standard"
+                      ? "border-gold/30 bg-gold/5"
+                      : "border-gold/8 hover:border-gold/20"
+                  }`}
+                >
+                  <p className={`font-cinzel text-sm tracking-wide mb-0.5 ${tier === "standard" ? "text-gold-light" : "text-foreground/40"}`}>
+                    Newsletter
+                  </p>
+                  <p className="font-inter text-[10px] text-foreground/20">
+                    New arrivals &amp; stories
+                  </p>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setTier("vip")}
+                  className={`flex-1 py-3 px-4 border text-center transition-all duration-300 relative overflow-hidden ${
+                    tier === "vip"
+                      ? "border-burgundy/40 bg-burgundy/8"
+                      : "border-gold/8 hover:border-gold/20"
+                  }`}
+                >
+                  <span className="absolute top-0 right-0 px-1.5 py-0.5 bg-burgundy/60 text-white text-[8px] tracking-wider uppercase font-inter">
+                    VIP
+                  </span>
+                  <p className={`font-cinzel text-sm tracking-wide mb-0.5 ${tier === "vip" ? "text-burgundy-light" : "text-foreground/40"}`}>
+                    Early Access
+                  </p>
+                  <p className="font-inter text-[10px] text-foreground/20">
+                    See new pieces first
+                  </p>
+                </button>
+              </motion.div>
+            )}
 
             {/* Email form */}
             <motion.form
@@ -147,14 +196,26 @@ export default function Newsletter() {
                   className="w-full py-4 text-center"
                 >
                   <p className="font-cinzel text-lg text-gold-light/80 mb-1">
-                    The seal is set
+                    {tier === "vip" ? "The Inner Circle Awaits" : "The Seal Is Set"}
                   </p>
                   <p className="font-inter text-sm text-foreground/30">
-                    Welcome to the shadows. You&apos;ll hear from us soon.
+                    {tier === "vip"
+                      ? "You\u2019ll see new pieces 48 hours before anyone else."
+                      : "Welcome to the shadows. You\u2019ll hear from us soon."}
                   </p>
                 </motion.div>
               )}
             </motion.form>
+
+            {!submitted && tier === "vip" && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="font-inter text-[10px] text-burgundy/40 mt-4 text-center"
+              >
+                VIP members get 48-hour early access to new pieces before public release
+              </motion.p>
+            )}
 
             <motion.p
               initial={{ opacity: 0 }}

@@ -9,6 +9,7 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import BackToTop from "@/components/ui/BackToTop";
 import SoldTicker from "@/components/ui/SoldTicker";
+import PageTransition from "@/components/ui/PageTransition";
 
 const SITE_URL = "https://gothictreasures.com";
 
@@ -103,7 +104,9 @@ export default function RootLayout({
         <CustomCursor />
         <Navbar />
         <CartDrawer />
-        <main id="main-content" className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <BackToTop />
         <SoldTicker />
