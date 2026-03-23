@@ -8,6 +8,7 @@ import ScrollProgress from "@/components/ui/ScrollProgress";
 import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import BackToTop from "@/components/ui/BackToTop";
+import SoldTicker from "@/components/ui/SoldTicker";
 
 const SITE_URL = "https://gothictreasures.com";
 
@@ -105,6 +106,7 @@ export default function RootLayout({
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
         <BackToTop />
+        <SoldTicker />
       </body>
     </html>
   );

@@ -1,5 +1,14 @@
 # Changelog — Gothic Treasures
 
+## [0.4.1] - 2026-03-23
+
+### Added — Quick Wins (UX Enhancements)
+- **Wishlist / Save for Later**: Heart icon on product cards + detail page, persists to localStorage via Zustand persist middleware. Wishlist page at `/wishlist` with product grid. Heart icon with count badge in navbar.
+- **"CLAIMED" Overlay**: Sold-out products show dramatic dark overlay with rotated "CLAIMED" stamp in burgundy. Price shows strikethrough. Quick action buttons hidden for sold items.
+- **Recently Sold Ticker**: Animated notification slides in from bottom-left cycling through sold items with randomized time labels ("2 hours ago"). Dismissible via X button (sessionStorage). Hidden on admin/cart/checkout pages.
+- **Size Reference**: Visual wall-scale dimension indicator on product detail pages. Parses dimensions string and renders proportional rectangle on a mini wall silhouette.
+- Wishlist Zustand store with localStorage persistence (`src/store/wishlist.ts`)
+
 ## [0.4.0] - 2026-03-23
 
 ### Added — Phase 6: Admin Dashboard

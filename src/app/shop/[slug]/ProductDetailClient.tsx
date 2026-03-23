@@ -3,12 +3,14 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { ShoppingBag, Check, Package, Ruler, Scale } from "lucide-react";
+import { ShoppingBag, Check, Heart, Package, Ruler, Scale } from "lucide-react";
 import type { Product } from "@/data/products";
 import { useCartStore } from "@/store/cart";
+import { useWishlistStore } from "@/store/wishlist";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ProductGallery from "@/components/shop/ProductGallery";
 import RelatedProducts from "@/components/shop/RelatedProducts";
+import SizeReference from "@/components/shop/SizeReference";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -25,6 +27,8 @@ export default function ProductDetailClient({
   const setCartOpen = useCartStore((s) => s.setCartOpen);
   const cartItems = useCartStore((s) => s.items);
   const isInCart = cartItems.some((i) => i.product.id === product.id);
+  const toggleWishlist = useWishlistStore((s) => s.toggleItem);
+  const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
 
   const handleAddToCart = () => {
     addItem(product);
@@ -121,19 +125,23 @@ export default function ProductDetailClient({
               )}
             </div>
 
+            {/* Size Reference */}
+            {product.dimensions && <SizeReference dimensions={product.dimensions} />}
+
             {/* Stock status + Add to cart */}
             <div className="mt-auto space-y-4">
+              <div className="flex gap-3">
               {!product.inStock ? (
                 <button
                   disabled
-                  className="w-full py-4 bg-dark-3/50 border border-foreground/10 text-foreground/30 font-inter text-sm tracking-[0.15em] uppercase cursor-not-allowed"
+                  className="flex-1 py-4 bg-dark-3/50 border border-foreground/10 text-foreground/30 font-inter text-sm tracking-[0.15em] uppercase cursor-not-allowed"
                 >
                   Sold Out
                 </button>
               ) : isInCart ? (
                 <Link
                   href="/cart"
-                  className="w-full py-4 bg-dark-3/80 border border-gold/20 text-gold-light font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 hover:border-gold/40 transition-colors duration-300"
+                  className="flex-1 py-4 bg-dark-3/80 border border-gold/20 text-gold-light font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 hover:border-gold/40 transition-colors duration-300"
                 >
                   <Check size={16} />
                   In Your Cart — View Cart
@@ -141,12 +149,26 @@ export default function ProductDetailClient({
               ) : (
                 <button
                   onClick={handleAddToCart}
-                  className="w-full py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 transition-colors duration-300"
+                  className="flex-1 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 transition-colors duration-300"
                 >
                   <ShoppingBag size={16} />
                   Add to Cart
                 </button>
               )}
+
+              {/* Wishlist button */}
+              <button
+                onClick={() => toggleWishlist(product)}
+                aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                className={`px-4 py-4 border transition-all duration-300 flex items-center justify-center ${
+                  wishlisted
+                    ? "border-burgundy/40 bg-burgundy/10 text-burgundy"
+                    : "border-gold/15 hover:border-gold/30 text-foreground/30 hover:text-foreground/60"
+                }`}
+              >
+                <Heart size={18} className={wishlisted ? "fill-burgundy" : ""} strokeWidth={1.5} />
+              </button>
+              </div>
 
               {/* Unique piece notice */}
               <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20">

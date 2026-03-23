@@ -3,14 +3,16 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { ShoppingBag, Heart, Menu, X } from "lucide-react";
 import { useCartStore } from "@/store/cart";
+import { useWishlistStore } from "@/store/wishlist";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const totalItems = useCartStore((s) => s.totalItems());
   const toggleCart = useCartStore((s) => s.toggleCart);
+  const wishlistCount = useWishlistStore((s) => s.totalItems());
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -69,9 +71,24 @@ export default function Navbar() {
                 </Link>
               ))}
 
+              {/* Wishlist */}
+              <Link
+                href="/wishlist"
+                aria-label={`Wishlist${wishlistCount > 0 ? ` (${wishlistCount} items)` : ""}`}
+                className="relative p-2 text-foreground/90 hover:text-gold-light transition-colors duration-300"
+              >
+                <Heart size={20} strokeWidth={1.5} className={wishlistCount > 0 ? "fill-burgundy/60 text-burgundy" : ""} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-burgundy text-white text-[10px] font-semibold rounded-full flex items-center justify-center">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+
               {/* Cart */}
               <button
                 onClick={toggleCart}
+                aria-label={`Shopping cart${totalItems > 0 ? ` (${totalItems} items)` : ""}`}
                 className="relative p-2 text-foreground/90 hover:text-gold-light transition-colors duration-300"
               >
                 <ShoppingBag size={20} strokeWidth={1.5} />

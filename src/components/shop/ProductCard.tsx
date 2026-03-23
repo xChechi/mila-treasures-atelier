@@ -4,7 +4,8 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useCartStore } from "@/store/cart";
-import { ShoppingBag, Eye, Check } from "lucide-react";
+import { useWishlistStore } from "@/store/wishlist";
+import { ShoppingBag, Eye, Check, Heart } from "lucide-react";
 import type { Product } from "@/data/products";
 
 export default function ProductCard({
@@ -19,6 +20,8 @@ export default function ProductCard({
   const addItem = useCartStore((s) => s.addItem);
   const cartItems = useCartStore((s) => s.items);
   const isInCart = cartItems.some((i) => i.product.id === product.id);
+  const toggleWishlist = useWishlistStore((s) => s.toggleItem);
+  const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
   const [isHovered, setIsHovered] = useState(false);
 
   // 3D tilt effect
@@ -81,37 +84,55 @@ export default function ProductCard({
             {/* Spotlight cone on hover */}
             <div className={`absolute inset-0 bg-radial-[at_50%_0%] from-amber-200/8 via-transparent to-transparent transition-opacity duration-700 ${isHovered ? "opacity-100" : "opacity-0"}`} />
 
-            {/* Quick actions */}
-            <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
-              <div className="flex gap-2">
-                {isInCart ? (
-                  <div className="flex-1 py-3 bg-dark-3/90 text-gold-light text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 backdrop-blur-sm border border-gold/20">
-                    <Check size={14} />
-                    In Your Cart
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => addItem(product)}
-                    disabled={!product.inStock}
-                    className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
-                  >
-                    <ShoppingBag size={14} />
-                    {product.inStock ? "Add to Cart" : "Sold Out"}
-                  </button>
-                )}
-                <Link
-                  href={`/shop/${product.slug}`}
-                  className="py-3 px-4 bg-dark-1/80 hover:bg-dark-1 backdrop-blur-sm text-foreground/80 transition-colors flex items-center border border-gold/10"
-                >
-                  <Eye size={14} />
-                </Link>
-              </div>
-            </div>
+            {/* Wishlist heart */}
+            <button
+              onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
+              aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+              className="absolute top-4 left-4 z-10 p-2 transition-all duration-300"
+            >
+              <Heart
+                size={18}
+                className={wishlisted ? "fill-burgundy text-burgundy" : "text-foreground/30 hover:text-foreground/60"}
+                strokeWidth={1.5}
+              />
+            </button>
 
-            {/* Sold out badge */}
+            {/* CLAIMED overlay for sold items */}
             {!product.inStock && (
-              <div className="absolute top-4 right-4 px-3 py-1 bg-dark-1/80 border border-foreground/20 text-foreground/50 text-[10px] tracking-[0.2em] uppercase font-inter backdrop-blur-sm">
-                Sold Out
+              <div className="absolute inset-0 bg-dark-1/70 flex items-center justify-center z-[5]">
+                <div className="rotate-[-15deg] border-2 border-burgundy/60 px-6 py-2">
+                  <span className="font-cinzel text-2xl sm:text-3xl tracking-[0.2em] uppercase text-burgundy/80">
+                    Claimed
+                  </span>
+                </div>
+              </div>
+            )}
+
+            {/* Quick actions */}
+            {product.inStock && (
+              <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <div className="flex gap-2">
+                  {isInCart ? (
+                    <div className="flex-1 py-3 bg-dark-3/90 text-gold-light text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 backdrop-blur-sm border border-gold/20">
+                      <Check size={14} />
+                      In Your Cart
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => addItem(product)}
+                      className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
+                    >
+                      <ShoppingBag size={14} />
+                      Add to Cart
+                    </button>
+                  )}
+                  <Link
+                    href={`/shop/${product.slug}`}
+                    className="py-3 px-4 bg-dark-1/80 hover:bg-dark-1 backdrop-blur-sm text-foreground/80 transition-colors flex items-center border border-gold/10"
+                  >
+                    <Eye size={14} />
+                  </Link>
+                </div>
               </div>
             )}
           </div>
@@ -128,7 +149,7 @@ export default function ProductCard({
               {product.shortDescription}
             </p>
             <div className="flex items-center justify-between gap-2">
-              <p className="font-cinzel text-lg text-gold/80 shrink-0">
+              <p className={`font-cinzel text-lg shrink-0 ${product.inStock ? "text-gold/80" : "text-foreground/30 line-through"}`}>
                 ${product.price.toFixed(2)}
               </p>
               {product.material && (
