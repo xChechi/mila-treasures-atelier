@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gothic Treasures — Project Report v0.9.0</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      line-height: 1.6;
+      font-size: 11px;
+    }
+
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 60px;
+    }
+
+    /* Cover */
+    .cover {
+      text-align: center;
+      padding: 120px 40px 80px;
+      border-bottom: 3px double #c9a84c;
+      margin-bottom: 40px;
+      page-break-after: always;
+    }
+
+    .cover h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 36px;
+      letter-spacing: 6px;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .cover .subtitle {
+      font-size: 13px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #8B0000;
+      margin-bottom: 40px;
+    }
+
+    .cover .version {
+      display: inline-block;
+      padding: 8px 24px;
+      border: 2px solid #c9a84c;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #c9a84c;
+      margin-bottom: 30px;
+    }
+
+    .cover .date {
+      font-size: 12px;
+      color: #888;
+      letter-spacing: 1px;
+    }
+
+    .cover .meta {
+      margin-top: 60px;
+      font-size: 10px;
+      color: #aaa;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* TOC */
+    .toc {
+      page-break-after: always;
+      padding-bottom: 40px;
+    }
+
+    .toc h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+      color: #1a1a1a;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dotted #ddd;
+      font-size: 12px;
+    }
+
+    .toc-item .label { color: #333; }
+    .toc-item .num { color: #888; font-size: 11px; }
+
+    /* Sections */
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #8B0000;
+      margin: 36px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    h3 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #444;
+      margin: 20px 0 10px;
+    }
+
+    p { margin-bottom: 8px; color: #333; }
+
+    ul {
+      margin: 8px 0 16px 20px;
+      color: #444;
+    }
+
+    li { margin-bottom: 4px; }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      font-weight: 600;
+    }
+
+    .badge-done { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+    .badge-pending { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
+    .badge-blocked { background: #fce4ec; color: #c62828; border: 1px solid #f8bbd0; }
+    .badge-skipped { background: #f5f5f5; color: #888; border: 1px solid #e0e0e0; }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 16px 8px;
+      border: 1px solid #e0e0e0;
+      background: #fafafa;
+    }
+
+    .stat-card .value {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      color: #8B0000;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .stat-card .label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+    }
+
+    /* Stack table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 20px;
+      font-size: 11px;
+    }
+
+    th {
+      text-align: left;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      padding: 8px 12px;
+      border-bottom: 2px solid #ddd;
+      background: #fafafa;
+    }
+
+    td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #eee;
+      color: #333;
+    }
+
+    td:first-child { font-weight: 500; color: #1a1a1a; }
+
+    /* Version timeline */
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 6px;
+      padding: 6px 0;
+    }
+
+    .timeline-version {
+      flex-shrink: 0;
+      width: 60px;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #c9a84c;
+    }
+
+    .timeline-date {
+      flex-shrink: 0;
+      width: 80px;
+      font-size: 10px;
+      color: #999;
+    }
+
+    .timeline-desc {
+      flex: 1;
+      font-size: 11px;
+      color: #444;
+    }
+
+    /* Feature checklist */
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 5px 0;
+    }
+
+    .check { color: #2e7d32; font-weight: bold; flex-shrink: 0; }
+    .pending-mark { color: #e65100; flex-shrink: 0; }
+    .skip-mark { color: #999; flex-shrink: 0; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 30px 0;
+    }
+
+    .page-break { page-break-before: always; }
+
+    /* Route list */
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4px 24px;
+      margin: 10px 0 16px;
+      font-size: 10px;
+    }
+
+    .route-grid span {
+      padding: 3px 0;
+      color: #555;
+      font-family: monospace;
+      font-size: 10px;
+    }
+
+    .footer-note {
+      margin-top: 60px;
+      padding-top: 16px;
+      border-top: 1px solid #ddd;
+      text-align: center;
+      font-size: 9px;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    @media print {
+      body { font-size: 10px; }
+      .page { padding: 30px 40px; }
+      .cover { padding: 80px 30px 60px; }
+      h2 { margin-top: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- COVER PAGE -->
+  <div class="cover">
+    <h1>GOTHIC TREASURES</h1>
+    <p class="subtitle">Handcrafted Dark Elegance</p>
+    <div class="version">v0.9.0</div>
+    <p class="date">Project Report — March 24, 2026</p>
+    <p class="meta">Ecommerce Platform &bull; Full-Stack Web Application</p>
+    <p class="meta" style="margin-top: 8px;">github.com/xChechi/gothic-treasures</p>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <div class="toc-item"><span class="label">1. Project Overview</span></div>
+    <div class="toc-item"><span class="label">2. Tech Stack & Architecture</span></div>
+    <div class="toc-item"><span class="label">3. Project Statistics</span></div>
+    <div class="toc-item"><span class="label">4. All Routes & Pages</span></div>
+    <div class="toc-item"><span class="label">5. Version History & Timeline</span></div>
+    <div class="toc-item"><span class="label">6. Completed Features — Full Breakdown</span></div>
+    <div class="toc-item"><span class="label">7. Enhancement Plan — Status</span></div>
+    <div class="toc-item"><span class="label">8. Remaining Frontend Items</span></div>
+    <div class="toc-item"><span class="label">9. Backend Phase — Next Steps</span></div>
+    <div class="toc-item"><span class="label">10. Design System</span></div>
+    <div class="toc-item"><span class="label">11. Business Decisions</span></div>
+  </div>
+
+  <!-- 1. OVERVIEW -->
+  <h2>1. Project Overview</h2>
+  <p>Gothic Treasures is a custom ecommerce platform for selling handcrafted gothic home wall decor. Each product is a one-of-a-kind piece handmade in Bulgaria and shipped to the USA. The site features a dark, atmospheric gothic aesthetic with elegant animations and a full shopping experience.</p>
+  <p>The frontend is production-ready with all customer-facing pages, an admin dashboard, blog, and comprehensive SEO. The backend phase (database, payments, authentication) is planned but blocked on account creation.</p>
+
+  <h2>2. Tech Stack & Architecture</h2>
+  <table>
+    <thead>
+      <tr><th>Layer</th><th>Technology</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Framework</td><td>Next.js 16.2.0 (App Router, SSG)</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>Language</td><td>TypeScript 5</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>UI Library</td><td>React 19.2.4</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>Styling</td><td>Tailwind CSS v4</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>Animation</td><td>Framer Motion 12 + GSAP 3.14</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>State</td><td>Zustand 5.0.12 (4 stores, localStorage persist)</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>Charts</td><td>Recharts 3.8 (admin analytics)</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>Icons</td><td>Lucide React 0.577</td><td><span class="badge badge-done">Live</span></td></tr>
+      <tr><td>Database</td><td>Supabase PostgreSQL</td><td><span class="badge badge-blocked">Blocked</span></td></tr>
+      <tr><td>Auth</td><td>Supabase Auth</td><td><span class="badge badge-blocked">Blocked</span></td></tr>
+      <tr><td>Storage</td><td>Supabase Storage (images)</td><td><span class="badge badge-blocked">Blocked</span></td></tr>
+      <tr><td>Payments</td><td>Stripe (Checkout Sessions + Webhooks)</td><td><span class="badge badge-blocked">Blocked</span></td></tr>
+      <tr><td>Email</td><td>Resend (transactional)</td><td><span class="badge badge-blocked">Blocked</span></td></tr>
+      <tr><td>Deployment</td><td>Vercel</td><td><span class="badge badge-pending">Pending</span></td></tr>
+      <tr><td>Domain</td><td>TBD (~$10-15/yr via Cloudflare)</td><td><span class="badge badge-pending">Pending</span></td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. Project Statistics</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="value">27+</span>
+      <span class="label">Routes</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">36+</span>
+      <span class="label">Components</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">8</span>
+      <span class="label">Products</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">4</span>
+      <span class="label">Categories</span>
+    </div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="value">12</span>
+      <span class="label">Reviews</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">5</span>
+      <span class="label">Journal Articles</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">4</span>
+      <span class="label">Zustand Stores</span>
+    </div>
+    <div class="stat-card">
+      <span class="value">6</span>
+      <span class="label">Mock Orders</span>
+    </div>
+  </div>
+  <p><strong>Zustand Stores:</strong> Cart (gothic-cart), Wishlist (gothic-wishlist), Currency, Recently Viewed (gothic-recently-viewed) — all with localStorage persistence.</p>
+  <p><strong>Build Status:</strong> Clean — zero errors, zero warnings. All pages statically generated at build time.</p>
+
+  <h2>4. All Routes & Pages</h2>
+
+  <h3>Public Pages (13)</h3>
+  <div class="route-grid">
+    <span>/  — Home / Landing</span>
+    <span>/shop  — Product catalog</span>
+    <span>/shop/[slug]  — Product detail</span>
+    <span>/category/[slug]  — Category filter</span>
+    <span>/journal  — Blog listing</span>
+    <span>/journal/[slug]  — Article page</span>
+    <span>/about  — Origin story</span>
+    <span>/contact  — Contact + FAQ</span>
+    <span>/cart  — Shopping cart</span>
+    <span>/checkout  — Guest checkout</span>
+    <span>/wishlist  — Saved products</span>
+    <span>/order/[id]  — Order tracking</span>
+    <span>/not-found  — Custom 404</span>
+  </div>
+
+  <h3>Admin Pages (5)</h3>
+  <div class="route-grid">
+    <span>/admin  — Dashboard</span>
+    <span>/admin/products  — Product CRUD</span>
+    <span>/admin/orders  — Order management</span>
+    <span>/admin/analytics  — Revenue & metrics</span>
+    <span>/admin/settings  — Store settings</span>
+  </div>
+
+  <h3>SEO / System</h3>
+  <div class="route-grid">
+    <span>/robots.txt  — Programmatic</span>
+    <span>/sitemap.xml  — All routes</span>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>5. Version History & Timeline</h2>
+
+  <div class="timeline-item">
+    <span class="timeline-version">v0.1.0</span>
+    <span class="timeline-date">2026-03-20</span>
+    <span class="timeline-desc">Foundation + Landing page (6 atmospheric sections, hero, gallery cards, gothic doors, parchment testimonials, wax seals, wrought iron footer, film grain, scroll progress, custom cursor)</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.2.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Full Frontend Pages — Shop, Product Detail, Category, Cart, Checkout (10 shared components, mock data, SSG)</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.2.1</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">About page + Contact page with FAQ accordion</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.3.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Full SEO — metadata, OG/Twitter cards, robots.txt, sitemap, JSON-LD, custom 404</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.3.1</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Polish & Accessibility — loading skeletons, scroll-to-top, back-to-top, focus styles, ARIA labels, mobile refinements</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.4.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Admin Dashboard — stats, products CRUD, orders table, settings, sidebar navigation</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.4.1</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Quick Wins — Wishlist, "CLAIMED" overlay, Recently Sold Ticker, Size Reference</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.5.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Smart Related Products, Order Tracking, Reviews (12), Currency Toggle, Social Sharing</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.6.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Blog / Journal — 5 articles, listing page, article pages, full SEO</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.7.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">Quality of Life — VIP Newsletter tiers, Admin Analytics (Recharts), Cart Persistence, Page Transitions</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.8.0</span>
+    <span class="timeline-date">2026-03-23</span>
+    <span class="timeline-desc">High-Impact UX — Quick View Modal, Recently Viewed, Advanced Filters, Image Zoom/Lightbox, Product Badges</span>
+  </div>
+  <div class="timeline-item">
+    <span class="timeline-version">v0.9.0</span>
+    <span class="timeline-date">2026-03-24</span>
+    <span class="timeline-desc">Medium-Impact Features — Promo Codes, Gift Wrapping, Print Invoice</span>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>6. Completed Features — Full Breakdown</h2>
+
+  <h3>Core E-Commerce</h3>
+  <ul>
+    <li>Product catalog (8 products, 4 categories) with search, category filter, sorting (price, name)</li>
+    <li>Product detail pages — image gallery, specs (material, dimensions, weight), description, reviews, related products</li>
+    <li>Shopping cart — add/remove, persistent across sessions, order summary with promo codes & gift wrapping</li>
+    <li>Guest checkout — US shipping address form with validation, mock order confirmation</li>
+    <li>Order tracking — 4-stage gothic timeline (Confirmed → Crafting → Shipped → Delivered) with animated pulse</li>
+    <li>Promo code system — 3 mock codes (10%, 15%, 20% off), real-time discount calculation</li>
+    <li>Gift wrapping — $12 add-on with optional personal message (200 chars)</li>
+    <li>Print invoice — clean B&W invoice layout via browser print dialog</li>
+  </ul>
+
+  <h3>User Experience</h3>
+  <ul>
+    <li>Product Quick View Modal — preview without leaving shop page (image, specs, rating, cart actions)</li>
+    <li>Recently Viewed Products — tracks last 8 viewed, horizontal strip on product detail & shop pages</li>
+    <li>Advanced Filters — price range (dual slider), material dropdown, in-stock toggle, collapsible panel</li>
+    <li>Product Image Zoom / Lightbox — full-screen, scroll zoom (4x), drag pan, keyboard controls</li>
+    <li>Product Badges — New, Bestseller, Limited Edition, Last One tags on cards & Quick View</li>
+    <li>Wishlist / Save for Later — heart icons, localStorage persist, dedicated /wishlist page, navbar badge</li>
+    <li>"CLAIMED" overlay on sold-out products</li>
+    <li>Recently Sold Ticker — animated notification cycling sold items</li>
+    <li>Size Reference — wall-scale dimension visualizer</li>
+    <li>Currency preview toggle — USD/EUR/GBP with approximate conversion rates</li>
+    <li>Social sharing — Pinterest Pin It, copy link, native Web Share API</li>
+  </ul>
+
+  <h3>Content & Marketing</h3>
+  <ul>
+    <li>5-article blog/journal with categories (Workshop, Culture, Inspiration, Behind the Scenes)</li>
+    <li>Newsletter signup with VIP tier selection (standard vs 48-hour early access)</li>
+    <li>Brand story & customer testimonials (4 reviews on landing page)</li>
+    <li>About page — origin story, craft features, shipping & returns info</li>
+    <li>Contact page — form with validation, FAQ accordion (4 items)</li>
+  </ul>
+
+  <h3>Admin Dashboard</h3>
+  <ul>
+    <li>Dashboard with 4 stats cards (products, stock, sold out, revenue) + recent orders table</li>
+    <li>Products CRUD — table with image thumbnails, add/edit modal, delete confirmation</li>
+    <li>Orders table — expandable rows, status badges (Processing/Shipped/Delivered)</li>
+    <li>Analytics — revenue area chart, daily visitors, top products bar chart, category donut, conversion funnel with drop-off %</li>
+    <li>Settings page with Supabase/Stripe integration placeholders</li>
+    <li>Admin layout hides public nav/footer, mobile sidebar with hamburger</li>
+  </ul>
+
+  <h3>SEO & Technical</h3>
+  <ul>
+    <li>Per-page metadata with title template (%s — Gothic Treasures)</li>
+    <li>Dynamic generateMetadata() for product + category pages with OG/Twitter cards</li>
+    <li>Programmatic robots.txt + sitemap.xml</li>
+    <li>JSON-LD structured data — Organization, WebSite, Product, BlogPosting, AggregateRating</li>
+    <li>Custom gothic 404 page ("Lost in the Shadows")</li>
+    <li>OG image for social sharing, canonical URLs, noindex on cart/checkout</li>
+    <li>Page transitions — Framer Motion fade + upward slide</li>
+    <li>Loading skeletons with gothic frame corners</li>
+    <li>Accessibility — skip-to-content, focus-visible gold outlines, ARIA labels</li>
+    <li>Cart persistence via Zustand + localStorage</li>
+    <li>Mobile responsive with hamburger nav, horizontal scroll filters</li>
+    <li>Custom cursor (golden cross), grain overlay, scroll progress bar, back-to-top button</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <h2>7. Enhancement Plan — Status</h2>
+
+  <h3>High Impact — UX Upgrades</h3>
+  <div class="checklist-item"><span class="check">&#10003;</span> Product Quick View Modal <span class="badge badge-done">v0.8.0</span></div>
+  <div class="checklist-item"><span class="check">&#10003;</span> Recently Viewed Products <span class="badge badge-done">v0.8.0</span></div>
+  <div class="checklist-item"><span class="check">&#10003;</span> Advanced Filters (price, material, stock) <span class="badge badge-done">v0.8.0</span></div>
+  <div class="checklist-item"><span class="check">&#10003;</span> Product Image Zoom / Lightbox <span class="badge badge-done">v0.8.0</span></div>
+  <div class="checklist-item"><span class="check">&#10003;</span> Product Badges (New, Bestseller, Limited, Last One) <span class="badge badge-done">v0.8.0</span></div>
+
+  <h3>Medium Impact — Features</h3>
+  <div class="checklist-item"><span class="skip-mark">—</span> Product Comparison (2-3 side by side) <span class="badge badge-skipped">Skipped</span></div>
+  <div class="checklist-item"><span class="check">&#10003;</span> Promo Code / Gift Wrapping <span class="badge badge-done">v0.9.0</span></div>
+  <div class="checklist-item"><span class="skip-mark">—</span> Collections / Curated Sets <span class="badge badge-skipped">Skipped</span></div>
+  <div class="checklist-item"><span class="check">&#10003;</span> Print Invoice / Order PDF <span class="badge badge-done">v0.9.0</span></div>
+  <div class="checklist-item"><span class="skip-mark">—</span> Keyboard Search Shortcut (/ or Ctrl+K) <span class="badge badge-skipped">Skipped</span></div>
+
+  <h3>Low Effort — Polish</h3>
+  <div class="checklist-item"><span class="pending-mark">&#9675;</span> Shimmer animation on loading skeletons <span class="badge badge-pending">Pending</span></div>
+  <div class="checklist-item"><span class="pending-mark">&#9675;</span> Improved empty states with illustrations <span class="badge badge-pending">Pending</span></div>
+  <div class="checklist-item"><span class="pending-mark">&#9675;</span> Unified toast notification system <span class="badge badge-pending">Pending</span></div>
+
+  <h2>8. Remaining Frontend Items</h2>
+  <p>These are optional frontend-only enhancements that can be implemented at any time without backend dependencies:</p>
+
+  <table>
+    <thead>
+      <tr><th>#</th><th>Feature</th><th>Effort</th><th>Impact</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>6</td><td>Product Comparison — side-by-side specs/price/rating for 2-3 products</td><td>Medium</td><td>Medium</td></tr>
+      <tr><td>8</td><td>Collections / Curated Sets — themed product bundles page</td><td>Medium</td><td>Medium</td></tr>
+      <tr><td>10</td><td>Keyboard Search Shortcut — / or Ctrl+K to focus search</td><td>Low</td><td>Low</td></tr>
+      <tr><td>11</td><td>Shimmer animation on loading skeletons</td><td>Low</td><td>Low</td></tr>
+      <tr><td>12</td><td>Improved empty states with illustrations</td><td>Low</td><td>Low</td></tr>
+      <tr><td>13</td><td>Unified toast notification system (add-to-cart, wishlist, copy link)</td><td>Low</td><td>Medium</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <h2>9. Backend Phase — Next Steps</h2>
+  <p><strong>Status:</strong> <span class="badge badge-blocked">Blocked</span> — requires Stefan to create Supabase and Stripe accounts.</p>
+  <p><strong>Estimated timeline:</strong> 5 weeks from account creation to launch.</p>
+
+  <table>
+    <thead>
+      <tr><th>Week</th><th>Phase</th><th>Target Version</th><th>Details</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Supabase Setup</td><td>v0.10.0</td><td>DB schema (10 tables), seed data, migrate products from mock to PostgreSQL, API routes</td></tr>
+      <tr><td>2</td><td>Auth + Storage</td><td>v0.11.0</td><td>Admin login (email/password), route protection middleware, product image uploads to Supabase Storage</td></tr>
+      <tr><td>3</td><td>Stripe Payments</td><td>v0.12.0</td><td>Checkout Sessions, webhooks, order creation, Resend confirmation emails</td></tr>
+      <tr><td>4</td><td>Deploy + Testing</td><td>v0.14.0</td><td>Vercel deployment, connect GitHub repo, environment variables, end-to-end testing</td></tr>
+      <tr><td>5</td><td>Launch</td><td>v1.0.0</td><td>Custom domain, real product data, go live</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Database Schema (10 tables)</h3>
+  <ul>
+    <li><strong>categories</strong> — name, slug, description, image</li>
+    <li><strong>products</strong> — name, slug, price, description, category_id, in_stock, featured, badge, dimensions, material, weight</li>
+    <li><strong>product_images</strong> — product_id, url, sort_order</li>
+    <li><strong>reviews</strong> — product_id, author, location, rating, text, verified</li>
+    <li><strong>orders</strong> — order_number, customer_name, email, total, status, shipping_address, promo_code, gift_wrap, gift_message</li>
+    <li><strong>order_items</strong> — order_id, product_id, price</li>
+    <li><strong>contact_submissions</strong> — name, email, subject, message</li>
+    <li><strong>newsletter_subscribers</strong> — email, tier (standard/vip)</li>
+    <li><strong>admin_users</strong> — email, password_hash, role</li>
+    <li><strong>site_settings</strong> — key, value (store config)</li>
+  </ul>
+
+  <h3>Launch Cost</h3>
+  <p><strong>$0/month</strong> — All free tiers: Supabase Free, Stripe (pay-per-transaction only), Vercel Hobby, Resend Free (100 emails/day), Cloudflare DNS (free). Only cost: domain (~$10-15/year).</p>
+
+  <h2>10. Design System</h2>
+
+  <table>
+    <thead>
+      <tr><th>Element</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Background</td><td>#0a0a0a (dark-1), #111111 (dark-2), #1a1a1a (dark-3), #222222 (dark-4)</td></tr>
+      <tr><td>Foreground</td><td>#e8e0d4 (off-white/cream)</td></tr>
+      <tr><td>Accent — Gold</td><td>#C9A84C (gold), #E8C57A (gold-light)</td></tr>
+      <tr><td>Accent — Burgundy</td><td>#8B0000 (burgundy), #722F37 (burgundy-light)</td></tr>
+      <tr><td>Silver</td><td>#8A8D8F</td></tr>
+      <tr><td>Heading Font</td><td>Cinzel (serif) — navigation, product names, prices</td></tr>
+      <tr><td>Alt Heading</td><td>Playfair Display (serif)</td></tr>
+      <tr><td>Body Font</td><td>Inter (sans-serif) — descriptions, UI text</td></tr>
+      <tr><td>Visual FX</td><td>3D tilt on cards, museum spotlight hover, film grain overlay, scroll progress, golden cross cursor</td></tr>
+      <tr><td>Frame Corners</td><td>2px gold borders on cards, modals, and sections</td></tr>
+      <tr><td>Gothic Background</td><td>Multi-layer: noise texture + diamond lattice + atmospheric color pools + side vignette</td></tr>
+    </tbody>
+  </table>
+
+  <h2>11. Business Decisions</h2>
+  <table>
+    <thead>
+      <tr><th>Decision</th><th>Choice</th><th>Reason</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Shipping</td><td>Bulgaria → USA</td><td>Products handcrafted in Bulgaria</td></tr>
+      <tr><td>Currency</td><td>USD (with EUR/GBP preview)</td><td>Primary market is USA</td></tr>
+      <tr><td>Language</td><td>English only</td><td>Target audience</td></tr>
+      <tr><td>Inventory</td><td>Unique pieces only (qty 0 or 1)</td><td>Each piece is one-of-a-kind</td></tr>
+      <tr><td>Checkout</td><td>Guest only (no accounts)</td><td>Reduce friction, low repeat purchase rate</td></tr>
+      <tr><td>Admin Auth</td><td>Email/password (Supabase Auth)</td><td>Simple, single admin user</td></tr>
+      <tr><td>Images</td><td>Unsplash placeholders (→ real photos)</td><td>Dev phase uses stock, production uses own photography</td></tr>
+      <tr><td>Promo Codes</td><td>3 mock codes (10-20%)</td><td>Infrastructure ready, real codes added at launch</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider">
+
+  <p class="footer-note">
+    Gothic Treasures &bull; Project Report v0.9.0 &bull; Generated March 24, 2026<br>
+    github.com/xChechi/gothic-treasures
+  </p>
+
+</div>
+
+</body>
+</html>
