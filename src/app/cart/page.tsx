@@ -1,16 +1,38 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, Trash2, ArrowRight } from "lucide-react";
-import { useCartStore } from "@/store/cart";
+import { ShoppingBag, Trash2, ArrowRight, Tag, X, Gift, Check } from "lucide-react";
+import { useCartStore, GIFT_WRAP_PRICE } from "@/store/cart";
 import PageHeader from "@/components/ui/PageHeader";
 
 export default function CartPage() {
   const items = useCartStore((s) => s.items);
   const removeItem = useCartStore((s) => s.removeItem);
+  const subtotal = useCartStore((s) => s.subtotal);
+  const discountAmount = useCartStore((s) => s.discount);
+  const giftWrapFee = useCartStore((s) => s.giftWrapFee);
   const totalPrice = useCartStore((s) => s.totalPrice);
+  const promoCode = useCartStore((s) => s.promoCode);
+  const applyPromoCode = useCartStore((s) => s.applyPromoCode);
+  const removePromoCode = useCartStore((s) => s.removePromoCode);
+  const giftWrap = useCartStore((s) => s.giftWrap);
+  const setGiftWrap = useCartStore((s) => s.setGiftWrap);
+  const giftMessage = useCartStore((s) => s.giftMessage);
+  const setGiftMessage = useCartStore((s) => s.setGiftMessage);
+
+  const [promoInput, setPromoInput] = useState("");
+  const [promoFeedback, setPromoFeedback] = useState<{ success: boolean; message: string } | null>(null);
+
+  const handleApplyPromo = () => {
+    if (!promoInput.trim()) return;
+    const result = applyPromoCode(promoInput);
+    setPromoFeedback(result);
+    if (result.success) setPromoInput("");
+    setTimeout(() => setPromoFeedback(null), 3000);
+  };
 
   return (
     <section className="relative min-h-screen gothic-bg">
@@ -128,13 +150,107 @@ export default function CartPage() {
 
                 <h2 className="font-cinzel text-lg text-foreground/80 mb-6">Order Summary</h2>
 
+                {/* Promo code */}
+                <div className="mb-5">
+                  {promoCode ? (
+                    <div className="flex items-center justify-between px-3 py-2.5 bg-gold/5 border border-gold/15">
+                      <div className="flex items-center gap-2">
+                        <Tag size={12} className="text-gold/60" />
+                        <span className="font-inter text-xs text-gold-light">{promoCode.code}</span>
+                        <span className="font-inter text-[10px] text-foreground/30">— {promoCode.label}</span>
+                      </div>
+                      <button onClick={removePromoCode} className="text-foreground/20 hover:text-burgundy transition-colors" aria-label="Remove promo code">
+                        <X size={14} />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          placeholder="Promo code"
+                          value={promoInput}
+                          onChange={(e) => setPromoInput(e.target.value)}
+                          onKeyDown={(e) => e.key === "Enter" && handleApplyPromo()}
+                          className="flex-1 px-3 py-2.5 bg-dark-3/50 border border-gold/10 focus:border-gold/30 text-foreground/70 font-inter text-xs placeholder:text-foreground/20 outline-none transition-colors uppercase tracking-wider"
+                        />
+                        <button
+                          onClick={handleApplyPromo}
+                          className="px-4 py-2.5 border border-gold/15 hover:border-gold/30 text-foreground/40 hover:text-foreground/60 font-inter text-xs tracking-wider uppercase transition-all"
+                        >
+                          Apply
+                        </button>
+                      </div>
+                      {promoFeedback && (
+                        <p className={`font-inter text-[10px] tracking-wider ${promoFeedback.success ? "text-gold/60" : "text-burgundy/70"}`}>
+                          {promoFeedback.message}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Gift wrapping */}
+                <div className="mb-6 p-3 border border-gold/8 bg-dark-3/20">
+                  <button
+                    onClick={() => setGiftWrap(!giftWrap)}
+                    className="flex items-center justify-between w-full group"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <Gift size={14} className={giftWrap ? "text-gold/60" : "text-foreground/20"} />
+                      <span className="font-inter text-xs text-foreground/50 group-hover:text-foreground/70 transition-colors">
+                        Gift Wrapping
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-inter text-[10px] text-foreground/25">+${GIFT_WRAP_PRICE.toFixed(2)}</span>
+                      <div className={`w-4 h-4 border flex items-center justify-center transition-all ${giftWrap ? "border-gold/50 bg-gold/10" : "border-gold/15"}`}>
+                        {giftWrap && <Check size={10} className="text-gold/70" />}
+                      </div>
+                    </div>
+                  </button>
+                  {giftWrap && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <textarea
+                        placeholder="Add a personal message (optional)"
+                        value={giftMessage}
+                        onChange={(e) => setGiftMessage(e.target.value)}
+                        maxLength={200}
+                        rows={3}
+                        className="w-full mt-3 px-3 py-2 bg-dark-3/50 border border-gold/10 focus:border-gold/20 text-foreground/60 font-inter text-xs placeholder:text-foreground/15 outline-none transition-colors resize-none"
+                      />
+                      <p className="font-inter text-[9px] text-foreground/15 mt-1 text-right">
+                        {giftMessage.length}/200
+                      </p>
+                    </motion.div>
+                  )}
+                </div>
+
+                {/* Totals */}
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between font-inter text-sm">
                     <span className="text-foreground/40">
                       Subtotal ({items.length} {items.length === 1 ? "item" : "items"})
                     </span>
-                    <span className="text-foreground/60">${totalPrice().toFixed(2)}</span>
+                    <span className="text-foreground/60">${subtotal().toFixed(2)}</span>
                   </div>
+                  {discountAmount() > 0 && (
+                    <div className="flex justify-between font-inter text-sm">
+                      <span className="text-gold/50">Discount ({promoCode?.label})</span>
+                      <span className="text-gold/60">-${discountAmount().toFixed(2)}</span>
+                    </div>
+                  )}
+                  {giftWrap && (
+                    <div className="flex justify-between font-inter text-sm">
+                      <span className="text-foreground/40">Gift Wrapping</span>
+                      <span className="text-foreground/50">${giftWrapFee().toFixed(2)}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between font-inter text-sm">
                     <span className="text-foreground/40">Shipping</span>
                     <span className="text-foreground/40 text-xs italic">Calculated at checkout</span>

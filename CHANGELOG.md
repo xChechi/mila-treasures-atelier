@@ -1,5 +1,14 @@
 # Changelog — Gothic Treasures
 
+## [0.9.0] - 2026-03-24
+
+### Added — Medium-Impact Features
+- **Promo Code System**: Apply discount codes at cart — `GOTHIC10` (10%), `DARK15` (15%), `WELCOME20` (20%). Input with Enter key support, applied code badge with remove button, real-time discount calculation in cart summary and checkout OrderSummary. Codes persisted in localStorage alongside cart items.
+- **Gift Wrapping**: Toggle in cart order summary — adds $12.00 gift wrap fee. Optional personal message (up to 200 chars) with character counter. Gift wrap status and message shown in checkout OrderSummary. Persisted with cart state.
+- **Print Invoice**: "Print Invoice" button on order tracking page (`/order/[id]`). Opens browser print dialog with a clean, professional black-and-white invoice layout — company header, order number, date, bill-to/ship-to addresses, itemized table with quantities, totals, and footer. Print CSS hides nav, footer, and dark backgrounds for a clean paper output.
+- Updated `CartStore` with `promoCode`, `giftWrap`, `giftMessage` state + `applyPromoCode()`, `removePromoCode()`, `subtotal()`, `discount()`, `giftWrapFee()` methods
+- Print media query styles in `globals.css`
+
 ## [0.8.0] - 2026-03-23
 
 ### Added — High-Impact UX Upgrades

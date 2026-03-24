@@ -337,3 +337,25 @@ body {
     radial-gradient(ellipse at 100% 50%, rgba(0, 0, 0, 0.4) 0%, transparent 40%);
   pointer-events: none;
 }
+
+/* Print styles — clean invoice when printing from order page */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  nav, footer {
+    display: none !important;
+  }
+
+  .gothic-bg, .gothic-bg::before, .gothic-bg::after {
+    background: white !important;
+  }
+
+  .gothic-bg::before, .gothic-bg::after {
+    display: none !important;
+  }
+}

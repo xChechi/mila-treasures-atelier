@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { CheckCircle, Clock, Package, Truck, Home, ArrowLeft } from "lucide-react";
+import { CheckCircle, Clock, Package, Truck, Home, ArrowLeft, Printer } from "lucide-react";
 import type { Order, OrderTimelineEvent } from "@/data/mock-orders";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 
@@ -231,15 +231,109 @@ export default function OrderTrackingClient({ order }: { order: Order }) {
           </div>
         </motion.div>
 
-        {/* Back link */}
-        <div className="text-center mt-12">
+        {/* Actions */}
+        <div className="flex items-center justify-center gap-6 mt-12">
+          <button
+            onClick={() => window.print()}
+            className="inline-flex items-center gap-2 px-6 py-3 border border-gold/15 hover:border-gold/30 text-foreground/40 hover:text-gold-light font-inter text-xs tracking-[0.15em] uppercase transition-all duration-300 print:hidden"
+          >
+            <Printer size={14} />
+            Print Invoice
+          </button>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 font-inter text-sm text-foreground/30 hover:text-gold-light transition-colors duration-300 tracking-wider"
+            className="inline-flex items-center gap-2 font-inter text-xs text-foreground/30 hover:text-gold-light transition-colors duration-300 tracking-wider uppercase print:hidden"
           >
             <ArrowLeft size={14} />
             Continue Shopping
           </Link>
+        </div>
+
+        {/* Print-only invoice (hidden on screen, visible when printing) */}
+        <div className="hidden print:block mt-0 print:mt-0 print:pt-0">
+          <div className="print:absolute print:inset-0 print:bg-white print:text-black print:p-12">
+            {/* Invoice header */}
+            <div className="flex justify-between items-start mb-10 pb-6 border-b-2 border-black/20">
+              <div>
+                <h1 className="text-3xl font-bold tracking-wider mb-1" style={{ fontFamily: "serif" }}>
+                  GOTHIC TREASURES
+                </h1>
+                <p className="text-xs text-gray-500 tracking-widest uppercase">Handcrafted Dark Elegance</p>
+              </div>
+              <div className="text-right">
+                <p className="text-xl font-bold tracking-wider mb-1" style={{ fontFamily: "serif" }}>INVOICE</p>
+                <p className="text-sm text-gray-600">{order.orderNumber}</p>
+                <p className="text-sm text-gray-600">
+                  {new Date(order.date + "T00:00:00").toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
+            </div>
+
+            {/* Customer + shipping */}
+            <div className="grid grid-cols-2 gap-10 mb-10">
+              <div>
+                <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">Bill To</p>
+                <p className="text-sm font-semibold">{order.customerName}</p>
+                <p className="text-sm text-gray-600">{order.customerEmail}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-400 tracking-widest uppercase mb-2">Ship To</p>
+                <p className="text-sm text-gray-600">{order.shippingAddress}</p>
+              </div>
+            </div>
+
+            {/* Items table */}
+            <table className="w-full mb-10">
+              <thead>
+                <tr className="border-b-2 border-black/20">
+                  <th className="text-left text-xs text-gray-400 tracking-widest uppercase pb-3 pr-4">Item</th>
+                  <th className="text-center text-xs text-gray-400 tracking-widest uppercase pb-3 w-20">Qty</th>
+                  <th className="text-right text-xs text-gray-400 tracking-widest uppercase pb-3 w-28">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {order.items.map((item, i) => (
+                  <tr key={i} className="border-b border-gray-200">
+                    <td className="py-3 pr-4 text-sm">{item.productName}</td>
+                    <td className="py-3 text-sm text-center text-gray-500">1</td>
+                    <td className="py-3 text-sm text-right">${item.price.toFixed(2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Totals */}
+            <div className="flex justify-end">
+              <div className="w-64">
+                <div className="flex justify-between py-2 text-sm">
+                  <span className="text-gray-500">Subtotal</span>
+                  <span>${order.total.toFixed(2)}</span>
+                </div>
+                <div className="flex justify-between py-2 text-sm">
+                  <span className="text-gray-500">Shipping</span>
+                  <span>Free</span>
+                </div>
+                <div className="flex justify-between py-3 border-t-2 border-black/20 mt-2">
+                  <span className="font-bold text-base">Total</span>
+                  <span className="font-bold text-base">${order.total.toFixed(2)}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="mt-16 pt-6 border-t border-gray-200 text-center">
+              <p className="text-xs text-gray-400 tracking-wider">
+                Gothic Treasures — Handcrafted in Bulgaria with care
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                Thank you for your purchase. Each piece is one-of-a-kind.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

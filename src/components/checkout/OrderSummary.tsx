@@ -1,11 +1,18 @@
 "use client";
 
 import Image from "next/image";
+import { Tag, Gift } from "lucide-react";
 import { useCartStore } from "@/store/cart";
 
 export default function OrderSummary() {
   const items = useCartStore((s) => s.items);
+  const subtotal = useCartStore((s) => s.subtotal);
+  const discountAmount = useCartStore((s) => s.discount);
+  const giftWrapFee = useCartStore((s) => s.giftWrapFee);
   const totalPrice = useCartStore((s) => s.totalPrice);
+  const promoCode = useCartStore((s) => s.promoCode);
+  const giftWrap = useCartStore((s) => s.giftWrap);
+  const giftMessage = useCartStore((s) => s.giftMessage);
 
   return (
     <div className="bg-dark-3/30 border border-gold/10 p-6 relative">
@@ -45,12 +52,47 @@ export default function OrderSummary() {
         ))}
       </div>
 
+      {/* Applied promo */}
+      {promoCode && (
+        <div className="flex items-center gap-2 px-3 py-2 bg-gold/5 border border-gold/10 mb-4">
+          <Tag size={11} className="text-gold/50" />
+          <span className="font-inter text-[10px] text-gold-light tracking-wider">{promoCode.code} — {promoCode.label}</span>
+        </div>
+      )}
+
+      {/* Gift wrap note */}
+      {giftWrap && (
+        <div className="px-3 py-2 bg-dark-3/30 border border-gold/8 mb-4">
+          <div className="flex items-center gap-2 mb-1">
+            <Gift size={11} className="text-gold/40" />
+            <span className="font-inter text-[10px] text-foreground/40 tracking-wider">Gift Wrapped</span>
+          </div>
+          {giftMessage && (
+            <p className="font-inter text-[10px] text-foreground/25 italic pl-5 line-clamp-2">
+              &ldquo;{giftMessage}&rdquo;
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Totals */}
       <div className="border-t border-gold/10 pt-4 space-y-3">
         <div className="flex justify-between font-inter text-sm">
           <span className="text-foreground/40">Subtotal</span>
-          <span className="text-foreground/60">${totalPrice().toFixed(2)}</span>
+          <span className="text-foreground/60">${subtotal().toFixed(2)}</span>
         </div>
+        {discountAmount() > 0 && (
+          <div className="flex justify-between font-inter text-sm">
+            <span className="text-gold/50">Discount</span>
+            <span className="text-gold/60">-${discountAmount().toFixed(2)}</span>
+          </div>
+        )}
+        {giftWrap && (
+          <div className="flex justify-between font-inter text-sm">
+            <span className="text-foreground/40">Gift Wrapping</span>
+            <span className="text-foreground/50">${giftWrapFee().toFixed(2)}</span>
+          </div>
+        )}
         <div className="flex justify-between font-inter text-sm">
           <span className="text-foreground/40">Shipping</span>
           <span className="text-foreground/50">Free</span>
