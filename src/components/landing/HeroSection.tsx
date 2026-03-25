@@ -5,16 +5,23 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
 function FloatingEmbers() {
-  const embers = Array.from({ length: 40 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}%`,
-    delay: Math.random() * 10,
-    duration: 8 + Math.random() * 15,
-    size: 1 + Math.random() * 3,
-    opacity: 0.15 + Math.random() * 0.4,
-    drift: (Math.random() - 0.5) * 60,
-    color: Math.random() > 0.6 ? "rgba(232, 197, 122, VAR)" : "rgba(201, 168, 76, VAR)",
-  }));
+  const [embers, setEmbers] = useState<Array<{
+    id: number; left: string; delay: number; duration: number;
+    size: number; opacity: number; drift: number; color: string;
+  }>>([]);
+
+  useEffect(() => {
+    setEmbers(Array.from({ length: 40 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}%`,
+      delay: Math.random() * 10,
+      duration: 8 + Math.random() * 15,
+      size: 1 + Math.random() * 3,
+      opacity: 0.15 + Math.random() * 0.4,
+      drift: (Math.random() - 0.5) * 60,
+      color: Math.random() > 0.6 ? "rgba(232, 197, 122, VAR)" : "rgba(201, 168, 76, VAR)",
+    })));
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
