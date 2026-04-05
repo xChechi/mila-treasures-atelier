@@ -8,7 +8,7 @@ import Newsletter from "@/components/landing/Newsletter";
 import SectionDivider from "@/components/ui/SectionDivider";
 
 export const metadata: Metadata = {
-  title: "Gothic Treasures | Handcrafted Dark Elegance",
+  title: "Mila Treasures Atelier | Handcrafted Dark Elegance",
   alternates: { canonical: "/" },
 };
 

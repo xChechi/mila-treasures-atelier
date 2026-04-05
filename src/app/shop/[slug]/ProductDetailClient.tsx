@@ -2,13 +2,9 @@
 
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import Link from "next/link";
-import { ShoppingBag, Check, Heart, Package, Ruler, Scale, Star } from "lucide-react";
+import { ExternalLink, Package, Ruler, Star } from "lucide-react";
 import type { Product } from "@/data/products";
 import type { Review } from "@/data/reviews";
-import { useCartStore } from "@/store/cart";
-import { useWishlistStore } from "@/store/wishlist";
-import { useCurrencyStore, formatPrice } from "@/store/currency";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import ProductGallery from "@/components/shop/ProductGallery";
 import RelatedProducts from "@/components/shop/RelatedProducts";
@@ -17,6 +13,7 @@ import ProductReviews from "@/components/shop/ProductReviews";
 import ShareButtons from "@/components/shop/ShareButtons";
 import RecentlyViewed from "@/components/shop/RecentlyViewed";
 import { useRecentlyViewedStore } from "@/store/recentlyViewed";
+import Link from "next/link";
 
 interface ProductDetailClientProps {
   product: Product;
@@ -33,24 +30,12 @@ export default function ProductDetailClient({
 }: ProductDetailClientProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const addItem = useCartStore((s) => s.addItem);
-  const setCartOpen = useCartStore((s) => s.setCartOpen);
-  const cartItems = useCartStore((s) => s.items);
-  const isInCart = cartItems.some((i) => i.product.id === product.id);
-  const toggleWishlist = useWishlistStore((s) => s.toggleItem);
-  const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
-  const currency = useCurrencyStore((s) => s.currency);
 
   // Track recently viewed
   const addRecentlyViewed = useRecentlyViewedStore((s) => s.addItem);
   useEffect(() => {
     addRecentlyViewed(product);
   }, [product, addRecentlyViewed]);
-
-  const handleAddToCart = () => {
-    addItem(product);
-    setCartOpen(true);
-  };
 
   return (
     <section className="relative min-h-screen gothic-bg">
@@ -75,6 +60,7 @@ export default function ProductDetailClient({
               mainImage={product.image}
               images={product.images}
               productName={product.name}
+              etsyUrl={product.etsyUrl}
             />
           </motion.div>
 
@@ -102,12 +88,7 @@ export default function ProductDetailClient({
 
             {/* Price */}
             <p className="font-cinzel text-2xl text-gold mb-3">
-              {formatPrice(product.price, currency)}
-              {currency !== "USD" && (
-                <span className="text-sm text-foreground/20 ml-2">
-                  (${product.price.toFixed(2)})
-                </span>
-              )}
+              ${product.price.toFixed(2)}
             </p>
 
             {/* Star rating */}
@@ -160,62 +141,34 @@ export default function ProductDetailClient({
                   <span className="font-inter text-sm text-foreground/60">{product.dimensions}</span>
                 </div>
               )}
-              {product.weight && (
-                <div className="flex items-center gap-3">
-                  <Scale size={14} className="text-gold/40" />
-                  <span className="font-inter text-xs text-foreground/30 tracking-wider uppercase w-24">Weight</span>
-                  <span className="font-inter text-sm text-foreground/60">{product.weight}</span>
-                </div>
-              )}
             </div>
 
             {/* Size Reference */}
             {product.dimensions && <SizeReference dimensions={product.dimensions} />}
 
-            {/* Stock status + Add to cart */}
+            {/* CTA */}
             <div className="mt-auto space-y-4">
-              <div className="flex gap-3">
               {!product.inStock ? (
                 <button
                   disabled
-                  className="flex-1 py-4 bg-dark-3/50 border border-foreground/10 text-foreground/30 font-inter text-sm tracking-[0.15em] uppercase cursor-not-allowed"
+                  className="w-full py-4 bg-dark-3/50 border border-foreground/10 text-foreground/30 font-inter text-sm tracking-[0.15em] uppercase cursor-not-allowed"
                 >
-                  Sold Out
+                  Sold Out — Claimed
                 </button>
-              ) : isInCart ? (
-                <Link
-                  href="/cart"
-                  className="flex-1 py-4 bg-dark-3/80 border border-gold/20 text-gold-light font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 hover:border-gold/40 transition-colors duration-300"
-                >
-                  <Check size={16} />
-                  In Your Cart — View Cart
-                </Link>
               ) : (
-                <button
-                  onClick={handleAddToCart}
-                  className="flex-1 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 transition-colors duration-300"
+                <a
+                  href={product.etsyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group w-full py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-3 transition-colors duration-300"
                 >
-                  <ShoppingBag size={16} />
-                  Add to Cart
-                </button>
+                  <ExternalLink size={16} />
+                  Buy on Etsy
+                </a>
               )}
 
-              {/* Wishlist button */}
-              <button
-                onClick={() => toggleWishlist(product)}
-                aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
-                className={`px-4 py-4 border transition-all duration-300 flex items-center justify-center ${
-                  wishlisted
-                    ? "border-burgundy/40 bg-burgundy/10 text-burgundy"
-                    : "border-gold/15 hover:border-gold/30 text-foreground/30 hover:text-foreground/60"
-                }`}
-              >
-                <Heart size={18} className={wishlisted ? "fill-burgundy" : ""} strokeWidth={1.5} />
-              </button>
-              </div>
-
               {/* Unique piece notice */}
-              <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20 mb-4">
+              <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20">
                 One-of-a-kind piece — handcrafted in Bulgaria
               </p>
 

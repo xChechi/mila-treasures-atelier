@@ -4,8 +4,8 @@ import { useRef, useState, useCallback } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import { products } from "@/data/products";
-import { useCartStore } from "@/store/cart";
-import { ShoppingBag, Eye } from "lucide-react";
+import { ExternalLink, Eye, Star } from "lucide-react";
+import { getAverageRating, getReviewCount } from "@/data/reviews";
 
 const featured = products.filter((p) => p.featured);
 
@@ -18,7 +18,6 @@ function GalleryProductCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const addItem = useCartStore((s) => s.addItem);
   const [isHovered, setIsHovered] = useState(false);
 
   // 3D tilt effect
@@ -72,7 +71,7 @@ function GalleryProductCard({
             <div
               className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
               style={{
-                backgroundImage: `url(${product.image})`,
+                backgroundImage: inView ? `url(${product.image})` : undefined,
                 filter: isHovered ? "brightness(1.1) contrast(1.05)" : "brightness(0.85)",
               }}
             />
@@ -85,14 +84,15 @@ function GalleryProductCard({
             {/* Quick actions */}
             <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
               <div className="flex gap-2">
-                <button
-                  onClick={() => addItem(product)}
-                  disabled={!product.inStock}
-                  className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed backdrop-blur-sm"
+                <a
+                  href={product.etsyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors backdrop-blur-sm ${!product.inStock ? "opacity-50 pointer-events-none" : ""}`}
                 >
-                  <ShoppingBag size={14} />
-                  {product.inStock ? "Add to Cart" : "Sold Out"}
-                </button>
+                  <ExternalLink size={13} />
+                  {product.inStock ? "Buy on Etsy" : "Sold Out"}
+                </a>
                 <Link
                   href={`/shop/${product.slug}`}
                   className="py-3 px-4 bg-dark-1/80 hover:bg-dark-1 backdrop-blur-sm text-foreground/80 transition-colors flex items-center border border-gold/10"
@@ -111,16 +111,33 @@ function GalleryProductCard({
           </div>
 
           {/* Product info — museum placard style */}
-          <div className="p-5 border-t border-gold/10">
+          <div className="p-5 border-t border-gold/10 flex flex-col min-h-[140px]">
             <p className="font-inter text-[9px] tracking-[0.4em] uppercase text-gold/40 mb-2">
               {product.category}
             </p>
-            <h3 className="font-cinzel text-base sm:text-lg text-foreground/85 mb-2 group-hover:text-gold-light transition-colors duration-500">
+            <h3 className="font-cinzel text-base sm:text-lg text-foreground/85 mb-2 group-hover:text-gold-light transition-colors duration-500 line-clamp-2">
               <Link href={`/shop/${product.slug}`}>{product.name}</Link>
             </h3>
-            <p className="font-inter text-xs text-foreground/30 mb-3 line-clamp-2 leading-relaxed">
+            <p className="font-inter text-xs text-foreground/30 mb-3 line-clamp-2 leading-relaxed flex-1">
               {product.shortDescription}
             </p>
+            {/* Star rating */}
+            {(() => {
+              const avg = getAverageRating(product.id);
+              const count = getReviewCount(product.id);
+              return (
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} size={11} className={count > 0 && i < Math.round(avg) ? "text-gold/60 fill-gold/60" : "text-foreground/15"} />
+                    ))}
+                  </div>
+                  <span className="font-inter text-[10px] text-foreground/25">
+                    {count > 0 ? `(${count})` : ""}
+                  </span>
+                </div>
+              );
+            })()}
             <div className="flex items-center justify-between gap-2">
               <p className="font-cinzel text-lg text-gold/80 shrink-0">
                 ${product.price.toFixed(2)}

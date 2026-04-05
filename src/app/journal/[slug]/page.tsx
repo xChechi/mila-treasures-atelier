@@ -21,7 +21,7 @@ export async function generateMetadata({
     description: post.excerpt,
     alternates: { canonical: `/journal/${post.slug}` },
     openGraph: {
-      title: `${post.title} — Gothic Treasures`,
+      title: `${post.title} — Mila Treasures Atelier`,
       description: post.excerpt,
       images: [{ url: post.coverImage, width: 1200, height: 630, alt: post.title }],
       type: "article",
@@ -30,7 +30,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} — Gothic Treasures`,
+      title: `${post.title} — Mila Treasures Atelier`,
       description: post.excerpt,
       images: [post.coverImage],
     },
@@ -65,7 +65,7 @@ export default async function JournalPostPage({
     },
     publisher: {
       "@type": "Organization",
-      name: "Gothic Treasures",
+      name: "Mila Treasures Atelier",
     },
   };
 

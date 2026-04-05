@@ -2,8 +2,9 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Hammer, Gem, PackageCheck, Shield, Truck, RotateCcw } from "lucide-react";
-import PageHeader from "@/components/ui/PageHeader";
+import { Brush, Gem, PackageCheck, ExternalLink } from "lucide-react";
+
+const ETSY_SHOP = "https://www.etsy.com/shop/MilaTreasuresAtelier";
 
 function AnimatedSection({
   children,
@@ -32,58 +33,22 @@ function AnimatedSection({
 
 const craftFeatures = [
   {
-    icon: Hammer,
-    title: "Handcrafted",
+    icon: Brush,
+    title: "All Hand-Painted",
     description:
-      "Every piece is shaped by hand using traditional techniques passed down through generations of Bulgarian artisans.",
+      "Every piece is painted by hand — no prints, no stencils. Each goblet, portrait, and trinket box is a completely unique original that can never be exactly replicated.",
   },
   {
     icon: Gem,
-    title: "Unique Materials",
+    title: "Rich Materials",
     description:
-      "We work with hand-forged iron, stone composite, dark mahogany, and wrought metal — chosen for authenticity and longevity.",
+      "Jewel-toned metallics, velvet linings, Églomisé glass technique, real crushed botanicals — chosen for depth, beauty, and longevity.",
   },
   {
     icon: PackageCheck,
     title: "One of a Kind",
     description:
-      "No molds, no mass production. Each item is a singular creation — when it sells, it's gone forever.",
-  },
-];
-
-const shippingInfo = [
-  {
-    icon: Truck,
-    title: "Shipping",
-    items: [
-      "All orders ship from Bulgaria to the USA",
-      "Standard delivery: 10–18 business days",
-      "Express delivery: 5–8 business days",
-      "All items carefully wrapped for transit",
-      "Tracking number provided via email",
-    ],
-  },
-  {
-    icon: RotateCcw,
-    title: "Returns",
-    items: [
-      "14-day return window from delivery date",
-      "Items must be unused and in original packaging",
-      "Return shipping is the buyer's responsibility",
-      "Refund processed within 5 business days",
-      "Damaged-in-transit claims covered fully",
-    ],
-  },
-  {
-    icon: Shield,
-    title: "Guarantee",
-    items: [
-      "Every piece inspected before shipping",
-      "Photos of your exact item sent before dispatch",
-      "Quality guarantee against manufacturing defects",
-      "Responsive customer support via email",
-      "Secure packaging with insurance included",
-    ],
+      "When a piece sells, it is gone forever. That is the nature of true handcraft. Each item is a singular creation that tells its own story.",
   },
 ];
 
@@ -119,7 +84,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-inter text-[10px] tracking-[0.6em] uppercase text-gold/50 mb-4"
           >
-            Est. 2024 — Bulgaria
+            The Artist Behind the Atelier
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -127,7 +92,7 @@ export default function AboutPage() {
             transition={{ duration: 1, delay: 0.3 }}
             className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-[0.05em] text-foreground/90"
           >
-            Our Story
+            Meet Milena
           </motion.h1>
           <motion.div
             initial={{ scaleX: 0 }}
@@ -142,16 +107,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Origin Story */}
+      {/* Bio */}
       <section className="relative py-24 lg:py-32 px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <AnimatedSection>
             <div className="text-center mb-16">
               <p className="font-inter text-[10px] tracking-[0.6em] uppercase text-gold/40 mb-4">
-                The Beginning
+                My Story
               </p>
               <h2 className="font-cinzel text-3xl sm:text-4xl font-semibold text-foreground/90 mb-6">
-                Every Piece <span className="text-shimmer">Tells a Story</span>
+                Made by Hand, <span className="text-shimmer">Made with Soul</span>
               </h2>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-16 h-px bg-gradient-to-r from-transparent to-gold/30" />
@@ -161,44 +126,77 @@ export default function AboutPage() {
             </div>
           </AnimatedSection>
 
-          <div className="space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-start">
+            {/* Portrait */}
             <AnimatedSection delay={0.1}>
-              <p className="font-inter text-base text-foreground/50 leading-relaxed">
-                Born in the heart of Bulgaria, Gothic Treasures began as a passion for preserving
-                the dark artistry of European gothic craft. Our founder grew up surrounded by the
-                ancient churches and medieval architecture of the Balkans — places where stone
-                gargoyles still guard cathedral walls and wrought iron candelabras light monastery
-                corridors.
-              </p>
+              <div className="relative mx-auto max-w-sm lg:max-w-none lg:sticky lg:top-32">
+                {/* Frame corners */}
+                <div className="absolute -top-[3px] -left-[3px] w-8 h-8 border-t-2 border-l-2 border-gold/40 z-10" />
+                <div className="absolute -top-[3px] -right-[3px] w-8 h-8 border-t-2 border-r-2 border-gold/40 z-10" />
+                <div className="absolute -bottom-[3px] -left-[3px] w-8 h-8 border-b-2 border-l-2 border-gold/40 z-10" />
+                <div className="absolute -bottom-[3px] -right-[3px] w-8 h-8 border-b-2 border-r-2 border-gold/40 z-10" />
+                {/* Portrait image */}
+                <div className="overflow-hidden border border-gold/15">
+                  <div
+                    className="w-full aspect-[4/5] bg-cover bg-center bg-top"
+                    style={{ backgroundImage: "url('/images/milena-profile.webp')" }}
+                  />
+                </div>
+                {/* Name placard */}
+                <div className="mt-4 text-center">
+                  <p className="font-cinzel text-sm text-foreground/50 tracking-[0.2em]">Milena</p>
+                  <p className="font-inter text-[10px] tracking-[0.4em] uppercase text-gold/35 mt-1">Artist · Bulgaria</p>
+                </div>
+              </div>
             </AnimatedSection>
-            <AnimatedSection delay={0.2}>
-              <p className="font-inter text-base text-foreground/50 leading-relaxed">
-                Each piece in our collection is handmade by skilled artisans who draw
-                inspiration from medieval cathedrals, ancient monasteries, and the haunting
-                beauty of Gothic architecture. We believe that home decor should evoke
-                emotion — our wall crosses, gargoyles, mirrors, and candle holders are not
-                mere decorations but conversation pieces, each carrying centuries of artistic
-                tradition into your modern home.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.3}>
-              <p className="font-inter text-base text-foreground/50 leading-relaxed">
-                What sets us apart is our commitment to uniqueness. There are no molds, no
-                assembly lines. Every item is a singular creation, shaped by human hands and
-                imbued with character that only handcraft can achieve. When a piece sells,
-                it&apos;s gone forever — that&apos;s the nature of true artisanal work.
-              </p>
-            </AnimatedSection>
-            <AnimatedSection delay={0.4}>
-              <p className="font-playfair text-lg italic text-gold/50 text-center mt-10">
-                &ldquo;We don&apos;t make products. We create heirlooms.&rdquo;
-              </p>
-            </AnimatedSection>
+
+            {/* Text */}
+            <div className="space-y-6">
+              <AnimatedSection delay={0.2}>
+                <p className="font-inter text-base text-foreground/50 leading-relaxed">
+                  Hi, I&apos;m Milena — a self-taught artist and maker based in Bulgaria. I create
+                  one-of-a-kind handmade pieces that sit at the intersection of dark romanticism,
+                  fine craft, and personal storytelling. My work spans églomisé mirror art,
+                  ornate framed pieces, hand-sculpted trinket boxes, and gothic decor objects.
+                </p>
+              </AnimatedSection>
+              <AnimatedSection delay={0.3}>
+                <p className="font-inter text-base text-foreground/50 leading-relaxed">
+                  Everything I make starts with colour and texture. I&apos;m drawn to rich jewel tones —
+                  deep crimsons, emerald greens, amethyst purples, midnight blues — layered with
+                  metallic golds and aged silvers. Whether I&apos;m painting beneath mirror glass or
+                  finishing a sculpted box, I work until the piece has a quality of depth that
+                  you only get from human hands and real materials.
+                </p>
+              </AnimatedSection>
+              <AnimatedSection delay={0.4}>
+                <p className="font-inter text-base text-foreground/50 leading-relaxed">
+                  My églomisé work uses a rare 18th-century French technique — parts of a
+                  mirror&apos;s reflective backing are carefully removed by hand, and an image is
+                  embedded beneath the glass surface. The result shifts with the light and the
+                  viewer. It cannot be photographed properly. It has to be experienced.
+                </p>
+              </AnimatedSection>
+              <AnimatedSection delay={0.5}>
+                <p className="font-inter text-base text-foreground/50 leading-relaxed">
+                  I don&apos;t mass-produce. Every single item in this shop is a complete original —
+                  when it sells, it&apos;s gone. I ship everything carefully from my atelier in Bulgaria,
+                  worldwide via Etsy.
+                </p>
+              </AnimatedSection>
+              <AnimatedSection delay={0.6}>
+                <div className="pt-4 border-t border-gold/10">
+                  <p className="font-playfair text-lg italic text-gold/50">
+                    &ldquo;I don&apos;t make products. I create objects that carry a feeling.&rdquo;
+                  </p>
+                </div>
+              </AnimatedSection>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Our Craft */}
+      {/* Craft section */}
       <section className="relative py-24 lg:py-32 px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <AnimatedSection>
@@ -207,7 +205,7 @@ export default function AboutPage() {
                 The Process
               </p>
               <h2 className="font-cinzel text-3xl sm:text-4xl font-semibold text-foreground/90 mb-6">
-                Our Craft
+                How I Work
               </h2>
               <div className="flex items-center justify-center gap-3">
                 <div className="w-16 h-px bg-gradient-to-r from-transparent to-gold/30" />
@@ -221,7 +219,6 @@ export default function AboutPage() {
             {craftFeatures.map((feature, i) => (
               <AnimatedSection key={feature.title} delay={i * 0.15}>
                 <div className="relative bg-dark-3/30 border border-gold/10 p-8 text-center group hover:border-gold/25 transition-all duration-500">
-                  {/* Frame corners */}
                   <div className="absolute -top-[2px] -left-[2px] w-5 h-5 border-t-2 border-l-2 border-gold/25 group-hover:border-gold/50 transition-colors duration-500" />
                   <div className="absolute -top-[2px] -right-[2px] w-5 h-5 border-t-2 border-r-2 border-gold/25 group-hover:border-gold/50 transition-colors duration-500" />
                   <div className="absolute -bottom-[2px] -left-[2px] w-5 h-5 border-b-2 border-l-2 border-gold/25 group-hover:border-gold/50 transition-colors duration-500" />
@@ -245,10 +242,10 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-16">
               {[
-                { value: "100+", label: "Unique Pieces" },
+                { value: "10+", label: "Unique Pieces" },
                 { value: "BG", label: "Handmade In" },
-                { value: "USA", label: "Ships To" },
-                { value: "2024", label: "Established" },
+                { value: "WW", label: "Ships Worldwide" },
+                { value: "Etsy", label: "Available On" },
               ].map((stat, i) => (
                 <div key={stat.label} className="text-center flex items-center gap-8 sm:gap-16">
                   {i > 0 && <div className="w-px h-12 bg-foreground/8 hidden sm:block" />}
@@ -265,48 +262,31 @@ export default function AboutPage() {
         </AnimatedSection>
       </section>
 
-      {/* Shipping & Returns */}
-      <section className="relative py-24 lg:py-32 px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <AnimatedSection>
-            <div className="text-center mb-16">
-              <p className="font-inter text-[10px] tracking-[0.6em] uppercase text-gold/40 mb-4">
-                Good to Know
-              </p>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-semibold text-foreground/90 mb-6">
-                Shipping & Returns
-              </h2>
-              <div className="flex items-center justify-center gap-3">
-                <div className="w-16 h-px bg-gradient-to-r from-transparent to-gold/30" />
-                <div className="w-1.5 h-1.5 rotate-45 bg-gold/40" />
-                <div className="w-16 h-px bg-gradient-to-l from-transparent to-gold/30" />
-              </div>
-            </div>
-          </AnimatedSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {shippingInfo.map((section, i) => (
-              <AnimatedSection key={section.title} delay={i * 0.15}>
-                <div className="relative bg-dark-3/20 border border-gold/8 p-6">
-                  <div className="flex items-center gap-3 mb-5">
-                    <section.icon size={20} className="text-gold/40" strokeWidth={1.5} />
-                    <h3 className="font-cinzel text-base text-foreground/75">{section.title}</h3>
-                  </div>
-                  <ul className="space-y-2.5">
-                    {section.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="w-1 h-1 rounded-full bg-gold/25 mt-2 shrink-0" />
-                        <span className="font-inter text-sm text-foreground/35 leading-relaxed">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </AnimatedSection>
-            ))}
+      {/* Etsy CTA */}
+      <section className="relative py-24 px-6 lg:px-8">
+        <AnimatedSection>
+          <div className="max-w-2xl mx-auto text-center">
+            <p className="font-inter text-[10px] tracking-[0.6em] uppercase text-gold/40 mb-4">
+              Ready to Shop?
+            </p>
+            <h2 className="font-cinzel text-2xl sm:text-3xl font-semibold text-foreground/90 mb-6">
+              Find Everything on Etsy
+            </h2>
+            <p className="font-inter text-sm text-foreground/40 leading-relaxed mb-8">
+              All pieces are available through my Etsy shop — secure checkout, worldwide
+              shipping, and each order packed with care from my atelier in Bulgaria.
+            </p>
+            <a
+              href={ETSY_SHOP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase transition-colors duration-300"
+            >
+              <ExternalLink size={16} />
+              Visit My Etsy Shop
+            </a>
           </div>
-        </div>
+        </AnimatedSection>
       </section>
     </div>
   );

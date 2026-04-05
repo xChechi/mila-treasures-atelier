@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { categories, products } from "@/data/products";
 import { type SortOption, getUniqueMaterials, getPriceRange } from "@/lib/products";
-import { useCurrencyStore, formatPrice } from "@/store/currency";
 
 const allMaterials = getUniqueMaterials(products);
 const { min: PRICE_MIN, max: PRICE_MAX } = getPriceRange(products);
@@ -39,7 +38,6 @@ export default function ShopFilters({
   onPriceRangeChange,
 }: ShopFiltersProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const currency = useCurrencyStore((s) => s.currency);
 
   const hasActiveFilters = material !== "" || inStockOnly || priceRange[0] > PRICE_MIN || priceRange[1] < PRICE_MAX;
 
@@ -176,10 +174,10 @@ export default function ShopFilters({
                 />
                 <div className="flex justify-between">
                   <span className="font-inter text-xs text-foreground/40">
-                    {formatPrice(priceRange[0], currency)}
+                    {`$${priceRange[0]}`}
                   </span>
                   <span className="font-inter text-xs text-foreground/40">
-                    {formatPrice(priceRange[1], currency)}
+                    {`$${priceRange[1]}`}
                   </span>
                 </div>
               </div>

@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+
+const ETSY_SHOP = "https://www.etsy.com/shop/MilaTreasuresAtelier";
 
 const footerLinks = {
   shop: [
-    { label: "Wall Crosses", href: "/category/wall-crosses" },
-    { label: "Gargoyles & Sculptures", href: "/category/gargoyles-sculptures" },
-    { label: "Gothic Mirrors", href: "/category/gothic-mirrors" },
-    { label: "Candle Holders", href: "/category/candle-holders" },
+    { label: "Églomisé Art", href: "/shop?category=eglomise-art" },
+    { label: "Framed Art & Decor", href: "/shop?category=framed-art" },
+    { label: "Trinket Boxes", href: "/shop?category=trinket-boxes" },
+    { label: "Sculptures & Decor", href: "/shop?category=sculptures-decor" },
   ],
   company: [
-    { label: "About Us", href: "/about" },
+    { label: "About Milena", href: "/about" },
     { label: "Contact", href: "/contact" },
-    { label: "Shipping Info", href: "/about#shipping-returns" },
-    { label: "Returns", href: "/about#returns" },
+    { label: "Journal", href: "/journal" },
+    { label: "Shop on Etsy", href: ETSY_SHOP, external: true },
   ],
 };
 
@@ -25,42 +28,31 @@ function WroughtIronGate() {
         className="w-full h-20 sm:h-24"
         preserveAspectRatio="xMidYMid meet"
       >
-        {/* Main horizontal bar */}
         <rect x="0" y="55" width="1200" height="2" fill="rgba(201,168,76,0.12)" />
         <rect x="0" y="60" width="1200" height="1" fill="rgba(201,168,76,0.06)" />
-
-        {/* Gothic arches */}
         {[0, 150, 300, 450, 600, 750, 900, 1050].map((x) => (
           <g key={x}>
-            {/* Arch */}
             <path
               d={`M${x + 15},56 L${x + 15},25 Q${x + 15},5 ${x + 75},5 Q${x + 135},5 ${x + 135},25 L${x + 135},56`}
               stroke="rgba(201,168,76,0.1)"
               strokeWidth="1.5"
               fill="none"
             />
-            {/* Inner arch */}
             <path
               d={`M${x + 30},56 L${x + 30},30 Q${x + 30},12 ${x + 75},12 Q${x + 120},12 ${x + 120},30 L${x + 120},56`}
               stroke="rgba(201,168,76,0.06)"
               strokeWidth="1"
               fill="none"
             />
-            {/* Vertical bars */}
             <line x1={x + 55} y1="56" x2={x + 55} y2="15" stroke="rgba(201,168,76,0.06)" strokeWidth="0.5" />
             <line x1={x + 75} y1="56" x2={x + 75} y2="8" stroke="rgba(201,168,76,0.08)" strokeWidth="0.5" />
             <line x1={x + 95} y1="56" x2={x + 95} y2="15" stroke="rgba(201,168,76,0.06)" strokeWidth="0.5" />
-            {/* Spear tips */}
             <path d={`M${x + 75},8 L${x + 72},3 L${x + 75},0 L${x + 78},3 Z`} fill="rgba(201,168,76,0.1)" />
           </g>
         ))}
-
-        {/* Center ornament */}
         <circle cx="600" cy="56" r="6" fill="none" stroke="rgba(201,168,76,0.15)" strokeWidth="1" />
         <circle cx="600" cy="56" r="2" fill="rgba(201,168,76,0.1)" />
       </svg>
-
-      {/* Fog rising from bottom edge */}
       <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-dark-1/50 to-transparent pointer-events-none" />
     </div>
   );
@@ -69,7 +61,6 @@ function WroughtIronGate() {
 export default function Footer() {
   return (
     <footer className="relative bg-dark-1">
-      {/* Wrought iron gate */}
       <WroughtIronGate />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-8 pb-8">
@@ -77,15 +68,25 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="inline-block">
-              <h3 className="font-cinzel text-2xl font-bold tracking-[0.15em] text-gold-light/80 mb-4">
-                Gothic Treasures
+              <h3 className="font-cinzel text-xl font-bold tracking-[0.12em] text-gold-light/80 mb-1">
+                Mila Treasures
               </h3>
+              <p className="font-inter text-[9px] tracking-[0.35em] uppercase text-gold/30 mb-4">Atelier</p>
             </Link>
-            <p className="font-inter text-sm text-foreground/35 leading-relaxed max-w-xs">
-              Handcrafted gothic home decor, shipped from our workshop in
-              Bulgaria to doorsteps across the United States. Every piece tells
-              a story of dark elegance.
+            <p className="font-inter text-sm text-foreground/35 leading-relaxed max-w-xs mb-5">
+              Handcrafted one-of-a-kind pieces — jewel-toned goblets, original
+              paintings, ornate trinket boxes, and botanical decor. Made with
+              love in Bulgaria.
             </p>
+            <a
+              href={ETSY_SHOP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-xs font-inter tracking-[0.15em] uppercase text-gold/50 hover:text-gold-light transition-colors duration-300"
+            >
+              Visit Etsy Shop
+              <ExternalLink size={11} />
+            </a>
           </div>
 
           {/* Shop Links */}
@@ -110,17 +111,29 @@ export default function Footer() {
           {/* Company Links */}
           <div>
             <h4 className="font-cinzel text-[11px] tracking-[0.3em] uppercase text-gold/50 mb-6">
-              Company
+              Studio
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="font-inter text-sm text-foreground/35 hover:text-gold-light/70 transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
+                  {"external" in link && link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-inter text-sm text-foreground/35 hover:text-gold-light/70 transition-colors duration-300"
+                    >
+                      {link.label}
+                      <ExternalLink size={10} className="opacity-50" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="font-inter text-sm text-foreground/35 hover:text-gold-light/70 transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -130,7 +143,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-foreground/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-inter text-xs text-foreground/20">
-            &copy; {new Date().getFullYear()} Gothic Treasures. All rights reserved.
+            &copy; {new Date().getFullYear()} Mila Treasures Atelier. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <span className="font-inter text-xs text-foreground/20">
@@ -138,7 +151,7 @@ export default function Footer() {
             </span>
             <span className="text-gold/15">|</span>
             <span className="font-inter text-xs text-foreground/20">
-              Ships to USA
+              Ships Worldwide
             </span>
           </div>
         </div>

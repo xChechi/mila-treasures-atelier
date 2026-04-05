@@ -3,12 +3,9 @@
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useCartStore } from "@/store/cart";
-import { useWishlistStore } from "@/store/wishlist";
-import { ShoppingBag, Eye, Check, Heart, Star } from "lucide-react";
+import { ExternalLink, Eye, Star } from "lucide-react";
 import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
-import { useCurrencyStore, formatPrice } from "@/store/currency";
 
 const BADGE_CONFIG: Record<ProductBadge, { label: string; bg: string; text: string }> = {
   new: { label: "New", bg: "bg-gold/90", text: "text-dark-1" },
@@ -28,12 +25,6 @@ export default function ProductCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const addItem = useCartStore((s) => s.addItem);
-  const cartItems = useCartStore((s) => s.items);
-  const isInCart = cartItems.some((i) => i.product.id === product.id);
-  const toggleWishlist = useWishlistStore((s) => s.toggleItem);
-  const wishlisted = useWishlistStore((s) => s.isWishlisted(product.id));
-  const currency = useCurrencyStore((s) => s.currency);
   const [isHovered, setIsHovered] = useState(false);
 
   // 3D tilt effect
@@ -87,7 +78,7 @@ export default function ProductCard({
             <div
               className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
               style={{
-                backgroundImage: `url(${product.image})`,
+                backgroundImage: inView ? `url(${product.image})` : undefined,
                 filter: isHovered ? "brightness(1.1) contrast(1.05)" : "brightness(0.85)",
               }}
             />
@@ -95,19 +86,6 @@ export default function ProductCard({
 
             {/* Spotlight cone on hover */}
             <div className={`absolute inset-0 bg-radial-[at_50%_0%] from-amber-200/8 via-transparent to-transparent transition-opacity duration-700 ${isHovered ? "opacity-100" : "opacity-0"}`} />
-
-            {/* Wishlist heart */}
-            <button
-              onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
-              aria-label={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
-              className="absolute top-4 left-4 z-10 p-2 transition-all duration-300"
-            >
-              <Heart
-                size={18}
-                className={wishlisted ? "fill-burgundy text-burgundy" : "text-foreground/30 hover:text-foreground/60"}
-                strokeWidth={1.5}
-              />
-            </button>
 
             {/* Product badge */}
             {product.badge && product.inStock && (
@@ -133,20 +111,15 @@ export default function ProductCard({
             {product.inStock && (
               <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                 <div className="flex gap-2">
-                  {isInCart ? (
-                    <div className="flex-1 py-3 bg-dark-3/90 text-gold-light text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 backdrop-blur-sm border border-gold/20">
-                      <Check size={14} />
-                      In Your Cart
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => addItem(product)}
-                      className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
-                    >
-                      <ShoppingBag size={14} />
-                      Add to Cart
-                    </button>
-                  )}
+                  <a
+                    href={product.etsyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
+                  >
+                    <ExternalLink size={13} />
+                    Buy on Etsy
+                  </a>
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -173,11 +146,10 @@ export default function ProductCard({
             <p className="font-inter text-xs text-foreground/30 mb-3 line-clamp-2 leading-relaxed">
               {product.shortDescription}
             </p>
-            {/* Star rating */}
+            {/* Star rating — always rendered for consistent card height */}
             {(() => {
               const avg = getAverageRating(product.id);
               const count = getReviewCount(product.id);
-              if (count === 0) return null;
               return (
                 <div className="flex items-center gap-2 mb-3">
                   <div className="flex gap-0.5">
@@ -186,7 +158,7 @@ export default function ProductCard({
                         key={i}
                         size={11}
                         className={
-                          i < Math.round(avg)
+                          count > 0 && i < Math.round(avg)
                             ? "text-gold/60 fill-gold/60"
                             : "text-foreground/15"
                         }
@@ -194,14 +166,14 @@ export default function ProductCard({
                     ))}
                   </div>
                   <span className="font-inter text-[10px] text-foreground/25">
-                    ({count})
+                    {count > 0 ? `(${count})` : ""}
                   </span>
                 </div>
               );
             })()}
             <div className="flex items-center justify-between gap-2">
               <p className={`font-cinzel text-lg shrink-0 ${product.inStock ? "text-gold/80" : "text-foreground/30 line-through"}`}>
-                {formatPrice(product.price, currency)}
+                ${product.price.toFixed(2)}
               </p>
               {product.material && (
                 <p className="font-inter text-[9px] text-foreground/20 tracking-wider uppercase truncate hidden sm:block">

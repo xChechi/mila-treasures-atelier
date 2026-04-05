@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Share2, Link2, Check } from "lucide-react";
 
 interface ShareButtonsProps {
@@ -31,7 +31,12 @@ export default function ShareButtons({
   productDescription,
 }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
-  const fullUrl = `https://gothictreasures.com${productUrl}`;
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    setCanShare(typeof navigator !== "undefined" && "share" in navigator);
+  }, []);
+  const fullUrl = `https://milatreasuresatelier.com${productUrl}`;
 
   const handlePinterest = () => {
     const url = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(fullUrl)}&media=${encodeURIComponent(productImage)}&description=${encodeURIComponent(`${productName} — ${productDescription}`)}`;
@@ -97,7 +102,7 @@ export default function ShareButtons({
       </button>
 
       {/* Native Share (mobile) */}
-      {typeof navigator !== "undefined" && "share" in navigator && (
+      {canShare && (
         <button
           onClick={handleNativeShare}
           aria-label="Share"

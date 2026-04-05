@@ -308,7 +308,7 @@ export default function ContactPage() {
                             Email
                           </p>
                           <p className="font-inter text-sm text-foreground/60">
-                            hello@gothictreasures.com
+                            hello@milatreasuresatelier.com
                           </p>
                         </div>
                       </div>

@@ -19,7 +19,7 @@ export const journalPosts: JournalPost[] = [
     title: "The Ancient Art of Iron Forging",
     excerpt:
       "Step inside our Bulgarian workshop where centuries-old blacksmithing techniques meet dark romantic vision. Every cross, every candelabra begins with fire.",
-    content: `The forge glows at 1,200°C. In the dimly lit workshop nestled in the Rhodope Mountains of Bulgaria, master blacksmith Dimitar draws a length of iron from the coals. This is where every Gothic Treasures piece begins — not with a sketch or a CAD model, but with fire and hammer.
+    content: `The forge glows at 1,200°C. In the dimly lit workshop nestled in the Rhodope Mountains of Bulgaria, master blacksmith Dimitar draws a length of iron from the coals. This is where every Mila Treasures Atelier piece begins — not with a sketch or a CAD model, but with fire and hammer.
 
 ## A Craft Unchanged by Time
 
@@ -41,13 +41,13 @@ A single wall cross takes between 3 and 5 days to complete:
 
 ## Why It Matters
 
-In an age of mass production, choosing handcrafted means choosing imperfection — and that's precisely the point. Each Gothic Treasures piece is unique not just because we say so, but because the process makes it physically impossible to create two identical works. The hammer doesn't lie.
+In an age of mass production, choosing handcrafted means choosing imperfection — and that's precisely the point. Each Mila Treasures Atelier piece is unique not just because we say so, but because the process makes it physically impossible to create two identical works. The hammer doesn't lie.
 
 When you hang one of our crosses on your wall, you're not just displaying decor. You're preserving a craft that has survived wars, industrial revolutions, and the relentless pressure of "good enough." That feels worth protecting.`,
     coverImage:
       "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=1200&q=80",
     category: "Workshop",
-    author: "Gothic Treasures",
+    author: "Mila Treasures Atelier",
     date: "2026-03-20",
     readTime: 6,
     featured: true,
@@ -101,7 +101,7 @@ If you're new to gothic decor, start with a single statement piece and build aro
     coverImage:
       "https://images.unsplash.com/photo-1519677053485-abaa6744a08c?w=1200&q=80",
     category: "Inspiration",
-    author: "Gothic Treasures",
+    author: "Mila Treasures Atelier",
     date: "2026-03-18",
     readTime: 7,
     featured: true,
@@ -160,7 +160,7 @@ Whichever guardian you choose, you're participating in an 800-year tradition of 
     coverImage:
       "https://images.unsplash.com/photo-1561084746-f360502e5abe?w=1200&q=80",
     category: "Culture",
-    author: "Gothic Treasures",
+    author: "Mila Treasures Atelier",
     date: "2026-03-15",
     readTime: 8,
     featured: false,
@@ -171,7 +171,7 @@ Whichever guardian you choose, you're participating in an 800-year tradition of 
     title: "From Bulgaria with Darkness: Our Shipping Journey",
     excerpt:
       "How a handcrafted iron cross travels 5,000 miles from a mountain workshop in Bulgaria to your wall in America — and arrives in perfect condition.",
-    content: `Every Gothic Treasures order begins its journey in the Rhodope Mountains of southern Bulgaria and ends at a doorstep somewhere in the United States. That's roughly 5,000 miles, multiple customs checkpoints, and 10-14 days of transit. Here's how we make sure your one-of-a-kind piece arrives in the same condition it left our workshop.
+    content: `Every Mila Treasures Atelier order begins its journey in Bulgaria and ends at a doorstep somewhere in the United States. That's roughly 5,000 miles, multiple customs checkpoints, and 10-14 days of transit. Here's how we make sure your one-of-a-kind piece arrives in the same condition it left our workshop.
 
 ## The Packing Process
 
@@ -193,7 +193,7 @@ Our packages travel from the workshop to Sofia, Bulgaria's capital, where they e
 
 ## Customs and Duties
 
-All Gothic Treasures pieces ship DDP (Delivered Duty Paid), which means we handle all customs paperwork and import duties. The price you see at checkout is the price you pay — no surprise fees at delivery. This costs us more per shipment, but we believe surprise charges are antithetical to a premium experience.
+All Mila Treasures Atelier pieces ship DDP (Delivered Duty Paid), which means we handle all customs paperwork and import duties. The price you see at checkout is the price you pay — no surprise fees at delivery. This costs us more per shipment, but we believe surprise charges are antithetical to a premium experience.
 
 ## Our Damage Rate
 
@@ -209,7 +209,7 @@ There's something satisfying about watching a medieval-inspired gargoyle navigat
     coverImage:
       "https://images.unsplash.com/photo-1744339700395-fa286ae4c7e6?w=1200&q=80",
     category: "Behind the Scenes",
-    author: "Gothic Treasures",
+    author: "Mila Treasures Atelier",
     date: "2026-03-12",
     readTime: 5,
     featured: false,
@@ -228,7 +228,7 @@ In early Christianity, the cross was a symbol of suffering and salvation. It was
 
 Gothic craftsmen didn't just make crosses — they made crosses that soared. They added tracery, the intricate stone or metalwork patterns inspired by the cathedral windows they were building. They added floral motifs, geometric patterns, and narrative scenes. The cross became a frame for creativity.
 
-This is the tradition we work within at Gothic Treasures. Our wall crosses are artistic objects first — they happen to take the form of a cross, but their purpose is to bring beauty, drama, and craftsmanship into your space.
+This is the tradition we work within at Mila Treasures Atelier. Our wall crosses are artistic objects first — they happen to take the form of a cross, but their purpose is to bring beauty, drama, and craftsmanship into your space.
 
 ## Tracery: The Language of Gothic Design
 
@@ -256,7 +256,7 @@ Whether you see a cross as a spiritual symbol, an art object, or simply a beauti
     coverImage:
       "https://images.unsplash.com/photo-1756080508014-a94fd3c313e5?w=1200&q=80",
     category: "Culture",
-    author: "Gothic Treasures",
+    author: "Mila Treasures Atelier",
     date: "2026-03-08",
     readTime: 6,
     featured: false,

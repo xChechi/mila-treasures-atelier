@@ -45,10 +45,9 @@ export default function BrandStory() {
           >
             <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0">
               <div
-                className="absolute inset-0 bg-cover bg-center"
+                className="absolute inset-0 bg-cover bg-center bg-top"
                 style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1744339700395-fa286ae4c7e6?w=800&q=80')",
+                  backgroundImage: "url('/images/milena-profile.webp')",
                 }}
               />
               {/* Frame effect */}
@@ -71,7 +70,7 @@ export default function BrandStory() {
               transition={{ duration: 0.8 }}
               className="font-inter text-xs tracking-[0.5em] uppercase text-gold/50 mb-6"
             >
-              Our Story
+              Meet the Artist
             </motion.p>
 
             <motion.h2
@@ -80,9 +79,9 @@ export default function BrandStory() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="font-cinzel text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-[0.03em] text-foreground/90 mb-8 leading-tight"
             >
-              Every Piece
+              Made by Hand,
               <br />
-              <span className="text-shimmer">Tells a Story</span>
+              <span className="text-shimmer">Made with Soul</span>
             </motion.h2>
 
             <motion.div
@@ -92,22 +91,23 @@ export default function BrandStory() {
               className="space-y-5 mb-10"
             >
               <p className="font-inter text-base text-foreground/50 leading-relaxed">
-                Born in the heart of Bulgaria, Gothic Treasures began as a
-                passion for preserving the dark artistry of European gothic
-                craft. Each piece in our collection is handmade by skilled
-                artisans who draw inspiration from medieval cathedrals, ancient
-                monasteries, and the haunting beauty of Gothic architecture.
+                Hi, I&apos;m Milena — a self-taught artist and maker based in Bulgaria.
+                I create one-of-a-kind pieces that live at the intersection of dark
+                romanticism and handcraft: jewel-toned fantasy goblets, original
+                paintings, ornate trinket boxes, and botanical decor.
               </p>
               <p className="font-inter text-base text-foreground/50 leading-relaxed">
-                We believe that home decor should evoke emotion. Our wall
-                crosses, gargoyles, mirrors, and candle holders are not mere
-                decorations — they are conversation pieces, each carrying
-                centuries of artistic tradition into your modern home.
+                Every piece I make is completely unique. I don&apos;t mass-produce,
+                I don&apos;t use molds. Each goblet is hand-painted differently, each
+                portrait is a singular original, each box is lined by hand. When
+                something sells, it&apos;s gone forever — that&apos;s the nature of
+                real handcraft.
               </p>
               <p className="font-inter text-base text-foreground/50 leading-relaxed">
-                Every item is unique. When it&apos;s gone, it&apos;s gone
-                forever. That&apos;s the nature of handcrafted art — no two
-                pieces are ever truly the same.
+                My newest series incorporates real crushed herbs into painted
+                surfaces — part painting, part botanical object. You can find
+                everything in my Etsy shop, shipped worldwide from my atelier in
+                Bulgaria.
               </p>
             </motion.div>
 
@@ -119,7 +119,7 @@ export default function BrandStory() {
             >
               <div className="text-center">
                 <span className="block font-cinzel text-3xl text-gold-light">
-                  100+
+                  10+
                 </span>
                 <span className="font-inter text-xs text-foreground/40 tracking-wider uppercase">
                   Unique Pieces
@@ -137,10 +137,10 @@ export default function BrandStory() {
               <div className="w-px h-12 bg-foreground/10" />
               <div className="text-center">
                 <span className="block font-cinzel text-3xl text-gold-light">
-                  USA
+                  WW
                 </span>
                 <span className="font-inter text-xs text-foreground/40 tracking-wider uppercase">
-                  Ships To
+                  Ships Worldwide
                 </span>
               </div>
             </motion.div>

@@ -11,7 +11,7 @@ function FloatingEmbers() {
   }>>([]);
 
   useEffect(() => {
-    setEmbers(Array.from({ length: 40 }, (_, i) => ({
+    setEmbers(Array.from({ length: 15 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       delay: Math.random() * 10,
@@ -74,7 +74,7 @@ export default function HeroSection() {
           className="absolute inset-0 bg-cover bg-center scale-110"
           style={{
             backgroundImage:
-              "url('/images/gothic-cathedral-vault.jpg')",
+              "url('/images/gothic-cathedral-vault.webp')",
             filter: "sepia(0.3) brightness(0.7) contrast(1.15)",
           }}
         />
@@ -105,7 +105,7 @@ export default function HeroSection() {
           Handcrafted Dark Elegance
         </motion.p>
 
-        {/* Main title — letter by letter reveal */}
+        {/* Main title */}
         <div className="overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -113,18 +113,28 @@ export default function HeroSection() {
             transition={{ duration: 1.2, delay: 0.8 }}
             className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-bold tracking-[0.08em] leading-[0.9] text-gold-light"
           >
-            Gothic
+            Mila
           </motion.h1>
         </div>
         <div className="overflow-hidden mt-2">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2, delay: 1.1 }}
+            transition={{ duration: 1.2, delay: 1.0 }}
             className="font-cinzel text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] font-light tracking-[0.15em] text-foreground/80"
           >
             Treasures
           </motion.h1>
+        </div>
+        <div className="overflow-hidden mt-1">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={loaded ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, delay: 1.1 }}
+            className="font-inter font-medium text-[10px] sm:text-xs tracking-[0.5em] uppercase text-gold/40"
+          >
+            Atelier
+          </motion.p>
         </div>
 
         {/* Gothic ornamental divider */}
@@ -148,8 +158,8 @@ export default function HeroSection() {
           transition={{ duration: 1.2, delay: 1.8 }}
           className="font-playfair text-lg sm:text-xl text-foreground/50 italic max-w-xl mb-12"
         >
-          Where darkness meets artistry. Unique wall decor pieces forged in the
-          shadows of European workshops.
+          Where darkness meets artistry. Unique handmade pieces — goblets,
+          paintings, trinket boxes, and botanicals — crafted in Bulgaria.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -176,7 +186,7 @@ export default function HeroSection() {
             className="group px-10 py-4 border border-gold/30 hover:border-gold/60 transition-all duration-500"
           >
             <span className="font-inter text-sm tracking-[0.2em] uppercase text-gold-light group-hover:text-white transition-colors duration-300">
-              Our Story
+              Meet Milena
             </span>
           </Link>
         </motion.div>

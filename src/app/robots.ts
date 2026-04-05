@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/cart", "/checkout"],
       },
     ],
-    sitemap: "https://gothictreasures.com/sitemap.xml",
+    sitemap: "https://milatreasuresatelier.com/sitemap.xml",
   };
 }

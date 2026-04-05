@@ -2,60 +2,59 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import CartDrawer from "@/components/layout/CartDrawer";
 import GrainOverlay from "@/components/ui/GrainOverlay";
 import ScrollProgress from "@/components/ui/ScrollProgress";
 import CustomCursor from "@/components/ui/CustomCursor";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import BackToTop from "@/components/ui/BackToTop";
-import SoldTicker from "@/components/ui/SoldTicker";
 import PageTransition from "@/components/ui/PageTransition";
 
-const SITE_URL = "https://gothictreasures.com";
+const SITE_URL = "https://milatreasuresatelier.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Gothic Treasures | Handcrafted Dark Elegance",
-    template: "%s — Gothic Treasures",
+    default: "Mila Treasures Atelier | Handcrafted Dark Elegance",
+    template: "%s — Mila Treasures Atelier",
   },
   description:
-    "Unique handmade gothic home wall decor — crosses, gargoyles, mirrors, candle holders. Crafted in Bulgaria, shipped to the USA.",
+    "Unique handmade gothic home decor, original paintings, jewel-toned goblets, and artisan trinket boxes. Crafted in Bulgaria by Milena, available on Etsy.",
   keywords: [
     "gothic decor",
-    "wall cross",
-    "gargoyle",
-    "gothic mirror",
-    "candle holder",
+    "handmade goblets",
+    "original paintings",
+    "trinket boxes",
+    "églomisé portraits",
     "handmade",
     "dark home decor",
-    "gothic wall art",
-    "handcrafted decor",
+    "gothic art",
+    "etsy shop",
+    "mila treasures atelier",
   ],
-  authors: [{ name: "Gothic Treasures" }],
-  creator: "Gothic Treasures",
+  authors: [{ name: "Mila Treasures Atelier" }],
+  creator: "Mila Treasures Atelier",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "Gothic Treasures",
-    title: "Gothic Treasures | Handcrafted Dark Elegance",
+    siteName: "Mila Treasures Atelier",
+    title: "Mila Treasures Atelier | Handcrafted Dark Elegance",
     description:
-      "Unique handmade gothic home wall decor — crosses, gargoyles, mirrors, candle holders. Crafted in Bulgaria, shipped to the USA.",
+      "Unique handmade gothic home decor, original paintings, jewel-toned goblets, and artisan trinket boxes. Crafted in Bulgaria, shipped worldwide.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Gothic Treasures — Handcrafted Dark Elegance",
+        alt: "Mila Treasures Atelier — Handcrafted Dark Elegance",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gothic Treasures | Handcrafted Dark Elegance",
+    title: "Mila Treasures Atelier | Handcrafted Dark Elegance",
     description:
-      "Unique handmade gothic home wall decor — crosses, gargoyles, mirrors, candle holders.",
+      "Unique handmade gothic home decor, original paintings, jewel-toned goblets, and artisan trinket boxes.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -80,15 +79,15 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Organization",
-                  name: "Gothic Treasures",
+                  name: "Mila Treasures Atelier",
                   url: SITE_URL,
                   logo: `${SITE_URL}/og-image.jpg`,
                   description:
-                    "Handcrafted gothic home wall decor — unique crosses, gargoyles, mirrors, and candle holders. Made in Bulgaria, shipped to the USA.",
+                    "Handcrafted gothic home decor, original paintings, and artisan pieces made in Bulgaria by Milena.",
                 },
                 {
                   "@type": "WebSite",
-                  name: "Gothic Treasures",
+                  name: "Mila Treasures Atelier",
                   url: SITE_URL,
                 },
               ],
@@ -103,13 +102,11 @@ export default function RootLayout({
         <ScrollToTop />
         <CustomCursor />
         <Navbar />
-        <CartDrawer />
         <main id="main-content" className="flex-1">
           <PageTransition>{children}</PageTransition>
         </main>
         <Footer />
         <BackToTop />
-        <SoldTicker />
       </body>
     </html>
   );

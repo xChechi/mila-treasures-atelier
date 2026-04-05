@@ -3,7 +3,6 @@
 import { useRecentlyViewedStore } from "@/store/recentlyViewed";
 import Link from "next/link";
 import { Clock } from "lucide-react";
-import { useCurrencyStore, formatPrice } from "@/store/currency";
 
 interface RecentlyViewedProps {
   excludeId?: string;
@@ -11,8 +10,6 @@ interface RecentlyViewedProps {
 
 export default function RecentlyViewed({ excludeId }: RecentlyViewedProps) {
   const items = useRecentlyViewedStore((s) => s.items);
-  const currency = useCurrencyStore((s) => s.currency);
-
   const filtered = excludeId ? items.filter((i) => i.id !== excludeId) : items;
 
   if (filtered.length === 0) return null;
@@ -61,7 +58,7 @@ export default function RecentlyViewed({ excludeId }: RecentlyViewedProps) {
               {product.name}
             </p>
             <p className={`font-cinzel text-xs ${product.inStock ? "text-gold/60" : "text-foreground/25 line-through"}`}>
-              {formatPrice(product.price, currency)}
+              ${product.price.toFixed(2)}
             </p>
           </Link>
         ))}

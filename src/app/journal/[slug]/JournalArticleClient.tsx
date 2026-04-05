@@ -153,7 +153,7 @@ export default function JournalArticleClient({ post, prevPost, nextPost }: Props
   const contentInView = useInView(contentRef, { once: true, margin: "-50px" });
 
   const handleShare = async () => {
-    const url = `https://gothictreasures.com/journal/${post.slug}`;
+    const url = `https://milatreasuresatelier.com/journal/${post.slug}`;
     if (navigator.share) {
       try {
         await navigator.share({ title: post.title, text: post.excerpt, url });
@@ -272,7 +272,7 @@ export default function JournalArticleClient({ post, prevPost, nextPost }: Props
         <div className="mt-16 pt-10 border-t border-gold/10">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-gradient-to-br from-gold/10 to-burgundy/10 border border-gold/15 flex items-center justify-center">
-              <span className="font-cinzel text-sm text-gold/50">GT</span>
+              <span className="font-cinzel text-sm text-gold/50">MTA</span>
             </div>
             <div>
               <p className="font-cinzel text-sm text-foreground/70">{post.author}</p>

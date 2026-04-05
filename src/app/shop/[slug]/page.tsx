@@ -23,14 +23,14 @@ export async function generateMetadata({
     description: product.shortDescription,
     alternates: { canonical: `/shop/${product.slug}` },
     openGraph: {
-      title: `${product.name} — Gothic Treasures`,
+      title: `${product.name} — Mila Treasures Atelier`,
       description: product.shortDescription,
       images: [{ url: product.image, width: 800, height: 1067, alt: product.name }],
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} — Gothic Treasures`,
+      title: `${product.name} — Mila Treasures Atelier`,
       description: product.shortDescription,
       images: [product.image],
     },
@@ -66,7 +66,7 @@ export default async function ProductPage({
         : "https://schema.org/SoldOut",
     },
     material: product.material,
-    brand: { "@type": "Brand", name: "Gothic Treasures" },
+    brand: { "@type": "Brand", name: "Mila Treasures Atelier" },
     ...(productReviews.length > 0 && {
       aggregateRating: {
         "@type": "AggregateRating",
