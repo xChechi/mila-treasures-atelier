@@ -1,5 +1,28 @@
 import type { Metadata } from "next";
+import { Cinzel, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-cinzel",
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-inter",
+  display: "swap",
+});
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import GrainOverlay from "@/components/ui/GrainOverlay";
@@ -95,7 +118,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-dark-1 text-foreground antialiased">
+      <body className={`${cinzel.variable} ${playfair.variable} ${inter.variable} min-h-screen flex flex-col bg-dark-1 text-foreground antialiased`}>
         <a href="#main-content" className="skip-to-content">Skip to content</a>
         <GrainOverlay />
         <ScrollProgress />
