@@ -15,199 +15,162 @@ export interface JournalPost {
 export const journalPosts: JournalPost[] = [
   {
     id: "1",
-    slug: "the-ancient-art-of-iron-forging",
-    title: "The Ancient Art of Iron Forging",
+    slug: "the-art-of-eglomise",
+    title: "The Art of Églomisé: Painting Behind Glass",
     excerpt:
-      "Step inside our Bulgarian workshop where centuries-old blacksmithing techniques meet dark romantic vision. Every cross, every candelabra begins with fire.",
-    content: `The forge glows at 1,200°C. In the dimly lit workshop nestled in the Rhodope Mountains of Bulgaria, master blacksmith Dimitar draws a length of iron from the coals. This is where every Mila Treasures Atelier piece begins — not with a sketch or a CAD model, but with fire and hammer.
+      "An 18th-century French technique where art lives beneath the glass surface, merging with mirror fragments to create something that shifts with the light. Here's how it works.",
+    content: `You're looking at a mirror. Then you're looking through it. Then you're not sure which world you're in. That's églomisé — and it's been unsettling people in the most beautiful way since the 1700s.
 
-## A Craft Unchanged by Time
+## What Is Églomisé?
 
-The techniques we use date back to the 13th century, when itinerant blacksmiths traveled between monasteries and cathedrals across Europe, creating the ornamental ironwork that still adorns these sacred spaces today. Our workshop preserves these methods not out of nostalgia, but because hand-forged iron has a character that no machine can replicate.
+Églomisé (pronounced ay-glo-mee-ZAY) is a decorative technique where parts of a mirror's reflective backing are carefully removed by hand, and an image is painted or applied beneath the glass surface. The result is part mirror, part artwork — a piece where your room and the painted scene coexist in the same frame.
 
-Each hammer strike leaves its mark — subtle variations in texture that catch the light differently, creating the living quality that collectors notice immediately. A machine-pressed cross is uniform and lifeless. A hand-forged cross tells the story of its creation.
+The name comes from Jean-Baptiste Glomy, a French art dealer in the 18th century who popularized the technique, though the method is much older. Ancient Romans decorated gold leaf under glass, and the technique flourished throughout Renaissance Italy before Glomy gave it his name.
 
-## The Process
+## How Milena Uses It
 
-A single wall cross takes between 3 and 5 days to complete:
+At Mila Treasures Atelier, the traditional technique is adapted for a gothic aesthetic. Each piece begins with a mirror — the reflective surface is hand-scraped in specific areas to create a distressed, aged effect. Then the artwork is applied beneath the glass using foil transfers and specialized mirror spray.
 
-**Day 1 — Drawing the Iron.** The raw stock is heated until it reaches a bright orange. At this temperature, the iron becomes malleable enough to shape but retains enough resistance to hold the form as it cools. The main arms of the cross are drawn out first, establishing proportions that will guide every subsequent step.
+The Haunted Castle Églomisé Mirror, for instance, features a gothic castle scene embedded inside the glass itself. The castle's lit windows, crescent moon, and twisted bare trees live permanently beneath the surface, while the remaining mirror fragments reflect your room around them. The effect cannot be properly photographed — it must be seen in shifting light to understand.
 
-**Day 2-3 — Tracery and Detail.** This is where artistry meets endurance. The Gothic tracery patterns — those intricate interlocking arches and cusps you see in cathedral windows — are formed by splitting, scrolling, and riveting separate pieces of iron. A single trefoil detail requires heating, splitting, scrolling, and filing. The Nocturne Cathedral Cross has over forty individual tracery elements.
-
-**Day 4 — Assembly and Finishing.** The components are fire-welded together (no modern arc welding), then the entire piece goes through multiple rounds of filing and wire-brushing to refine the surface. Finally, the patina is applied — our signature weathered bronze finish uses a chemical process that accelerates decades of natural aging into hours.
-
-**Day 5 — Quality Check.** Every piece is inspected under raking light to ensure symmetry, surface quality, and structural integrity. Roughly one in five pieces is rejected at this stage and returned to the forge.
+The Dark Raven Queen Mirror Art uses the same approach: the figure of a dark queen with ravens dissolves into the mirror fragments, so she appears to watch the room with eyes that follow the candlelight.
 
 ## Why It Matters
 
-In an age of mass production, choosing handcrafted means choosing imperfection — and that's precisely the point. Each Mila Treasures Atelier piece is unique not just because we say so, but because the process makes it physically impossible to create two identical works. The hammer doesn't lie.
+In an age when "art" often means a printed canvas from a factory, églomisé is stubbornly handmade. Every piece requires hours of careful scraping, painting, and finishing. One wrong move with the scraper and the entire mirror is ruined.
 
-When you hang one of our crosses on your wall, you're not just displaying decor. You're preserving a craft that has survived wars, industrial revolutions, and the relentless pressure of "good enough." That feels worth protecting.`,
+The technique also produces something genuinely unique — because the mirror fragments break differently each time, no two églomisé pieces can ever be identical. The art and the mirror dance together, and that dance is unrepeatable.
+
+## Living With Églomisé
+
+A few things to know if you're considering an églomisé piece:
+
+- **Light matters.** These pieces change dramatically depending on the light source. Candlelight makes them glow. Daylight makes them shimmer. They are never static.
+- **Placement matters.** Hang them where they can catch both direct and ambient light. Opposite a window or near a candle is ideal.
+- **They're mirrors too.** The remaining reflective surface is functional — you'll catch glimpses of yourself alongside the painted scene. That's not a flaw; it's the point.`,
     coverImage:
-      "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=1200&q=80",
+      "https://images.unsplash.com/photo-1513519245088-0e12902e35ca?w=1200&q=80",
     category: "Workshop",
     author: "Mila Treasures Atelier",
     date: "2026-03-20",
-    readTime: 6,
+    readTime: 5,
     featured: true,
   },
   {
     id: "2",
-    slug: "gothic-architecture-in-home-decor",
-    title: "Gothic Architecture in Home Decor: A Guide",
+    slug: "dark-fairy-tales-in-art",
+    title: "Dark Fairy Tales: The Art of Beautiful Darkness",
     excerpt:
-      "From pointed arches to ribbed vaults, learn how to bring the grandeur of medieval cathedrals into your living space without turning your home into a theme park.",
-    content: `Gothic architecture is one of the most misunderstood aesthetics in interior design. Mention "gothic decor" and most people picture either a teenager's bedroom plastered with band posters or a haunted house. The reality — when done well — is something far more refined: a sense of vertical drama, rich materiality, and the interplay of light and shadow that made medieval cathedrals the most awe-inspiring buildings in human history.
+      "Before Disney softened the edges, fairy tales were dark, strange, and dangerous. That original darkness is what makes them powerful — and what inspires our most striking pieces.",
+    content: `The witch extends her hand. The apple gleams — crimson and heavy with consequence. In the original Brothers Grimm version, the queen doesn't just offer a poisoned apple. She visits Snow White three times, each attempt more cunning than the last. The apple is her masterpiece of malice.
 
-## The Key Elements
+This is the world our Dark Fairy Tale Mirror Art inhabits — not the sanitized Disney retelling, but the original stories where forests are genuinely dangerous, magic has a price, and beauty is always entangled with darkness.
 
-### Pointed Arches
-The pointed arch is the DNA of Gothic architecture. Unlike the rounded Roman arch, it directs the eye upward, creating a sense of aspiration and grandeur. In home decor, you can incorporate this through:
+## The Original Stories
 
-- **Mirrors** with pointed-arch frames (our Obsidian Arch Mirror is specifically designed for this)
-- **Doorway treatments** with ogee or lancet arch moldings
-- **Wall shelving** with arched niches
-- **Window film** with Gothic tracery patterns for existing windows
+The fairy tales most people know have been filtered through layers of family-friendly adaptation. The originals are different:
 
-### Ribbed Vaults and Tracery
-Cathedral ceilings feature intricate ribbed vaults and window tracery — those elaborate stone patterns that fill Gothic windows. At home scale:
+**Snow White** (Grimm, 1812) — The evil queen is forced to dance in red-hot iron shoes at Snow White's wedding until she collapses. The story isn't about a prince's kiss; it's about vanity, obsession, and the price of beauty.
 
-- **Wall crosses** with tracery details bring this pattern to any room
-- **Ceiling medallions** with Gothic quatrefoil designs
-- **Decorative screens** or room dividers with tracery cutouts
+**Sleeping Beauty** (Perrault, 1697) — In earlier versions, the princess isn't woken by a kiss. The story involves abandonment, fire, and a mother-in-law who wants to eat her grandchildren. The thorny hedge that grows around the castle kills multiple princes before the right one arrives.
 
-### Light and Shadow
-Perhaps the most powerful element. Gothic spaces are defined by dramatic contrasts — pools of candlelight against deep shadow, filtered light through colored glass. This is the easiest element to replicate at home:
+**The Little Mermaid** (Andersen, 1837) — She doesn't marry the prince. Every step on her new human legs feels like walking on knives. She dissolves into sea foam. The Disney version omits... quite a lot.
 
-- **Candelabras and sconces** create the authentic flickering light
-- **Dark walls** (charcoal, deep burgundy, or black) establish the shadow
-- **Metallic accents** (aged gold, bronze, iron) catch and reflect light
-- **Layered lighting** at different heights creates depth
+## Why Darkness Works in Art
 
-## The Rules of Gothic Elegance
+Dark fairy tales resonate because they tell emotional truths that bright, sanitized versions avoid. They acknowledge that the world contains danger, that choices have consequences, that beauty and horror often occupy the same space.
 
-**Less is more.** A single dramatic piece — a large iron cross, an ornate mirror, a five-arm candelabra — will have far more impact than a room stuffed with gothic trinkets. Let each piece breathe.
+This is exactly what makes them powerful as visual art. The Dark Fairy Tale Mirror Art captures the moment of temptation — the witch's outstretched hand, the gleaming apple, the innocent girl at the window. Only the red apples bleed into full colour against the black-and-white composition. Each apple feels like a choice you cannot take back.
 
-**Material matters.** Gothic elegance demands real materials: iron, stone, wood, glass. Plastic molded to look like stone will always look like plastic. Our pieces use hand-forged iron, stone composite, and real mahogany precisely because the material IS the aesthetic.
+The ornate black frame carries its own narrative through hand-sculpted 3D elements: a baroque rose with scrollwork, a grandfather clock frozen in time, a gothic chapel spire, a skeletal hand clutching antique keys. Every detail belongs to the same dark story.
 
-**Dark doesn't mean dreary.** A gothic room needs warmth — candles (real or high-quality LED), warm metallic tones, plush textiles in deep jewel tones. Think of a candlelit cathedral, not a dungeon.
+## The Gothic Fairy Tale Aesthetic
 
-**Respect the architecture.** Gothic elements work best in rooms with some height. A 7-foot ceiling with a 4-foot cross will feel oppressive. Scale your pieces to your space, and use vertical elements (tall mirrors, sconces placed high) to draw the eye upward.
+What distinguishes "gothic fairy tale" from other dark aesthetics is its insistence on beauty. Gothic darkness is never ugly — it's beautiful in a way that makes you slightly uneasy. The ornate frames, the metallic patinas, the careful composition — these are not horror pieces. They're fairy tales told honestly.
 
-## Getting Started
-
-If you're new to gothic decor, start with a single statement piece and build around it. A wall cross or mirror establishes the vocabulary; candle holders reinforce the atmosphere; a gargoyle adds character. Within a few well-chosen pieces, you'll have a space that feels like stepping into a private chapel — contemplative, dramatic, and entirely your own.`,
+This is the tradition Mila Treasures Atelier works within. Every piece tells a story that existed long before we learned to soften the endings.`,
     coverImage:
-      "https://images.unsplash.com/photo-1519677053485-abaa6744a08c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&q=80",
     category: "Inspiration",
     author: "Mila Treasures Atelier",
     date: "2026-03-18",
-    readTime: 7,
+    readTime: 6,
     featured: true,
   },
   {
     id: "3",
-    slug: "the-gargoyles-of-notre-dame",
-    title: "The Gargoyles of Notre-Dame: Guardians in Stone",
+    slug: "sculpting-with-polymer-clay",
+    title: "Building Worlds in Polymer Clay",
     excerpt:
-      "Gargoyles have watched over humanity for 800 years. We explore the history, symbolism, and enduring fascination with these stone guardians — and why they belong in your home.",
-    content: `High above the streets of Paris, perched on the balustrade of Notre-Dame, a chimera gazes across the city with an expression somewhere between boredom and menace. It has been sitting there since the 1860s — placed during Viollet-le-Duc's famous restoration — yet it looks like it has been watching since the beginning of time. That's the power of the gargoyle.
+      "How roses, ravens, dragons, and gothic towers emerge from polymer clay to become the sculpted 3D elements on our frames, boxes, and art books.",
+    content: `It starts with a block of polymer clay, a set of sculpting tools, and an image that won't leave your head. Four hours later, a dragon perches on a stack of forbidden tomes, or a baroque rose blooms from the corner of a dark frame. This is how Milena builds the worlds that live on the surface of each piece.
 
-## Gargoyle vs. Grotesque
+## The Material
 
-First, a distinction that will make you the most interesting person at your next dinner party: technically, a gargoyle is a carved figure that serves as a water spout, directing rainwater away from a building's masonry. The word comes from the French "gargouille," meaning throat. If a carved figure doesn't channel water, it's properly called a grotesque or a chimera.
+Polymer clay is a synthetic modelling material that remains soft and workable at room temperature, then hardens permanently when baked in a standard oven at around 130°C. Unlike natural clay, it doesn't require a kiln, doesn't shrink significantly during curing, and can be worked in extraordinarily fine detail.
 
-In common usage — and in our product line — "gargoyle" covers all of these. We're not here to be pedantic; we're here to be atmospheric.
+For the pieces at Mila Treasures Atelier, polymer clay is the primary sculpting medium for the 3D elements that transform a frame or box from ordinary to extraordinary. The roses on the Gothic Heart Trinket Box, the dragon on the Gothic Dragon Trinket Box, the enchantress and raven on the Gothic Enchantress Art Book — all begin as raw polymer clay.
 
-## A Brief History
+## The Process
 
-Gargoyles appeared on buildings as early as ancient Egypt and Greece, but they reached their artistic peak during the Gothic period (12th-16th centuries). Medieval masons carved them for three reasons:
+**Armature.** For larger elements like the dragon or the enchantress figure, Milena starts with a wire or foil armature — a rough skeleton that gives the sculpture structural support and keeps it lightweight.
 
-**Practical:** Directing rainwater away from walls to prevent erosion of the mortar between stones.
+**Rough shaping.** The basic form is built up in layers. At this stage, proportions matter more than detail. A dragon's wing needs to sweep at the right angle. A rose needs the right number of petals to look natural without being botanical.
 
-**Spiritual:** The church taught that gargoyles served as guardians, warding off evil spirits. Their frightening appearance was intentional — they were meant to scare demons away from sacred spaces.
+**Detail work.** This is where the magic happens — and where the hours disappear. Scales are pressed one by one into the dragon's body. Rose petals are thinned at the edges to catch light. The enchantress's flowing robes are textured with fabric-like folds. Sculpting tools, dental picks, and sometimes just fingertips create the textures.
 
-**Artistic:** Gargoyles gave masons creative freedom. While the rest of a cathedral followed strict iconographic rules, gargoyles could be fantastical, humorous, or satirical. Some depict monks in unflattering poses. Others show mythical beasts. A few are clearly just masons having fun.
+**Baking.** Once the sculpting is complete, the piece goes into the oven. Temperature control is critical — too hot and the clay burns or bubbles; too cool and it remains brittle.
 
-## Symbolism
+**Finishing.** After baking, each sculpted element is painted with multiple layers of acrylic and metallic paints. The aged bronze patina on the fairy tale frame, the teal verdigris on the dragon box, the iridescent green on the heart box — these finishes transform polymer clay into something that looks like it was forged from metal centuries ago.
 
-The gargoyle occupies a fascinating symbolic space — it sits on the boundary between the sacred and the profane, the natural and the supernatural. A gargoyle is:
+## Why Hand-Sculpted Matters
 
-- A **protector** (warding off evil)
-- A **reminder** (of the monsters that await the unfaithful)
-- A **work of art** (expressing the mason's individual vision)
-- A **practical tool** (managing water drainage)
+Resin casting from a mould can replicate a shape a thousand times. Hand sculpting cannot. Every dragon Milena sculpts has slightly different wing angles, different claw positions, a different tilt of the head. Every rose has petals that opened differently.
 
-This blend of function and meaning is exactly what makes gargoyles so compelling in home decor. They're not purely decorative; they carry weight and story.
-
-## Why Collectors Love Them
-
-Our Whisperstone Gargoyle is consistently one of our best-selling pieces, and the reason is simple: gargoyles have personality. A cross is beautiful but serene. A mirror is elegant but passive. A gargoyle has attitude. It watches. It judges. It protects.
-
-Placed on a bookshelf, mantelpiece, or wall bracket, a gargoyle creates a focal point that draws the eye and invites conversation. It's the piece that guests notice first and ask about. "Where did you find that?" is the question every collector wants to hear.
-
-## Choosing Your Guardian
-
-When selecting a gargoyle for your home, consider:
-
-- **Pose:** Crouching gargoyles suggest vigilance. Winged gargoyles suggest power. Contemplative chimeras (like Notre-Dame's famous "Le Stryge") suggest wisdom.
-- **Scale:** A gargoyle should be large enough to command attention but not so large that it overwhelms the space. 10-14 inches is ideal for most rooms.
-- **Material:** Stone composite (like our pieces) develops a natural patina over time, making it look more authentic with age.
-- **Placement:** Gargoyles look best at height — on shelves, brackets, or atop bookcases. They were designed to look down, and they're most effective in that position.
-
-Whichever guardian you choose, you're participating in an 800-year tradition of placing sentinels at the boundaries of your personal space. There's something deeply satisfying about that.`,
+This is not inefficiency — it's the whole point. When you pick up a trinket box and run your finger over the sculpted lid, you're touching something that was shaped specifically for that piece. No mould. No machine. Just hands, tools, and time.`,
     coverImage:
-      "https://images.unsplash.com/photo-1561084746-f360502e5abe?w=1200&q=80",
-    category: "Culture",
+      "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80",
+    category: "Workshop",
     author: "Mila Treasures Atelier",
     date: "2026-03-15",
-    readTime: 8,
+    readTime: 6,
     featured: false,
   },
   {
     id: "4",
     slug: "from-bulgaria-with-darkness",
-    title: "From Bulgaria with Darkness: Our Shipping Journey",
+    title: "From Bulgaria with Darkness: How We Ship Art",
     excerpt:
-      "How a handcrafted iron cross travels 5,000 miles from a mountain workshop in Bulgaria to your wall in America — and arrives in perfect condition.",
-    content: `Every Mila Treasures Atelier order begins its journey in Bulgaria and ends at a doorstep somewhere in the United States. That's roughly 5,000 miles, multiple customs checkpoints, and 10-14 days of transit. Here's how we make sure your one-of-a-kind piece arrives in the same condition it left our workshop.
+      "How a handmade églomisé mirror or sculpted trinket box travels from a workshop in Bulgaria to your shelf — and arrives in perfect condition.",
+    content: `Every Mila Treasures Atelier order begins its journey in Bulgaria and ends at a doorstep somewhere in the world. That's potentially thousands of miles, customs checkpoints, and days of transit for pieces that are, by nature, fragile and one-of-a-kind. Here's how we make sure your piece arrives exactly as it left the workshop.
+
+## Why Shipping Handmade Art Is Different
+
+A printed canvas in a standard frame can survive rough handling — it's flat, uniform, and replaceable. Our pieces are none of those things. An églomisé mirror has glass that can crack. A trinket box has sculpted polymer clay elements that can snap. A framed art piece has 3D resin sculptures protruding from the surface. Each piece requires custom protection.
 
 ## The Packing Process
 
-Handcrafted iron and stone pieces are fragile in ways that might surprise you. A gargoyle's outstretched wing, a cross's tracery detail, a candelabra's curved arm — these are points of vulnerability that require specific protection.
+**Layer 1 — Soft Wrap.** Each piece is first wrapped in acid-free tissue paper. This protects the painted patina finishes — standard bubble wrap can leave impressions on metallic and acrylic surfaces.
 
-**Layer 1 — Soft Wrap.** Each piece is first wrapped in acid-free tissue paper to protect the patina finish. Standard bubble wrap can leave marks on bronze and iron finishes, so we avoid it in direct contact.
+**Layer 2 — Sculpted Element Protection.** Any protruding 3D elements — roses, figures, dragon wings — are individually cushioned with soft foam padding secured with tissue. This is the most time-consuming step and the most important.
 
-**Layer 2 — Custom Foam.** We cut custom foam inserts for each piece. Not generic packing peanuts — actual shaped foam that cradles the exact contours of the item. This is labor-intensive but eliminates the shifting that causes transit damage.
+**Layer 3 — Rigid Shell.** The wrapped piece goes into a fitted inner box with foam inserts cut to match its exact shape. Not generic packing peanuts — actual contoured padding.
 
-**Layer 3 — Inner Box.** The foam-cradled piece goes into a sturdy inner carton with additional padding.
+**Layer 4 — Outer Box.** The inner box is placed inside a larger shipping box with shock-absorbing fill between the two layers. This double-box method is the industry standard for shipping art and antiques.
 
-**Layer 4 — Outer Shell.** The inner box is placed inside a larger outer box with shock-absorbing fill between the two. This double-box method is the industry standard for shipping art and antiques.
+## Customs and Delivery
 
-## The Route
+We ship worldwide through Etsy's Global shipping network. Each piece is declared as handmade decorative art, with photos and descriptions included for customs clearance. Delivery times vary by destination — typically 5-14 business days for international orders.
 
-Our packages travel from the workshop to Sofia, Bulgaria's capital, where they enter the international shipping network. We use DHL Express for most orders — their handling standards for fragile goods are consistently the best we've tested.
+Every shipment includes tracking, and we photograph each piece before packing so there's never a question about condition at departure.
 
-**Sofia → Leipzig** (DHL European hub) → **Cincinnati** (DHL Americas hub) → **Local delivery.** Total transit time: 7-10 business days, with customs clearance typically adding 1-2 days.
+## Our Track Record
 
-## Customs and Duties
+Handmade means irreplaceable. If something arrives damaged despite our precautions, we work with the buyer immediately to resolve it — whether that means repair guidance, partial refund, or in some cases, creating a new piece. But our packing protocol has been refined through many shipments, and damage is extremely rare.
 
-All Mila Treasures Atelier pieces ship DDP (Delivered Duty Paid), which means we handle all customs paperwork and import duties. The price you see at checkout is the price you pay — no surprise fees at delivery. This costs us more per shipment, but we believe surprise charges are antithetical to a premium experience.
-
-## Our Damage Rate
-
-In over 200 shipments, we've had exactly three damage incidents — a 1.5% rate. In all three cases, we shipped a replacement at no cost within 48 hours. Each incident led to a specific improvement in our packing protocol.
-
-We photograph every piece before it ships, so if there's ever a question about transit damage versus pre-existing condition, we have documentation.
-
-## Tracking Your Order
-
-Every order receives a tracking number within 24 hours of shipment. You can follow your piece from Sofia to your door on our order tracking page. We also send email updates at each major milestone: shipped, cleared customs, out for delivery.
-
-There's something satisfying about watching a medieval-inspired gargoyle navigate 21st-century logistics. Eight hundred years ago, it would have been carved on-site. Today, it crosses continents. The craft is ancient; the delivery is not.`,
+There's something satisfying about tracking a gothic dragon box as it travels from Sofia to someone's shelf in Portland or London. The craft is ancient; the logistics are not.`,
     coverImage:
-      "https://images.unsplash.com/photo-1744339700395-fa286ae4c7e6?w=1200&q=80",
+      "https://images.unsplash.com/photo-1553413077-190dd305871c?w=1200&q=80",
     category: "Behind the Scenes",
     author: "Mila Treasures Atelier",
     date: "2026-03-12",
@@ -216,49 +179,53 @@ There's something satisfying about watching a medieval-inspired gargoyle navigat
   },
   {
     id: "5",
-    slug: "the-meaning-of-the-cross-in-gothic-art",
-    title: "The Meaning of the Cross in Gothic Art",
+    slug: "styling-gothic-art-at-home",
+    title: "Styling Gothic Art in Your Home",
     excerpt:
-      "Beyond religion: how the cross evolved from a symbol of faith into one of the most powerful decorative motifs in art history.",
-    content: `The cross is arguably the most recognized symbol in Western civilization. But in Gothic art, it transcends its religious origins to become something more complex — a symbol of aspiration, craftsmanship, and the human desire to create beauty from raw materials.
+      "You don't need a castle. Here's how to display églomisé mirrors, sculpted trinket boxes, and dark framed art in a modern space without it feeling like a theme park.",
+    content: `The question we hear most often isn't "do you ship internationally?" — it's "how do I display this without my living room looking like a Halloween store?" Fair question. Here's the answer.
 
-## From Symbol to Art Object
+## The Single Statement Rule
 
-In early Christianity, the cross was a symbol of suffering and salvation. It was revered but rarely adorned. The Gothic period changed this. As cathedrals rose across Europe in the 12th and 13th centuries, the cross became a canvas for artistic expression.
+The most common mistake in gothic decor is overcrowding. One dramatic piece — a large églomisé mirror, an ornate framed fairy tale scene, a sculptural candle holder — will have ten times the impact of five small items clustered together. Let each piece breathe.
 
-Gothic craftsmen didn't just make crosses — they made crosses that soared. They added tracery, the intricate stone or metalwork patterns inspired by the cathedral windows they were building. They added floral motifs, geometric patterns, and narrative scenes. The cross became a frame for creativity.
+The Haunted Castle Églomisé Mirror, for instance, works best as the sole dramatic element on a wall. The mirror itself catches and reflects light, so it fills the space visually even though it's a single object. Add too much around it and you dilute the effect.
 
-This is the tradition we work within at Mila Treasures Atelier. Our wall crosses are artistic objects first — they happen to take the form of a cross, but their purpose is to bring beauty, drama, and craftsmanship into your space.
+## Dark Walls Are Your Friend
 
-## Tracery: The Language of Gothic Design
+Our pieces are designed against darkness. Deep charcoal, matte black, rich burgundy, dark forest green — these wall colours make the metallic patinas and gold accents sing. A Dark Fairy Tale Mirror Art on a white wall will look striking; on a dark charcoal wall, it will look like it grew there.
 
-The word "tracery" comes from the French "tracer," to draw. In architecture, tracery refers to the ornamental stone or ironwork that fills the upper part of Gothic windows. There are two main types:
+If painting an entire room dark feels too bold, try a single accent wall behind the piece. Even a deep navy or charcoal panel creates the contrast these works need.
 
-**Plate tracery** (early Gothic) — simple geometric openings cut through a flat stone surface. Think of a rose window with distinct circular holes.
+## Light Is Everything
 
-**Bar tracery** (high Gothic) — slender stone bars forming complex, flowing patterns. This is the tracery most people picture when they think of Gothic architecture — the lace-like networks of pointed arches, quatrefoils, and mouchettes.
+Gothic art lives and dies by lighting. Here's what works:
 
-Our crosses use bar tracery patterns adapted from specific cathedrals. The Nocturne Cathedral Cross references the west window of Notre-Dame de Paris. The Thornewood Celtic Cross blends Gothic tracery with Celtic knotwork from the Iona tradition.
+**Candlelight** is the ideal companion. The flickering light makes metallic patinas shimmer and gives églomisé pieces their distinctive shifting quality. Even battery-operated candles in warm white create this effect.
 
-## The Cross in Your Home
+**Accent lighting** — a small picture light above a framed piece, or an angled desk lamp below a mirror — creates dramatic shadows across sculpted 3D elements.
 
-A wall cross — whether you're religious or not — makes a powerful decorative statement for several reasons:
+**Avoid overhead fluorescents.** They flatten everything. Gothic art needs directional light that creates shadows and depth.
 
-**Symmetry.** The cross is inherently balanced, creating a natural focal point.
+## Unexpected Placements
 
-**Verticality.** It draws the eye upward, making rooms feel taller.
+Not everything needs to hang on a wall:
 
-**Material contrast.** Dark iron or stone against a painted wall creates the kind of dramatic contrast that interior designers call "tension."
+- **Trinket boxes** live beautifully on vanity tables, bookshelves, and beside tables. The Gothic Heart Trinket Box looks striking on a dark wood surface with a single candle nearby.
+- **Art books** like the Gothic Enchantress Art Book belong on a shelf spine-out as a conversation piece, or displayed upright on a stand.
+- **Small sculptures** like the Witch Hands Crystal Ball work as bookends, mantelpiece anchors, or desk companions.
 
-**Historical depth.** Every cross carries centuries of artistic tradition. It's not just a decoration; it's a conversation with history.
+## Mixing Gothic with Modern
 
-Whether you see a cross as a spiritual symbol, an art object, or simply a beautifully crafted piece of ironwork, it has earned its place on walls across the world. We're honored to continue making them.`,
+Gothic art doesn't require a gothic room. Some of the most striking displays we've seen from customers place a single ornate piece against clean, minimal surroundings. A dark églomisé mirror above a mid-century modern console. A sculpted trinket box on a Scandinavian-style shelf. The contrast between the ornate and the minimal makes both look better.
+
+The rule is simple: let the piece be the drama. Everything else can be quiet.`,
     coverImage:
-      "https://images.unsplash.com/photo-1756080508014-a94fd3c313e5?w=1200&q=80",
-    category: "Culture",
+      "https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=1200&q=80",
+    category: "Inspiration",
     author: "Mila Treasures Atelier",
     date: "2026-03-08",
-    readTime: 6,
+    readTime: 5,
     featured: false,
   },
 ];
