@@ -287,6 +287,18 @@ body {
   animation: grain 0.8s steps(1) infinite;
 }
 
+@media (max-width: 768px) {
+  .grain-overlay {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay {
+    animation: none;
+  }
+}
+
 /* Atmospheric gothic background with subtle color pools */
 .gothic-atmosphere {
   background:

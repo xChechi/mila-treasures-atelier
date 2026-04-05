@@ -11,7 +11,8 @@ function FloatingEmbers() {
   }>>([]);
 
   useEffect(() => {
-    setEmbers(Array.from({ length: 15 }, (_, i) => ({
+    const count = window.innerWidth < 768 ? 6 : 15;
+    setEmbers(Array.from({ length: count }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}%`,
       delay: Math.random() * 10,
