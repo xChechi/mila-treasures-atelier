@@ -71,8 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <meta name="p:domain_verify" content="TODO_PINTEREST_ID" />
-        <script
+<script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
