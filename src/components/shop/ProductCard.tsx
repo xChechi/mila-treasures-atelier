@@ -66,8 +66,8 @@ export default function ProductCard({
           <div className="w-full h-full bg-gradient-to-b from-amber-200/8 via-amber-100/4 to-transparent blur-md" />
         </div>
 
-        {/* Golden picture frame */}
-        <div className="relative bg-dark-3/80 border border-gold/15 group-hover:border-gold/30 transition-all duration-700 shadow-lg group-hover:shadow-[0_8px_40px_rgba(201,168,76,0.08)]">
+        {/* Golden picture frame — entire card links to product detail */}
+        <Link href={`/shop/${product.slug}`} className="relative block bg-dark-3/80 border border-gold/15 group-hover:border-gold/30 transition-all duration-700 shadow-lg group-hover:shadow-[0_8px_40px_rgba(201,168,76,0.08)] cursor-pointer">
           {/* Frame corners */}
           <div className="absolute -top-[2px] -left-[2px] w-6 h-6 border-t-2 border-l-2 border-gold/40 group-hover:border-gold/70 transition-colors duration-500" />
           <div className="absolute -top-[2px] -right-[2px] w-6 h-6 border-t-2 border-r-2 border-gold/40 group-hover:border-gold/70 transition-colors duration-500" />
@@ -116,6 +116,7 @@ export default function ProductCard({
                     href={etsyLink(product.etsyUrl, "product-card")}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
                     className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"
                   >
                     <ExternalLink size={13} />
@@ -124,6 +125,7 @@ export default function ProductCard({
                   <button
                     onClick={(e) => {
                       e.preventDefault();
+                      e.stopPropagation();
                       onQuickView ? onQuickView(product) : window.location.href = `/shop/${product.slug}`;
                     }}
                     aria-label="Quick view"
@@ -142,7 +144,7 @@ export default function ProductCard({
               {product.category}
             </p>
             <h3 className="font-cinzel text-base sm:text-lg text-foreground/85 mb-2 group-hover:text-gold-light transition-colors duration-500">
-              <Link href={`/shop/${product.slug}`}>{product.name}</Link>
+              {product.name}
             </h3>
             <p className="font-inter text-xs text-foreground/30 mb-3 line-clamp-2 leading-relaxed">
               {product.shortDescription}
@@ -183,7 +185,7 @@ export default function ProductCard({
               )}
             </div>
           </div>
-        </div>
+        </Link>
       </motion.div>
     </motion.div>
   );
