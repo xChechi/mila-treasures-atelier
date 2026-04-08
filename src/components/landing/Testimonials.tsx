@@ -14,7 +14,7 @@ function WaxSeal({ className = "" }: { className?: string }) {
         <circle cx="20" cy="20" r="12" fill="none" stroke="rgba(201,168,76,0.3)" strokeWidth="0.5" />
         {/* GT initials */}
         <text x="20" y="24" textAnchor="middle" fill="rgba(201,168,76,0.5)" fontSize="10" fontFamily="Cinzel, serif" fontWeight="bold">
-          GT
+          MA
         </text>
         {/* Decorative dots around edge */}
         {Array.from({ length: 12 }).map((_, i) => {
