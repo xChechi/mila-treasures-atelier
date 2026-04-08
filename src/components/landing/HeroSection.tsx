@@ -134,7 +134,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={loaded ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1.2, delay: 1.1 }}
-            className="font-inter font-medium text-[10px] sm:text-xs tracking-[0.5em] uppercase text-gold/40"
+            className="font-inter font-medium text-[10px] sm:text-xs tracking-[0.5em] uppercase text-gold/70"
           >
             Atelier
           </motion.p>
