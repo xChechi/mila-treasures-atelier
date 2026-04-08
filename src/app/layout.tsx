@@ -18,17 +18,20 @@ export const metadata: Metadata = {
     template: "%s — Mila Treasures Atelier",
   },
   description:
-    "Unique handmade gothic home decor, original paintings, jewel-toned goblets, and artisan trinket boxes. Crafted in Bulgaria by Milena, available on Etsy.",
+    "Handcrafted gothic home decor & dark art by Bulgarian artist Milena. One-of-a-kind églomisé mirror art, hand-painted goblets, ornate trinket boxes & original paintings. Shop unique handmade pieces on Etsy.",
   keywords: [
-    "gothic decor",
-    "handmade goblets",
-    "original paintings",
-    "trinket boxes",
-    "églomisé portraits",
-    "handmade",
-    "dark home decor",
-    "gothic art",
-    "etsy shop",
+    "handmade gothic decor",
+    "églomisé mirror art",
+    "gothic home decor",
+    "dark art decor",
+    "hand-painted goblets",
+    "handcrafted trinket boxes",
+    "original dark paintings",
+    "gothic wall art",
+    "dark romanticism decor",
+    "unique handmade gifts",
+    "bulgarian handmade art",
+    "etsy gothic shop",
     "mila treasures atelier",
   ],
   authors: [{ name: "Mila Treasures Atelier" }],
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
     siteName: "Mila Treasures Atelier",
     title: "Mila Treasures Atelier | Handcrafted Dark Elegance",
     description:
-      "Unique handmade gothic home decor, original paintings, jewel-toned goblets, and artisan trinket boxes. Crafted in Bulgaria, shipped worldwide.",
+      "Handcrafted gothic home decor & dark art — églomisé mirror art, hand-painted goblets, ornate trinket boxes & original paintings. Made in Bulgaria, shipped worldwide.",
     images: [
       {
         url: "/og-image.jpg",
@@ -54,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mila Treasures Atelier | Handcrafted Dark Elegance",
     description:
-      "Unique handmade gothic home decor, original paintings, jewel-toned goblets, and artisan trinket boxes.",
+      "Handcrafted gothic home decor & dark art — églomisé mirror art, hand-painted goblets, trinket boxes & original paintings by Bulgarian artist Milena.",
     images: ["/og-image.jpg"],
   },
   robots: {
