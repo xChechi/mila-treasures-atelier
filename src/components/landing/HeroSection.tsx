@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+import { etsyLink, ETSY_SHOP_URL } from "@/lib/etsy";
 
 function FloatingEmbers() {
   const [embers, setEmbers] = useState<Array<{
@@ -182,14 +184,17 @@ export default function HeroSection() {
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
             />
           </Link>
-          <Link
-            href="/about"
-            className="group px-10 py-4 border border-gold/30 hover:border-gold/60 transition-all duration-500"
+          <a
+            href={etsyLink(ETSY_SHOP_URL, "hero")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center justify-center gap-2 px-10 py-4 border border-gold/30 hover:border-gold/60 transition-all duration-500"
           >
             <span className="font-inter text-sm tracking-[0.2em] uppercase text-gold-light group-hover:text-white transition-colors duration-300">
-              Meet Milena
+              Browse on Etsy
             </span>
-          </Link>
+            <ExternalLink size={14} className="text-gold/40 group-hover:text-white transition-colors duration-300" />
+          </a>
         </motion.div>
       </motion.div>
 
