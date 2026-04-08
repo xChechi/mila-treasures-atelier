@@ -191,7 +191,7 @@ export default function ProductDetailClient({
               )}
 
               {/* Unique piece notice */}
-              <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20">
+              <p className="text-center font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/50">
                 One-of-a-kind piece — handcrafted in Bulgaria
               </p>
 
