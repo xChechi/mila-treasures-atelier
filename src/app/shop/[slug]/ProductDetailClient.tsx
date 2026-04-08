@@ -13,6 +13,7 @@ import SizeReference from "@/components/shop/SizeReference";
 import ProductReviews from "@/components/shop/ProductReviews";
 import ShareButtons from "@/components/shop/ShareButtons";
 import RecentlyViewed from "@/components/shop/RecentlyViewed";
+import EtsyBar from "@/components/shop/EtsyBar";
 import { useRecentlyViewedStore } from "@/store/recentlyViewed";
 import Link from "next/link";
 
@@ -195,6 +196,14 @@ export default function ProductDetailClient({
         {/* Recently Viewed */}
         <RecentlyViewed excludeId={product.id} />
       </div>
+        <EtsyBar
+          productName={product.name}
+          price={product.price}
+          etsyUrl={product.etsyUrl}
+          inStock={product.inStock}
+          averageRating={averageRating}
+          reviewCount={reviews.length}
+        />
     </section>
   );
 }
