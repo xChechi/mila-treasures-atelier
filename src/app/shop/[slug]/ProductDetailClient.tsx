@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ExternalLink, Package, Ruler, Star } from "lucide-react";
+import { etsyLink } from "@/lib/etsy";
 import type { Product } from "@/data/products";
 import type { Review } from "@/data/reviews";
 import Breadcrumb from "@/components/ui/Breadcrumb";
@@ -157,7 +158,7 @@ export default function ProductDetailClient({
                 </button>
               ) : (
                 <a
-                  href={product.etsyUrl}
+                  href={etsyLink(product.etsyUrl, "product-detail")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group w-full py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-3 transition-colors duration-300"

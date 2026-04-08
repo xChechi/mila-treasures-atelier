@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, ExternalLink, Star, Package, Ruler } from "lucide-react";
 import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
+import { etsyLink } from "@/lib/etsy";
 
 const BADGE_CONFIG: Record<ProductBadge, { label: string; bg: string; text: string }> = {
   new: { label: "New", bg: "bg-gold/90", text: "text-dark-1" },
@@ -172,7 +173,7 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
                     </button>
                   ) : (
                     <a
-                      href={product.etsyUrl}
+                      href={etsyLink(product.etsyUrl, "quick-view")}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={onClose}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { etsyLink } from "@/lib/etsy";
 
 interface ProductGalleryProps {
   mainImage: string;
@@ -19,7 +20,7 @@ export default function ProductGallery({ mainImage, images, productName, etsyUrl
   return (
     <div className="space-y-4">
       {/* Main image with gothic frame — click goes to Etsy listing */}
-      <a href={etsyUrl} target="_blank" rel="noopener noreferrer" className="relative bg-dark-3/50 border border-gold/15 overflow-hidden group cursor-pointer block">
+      <a href={etsyLink(etsyUrl, "product-gallery")} target="_blank" rel="noopener noreferrer" className="relative bg-dark-3/50 border border-gold/15 overflow-hidden group cursor-pointer block">
         {/* Frame corners */}
         <div className="absolute -top-[2px] -left-[2px] w-8 h-8 border-t-2 border-l-2 border-gold/40 z-10" />
         <div className="absolute -top-[2px] -right-[2px] w-8 h-8 border-t-2 border-r-2 border-gold/40 z-10" />

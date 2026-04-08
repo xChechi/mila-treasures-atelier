@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ExternalLink, Eye, Star } from "lucide-react";
 import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
+import { etsyLink } from "@/lib/etsy";
 
 const BADGE_CONFIG: Record<ProductBadge, { label: string; bg: string; text: string }> = {
   new: { label: "New", bg: "bg-gold/90", text: "text-dark-1" },
@@ -112,7 +113,7 @@ export default function ProductCard({
               <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                 <div className="flex gap-2">
                   <a
-                    href={product.etsyUrl}
+                    href={etsyLink(product.etsyUrl, "product-card")}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-3 bg-burgundy/90 hover:bg-burgundy text-white text-xs tracking-[0.15em] uppercase font-inter flex items-center justify-center gap-2 transition-colors backdrop-blur-sm"

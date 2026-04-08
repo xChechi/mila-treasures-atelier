@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Menu, X } from "lucide-react";
-
-const ETSY_SHOP = "https://www.etsy.com/shop/MilaTreasuresAtelier";
+import { etsyLink, ETSY_SHOP_URL } from "@/lib/etsy";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -74,7 +73,7 @@ export default function Navbar() {
 
               {/* Shop on Etsy CTA */}
               <a
-                href={ETSY_SHOP}
+                href={etsyLink(ETSY_SHOP_URL, "navbar")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-5 py-2.5 border border-burgundy/60 bg-burgundy/10 hover:bg-burgundy/80 transition-all duration-300"
@@ -89,7 +88,7 @@ export default function Navbar() {
             {/* Mobile controls */}
             <div className="flex md:hidden items-center gap-4">
               <a
-                href={ETSY_SHOP}
+                href={etsyLink(ETSY_SHOP_URL, "navbar")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 px-3 py-2 border border-burgundy/50 bg-burgundy/10"
@@ -151,7 +150,7 @@ export default function Navbar() {
                 transition={{ delay: navLinks.length * 0.1 }}
               >
                 <a
-                  href={ETSY_SHOP}
+                  href={etsyLink(ETSY_SHOP_URL, "navbar")}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
