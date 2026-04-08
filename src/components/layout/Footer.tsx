@@ -71,9 +71,9 @@ export default function Footer() {
               <h3 className="font-cinzel text-xl font-bold tracking-[0.12em] text-gold-light/80 mb-1">
                 Mila Treasures
               </h3>
-              <p className="font-inter text-[9px] tracking-[0.35em] uppercase text-gold/30 mb-4">Atelier</p>
+              <p className="font-inter text-[9px] tracking-[0.35em] uppercase text-gold/70 mb-4">Atelier</p>
             </Link>
-            <p className="font-inter text-sm text-foreground/35 leading-relaxed max-w-xs mb-5">
+            <p className="font-inter text-sm text-foreground/50 leading-relaxed max-w-xs mb-5">
               Handcrafted one-of-a-kind pieces — jewel-toned goblets, original
               paintings, ornate trinket boxes, and botanical decor. Made with
               love in Bulgaria.
@@ -82,7 +82,7 @@ export default function Footer() {
               href={ETSY_SHOP}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-inter tracking-[0.15em] uppercase text-gold/50 hover:text-gold-light transition-colors duration-300"
+              className="inline-flex items-center gap-2 text-xs font-inter tracking-[0.15em] uppercase text-gold/70 hover:text-gold-light transition-colors duration-300"
             >
               Visit Etsy Shop
               <ExternalLink size={11} />
@@ -91,7 +91,7 @@ export default function Footer() {
 
           {/* Shop Links */}
           <div>
-            <h4 className="font-cinzel text-[11px] tracking-[0.3em] uppercase text-gold/50 mb-6">
+            <h4 className="font-cinzel text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-6">
               Collections
             </h4>
             <ul className="space-y-3">
@@ -99,7 +99,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-inter text-sm text-foreground/35 hover:text-gold-light/70 transition-colors duration-300"
+                    className="font-inter text-sm text-foreground/50 hover:text-gold-light/70 transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -110,7 +110,7 @@ export default function Footer() {
 
           {/* Company Links */}
           <div>
-            <h4 className="font-cinzel text-[11px] tracking-[0.3em] uppercase text-gold/50 mb-6">
+            <h4 className="font-cinzel text-[11px] tracking-[0.3em] uppercase text-gold/70 mb-6">
               Studio
             </h4>
             <ul className="space-y-3">
@@ -121,7 +121,7 @@ export default function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-inter text-sm text-foreground/35 hover:text-gold-light/70 transition-colors duration-300"
+                      className="inline-flex items-center gap-1.5 font-inter text-sm text-foreground/50 hover:text-gold-light/70 transition-colors duration-300"
                     >
                       {link.label}
                       <ExternalLink size={10} className="opacity-50" />
@@ -129,7 +129,7 @@ export default function Footer() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="font-inter text-sm text-foreground/35 hover:text-gold-light/70 transition-colors duration-300"
+                      className="font-inter text-sm text-foreground/50 hover:text-gold-light/70 transition-colors duration-300"
                     >
                       {link.label}
                     </Link>
@@ -142,15 +142,15 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-foreground/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-inter text-xs text-foreground/20">
+          <p className="font-inter text-xs text-foreground/40">
             &copy; {new Date().getFullYear()} Mila Treasures Atelier. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="font-inter text-xs text-foreground/20">
+            <span className="font-inter text-xs text-foreground/40">
               Handcrafted in Bulgaria
             </span>
             <span className="text-gold/15">|</span>
-            <span className="font-inter text-xs text-foreground/20">
+            <span className="font-inter text-xs text-foreground/40">
               Ships Worldwide
             </span>
           </div>

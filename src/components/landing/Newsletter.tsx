@@ -10,6 +10,7 @@ function WaxSealButton({ onClick, submitted }: { onClick: () => void; submitted:
       onClick={onClick}
       className="group relative"
       disabled={submitted}
+      aria-label={submitted ? "Subscribed" : "Subscribe to newsletter"}
     >
       <svg width="64" height="64" viewBox="0 0 64 64" className="drop-shadow-xl transition-transform duration-300 group-hover:scale-110">
         <circle cx="32" cy="32" r="30" fill="#6b1020" />
