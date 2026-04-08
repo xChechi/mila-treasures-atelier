@@ -3,8 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Brush, Gem, PackageCheck, ExternalLink } from "lucide-react";
-
-const ETSY_SHOP = "https://www.etsy.com/shop/MilaTreasuresAtelier";
+import { ETSY_SHOP_URL, etsyLink } from "@/lib/etsy";
 
 function AnimatedSection({
   children,
@@ -277,7 +276,7 @@ export default function AboutPageClient() {
               shipping, and each order packed with care from my atelier in Bulgaria.
             </p>
             <a
-              href={ETSY_SHOP}
+              href={etsyLink(ETSY_SHOP_URL, "about")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase transition-colors duration-300"

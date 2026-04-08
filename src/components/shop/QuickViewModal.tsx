@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { X, ExternalLink, Star, Package, Ruler } from "lucide-react";
 import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
@@ -78,12 +79,13 @@ export default function QuickViewModal({ product, isOpen, onClose }: QuickViewMo
             <div className="grid grid-cols-1 md:grid-cols-2">
               {/* Image */}
               <div className="relative aspect-[3/4] md:aspect-auto overflow-hidden">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${product.image})`,
-                    filter: "brightness(0.9)",
-                  }}
+                <Image
+                  src={product.image}
+                  alt={`${product.name} — handmade ${product.category.toLowerCase()} by Mila Treasures Atelier`}
+                  fill
+                  className="object-cover"
+                  style={{ filter: "brightness(0.9)" }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-1/60 via-transparent to-dark-1/20" />
 

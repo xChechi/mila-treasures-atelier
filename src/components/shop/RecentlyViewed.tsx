@@ -2,6 +2,7 @@
 
 import { useRecentlyViewedStore } from "@/store/recentlyViewed";
 import Link from "next/link";
+import Image from "next/image";
 import { Clock } from "lucide-react";
 
 interface RecentlyViewedProps {
@@ -35,12 +36,13 @@ export default function RecentlyViewed({ excludeId }: RecentlyViewedProps) {
           >
             {/* Image */}
             <div className="relative aspect-[3/4] overflow-hidden border border-gold/10 group-hover:border-gold/25 transition-all duration-500 mb-3">
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{
-                  backgroundImage: `url(${product.image})`,
-                  filter: "brightness(0.8)",
-                }}
+              <Image
+                src={product.image}
+                alt={`${product.name} — Mila Treasures Atelier`}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                style={{ filter: "brightness(0.8)" }}
+                sizes="192px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-1/70 via-transparent to-dark-1/20" />
 

@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
 import { ExternalLink, Eye, Star } from "lucide-react";
 import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
@@ -80,13 +81,18 @@ export default function ProductCard({
 
           {/* Image */}
           <div className="relative aspect-[3/4] overflow-hidden">
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-105"
-              style={{
-                backgroundImage: inView ? `url(${product.image})` : undefined,
-                filter: isHovered ? "brightness(1.1) contrast(1.05)" : "brightness(0.85)",
-              }}
-            />
+            {inView && (
+              <Image
+                src={product.image}
+                alt={`${product.name} — handmade ${product.category.toLowerCase()} by Mila Treasures Atelier`}
+                fill
+                className="object-cover transition-all duration-700 group-hover:scale-105"
+                style={{
+                  filter: isHovered ? "brightness(1.1) contrast(1.05)" : "brightness(0.85)",
+                }}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-dark-1/90 via-dark-1/20 to-dark-1/30 group-hover:from-dark-1/70 group-hover:via-transparent group-hover:to-transparent transition-all duration-700" />
 
             {/* Spotlight cone on hover */}
