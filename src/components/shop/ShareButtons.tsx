@@ -77,7 +77,7 @@ export default function ShareButtons({
 
   return (
     <div className="flex items-center gap-2">
-      <span className="font-inter text-[10px] tracking-[0.2em] uppercase text-foreground/20 mr-1">
+      <span className="font-inter text-xs tracking-[0.2em] uppercase text-gold/60 mr-1">
         Share
       </span>
 
@@ -85,7 +85,7 @@ export default function ShareButtons({
       <button
         onClick={handlePinterest}
         aria-label="Pin on Pinterest"
-        className="p-2 text-foreground/25 hover:text-[#E60023] transition-colors duration-300"
+        className="p-2 text-foreground/50 hover:text-[#E60023] transition-colors duration-300"
         title="Pin It"
       >
         <PinterestIcon />
@@ -95,7 +95,7 @@ export default function ShareButtons({
       <button
         onClick={handleCopyLink}
         aria-label="Copy link"
-        className="p-2 text-foreground/25 hover:text-gold-light transition-colors duration-300"
+        className="p-2 text-foreground/50 hover:text-gold-light transition-colors duration-300"
         title="Copy link"
       >
         {copied ? <Check size={16} className="text-gold/60" /> : <Link2 size={16} />}
@@ -106,7 +106,7 @@ export default function ShareButtons({
         <button
           onClick={handleNativeShare}
           aria-label="Share"
-          className="p-2 text-foreground/25 hover:text-gold-light transition-colors duration-300"
+          className="p-2 text-foreground/50 hover:text-gold-light transition-colors duration-300"
           title="Share"
         >
           <Share2 size={16} />
