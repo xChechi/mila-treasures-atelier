@@ -3,8 +3,11 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
-import { Clock, ArrowLeft, ArrowRight, Share2 } from "lucide-react";
+import { Clock, ArrowLeft, ArrowRight, Share2, ExternalLink } from "lucide-react";
+import Image from "next/image";
 import type { JournalPost } from "@/data/journal";
+import { products } from "@/data/products";
+import { etsyLink } from "@/lib/etsy";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 
 function renderContent(content: string) {
@@ -267,6 +270,43 @@ export default function JournalArticleClient({ post, prevPost, nextPost }: Props
           {/* Content */}
           <div className="prose-gothic">{renderContent(post.content)}</div>
         </motion.div>
+
+                {/* Related products CTA */}
+                {post.relatedProductSlugs && post.relatedProductSlugs.length > 0 && (() => {
+                  const relatedProducts = post.relatedProductSlugs
+                    .map(slug => products.find(p => p.slug === slug))
+                    .filter(Boolean) as typeof products;
+                  if (relatedProducts.length === 0) return null;
+                  return (
+                    <div className="mt-16 pt-8 border-t border-gold/10">
+                      <p className="font-inter text-[10px] tracking-[0.5em] uppercase text-gold/40 mb-6">
+                        Shop the Pieces
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {relatedProducts.map(p => (
+                          <a
+                            key={p.id}
+                            href={etsyLink(p.etsyUrl, "journal")}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center gap-4 p-4 border border-gold/10 hover:border-gold/25 bg-dark-3/30 hover:bg-dark-3/60 transition-all duration-300"
+                          >
+                            <div className="relative w-16 h-16 shrink-0 overflow-hidden border border-gold/10">
+                              <Image src={p.image} alt={p.name} fill className="object-cover" sizes="64px" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-cinzel text-sm text-foreground/80 group-hover:text-gold-light transition-colors truncate">
+                                {p.name}
+                              </p>
+                              <p className="font-cinzel text-sm text-gold/60 mt-0.5">${p.price.toFixed(2)}</p>
+                            </div>
+                            <ExternalLink size={12} className="text-gold/20 group-hover:text-gold/50 transition-colors shrink-0 ml-auto" />
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
 
         {/* Author + divider */}
         <div className="mt-16 pt-10 border-t border-gold/10">

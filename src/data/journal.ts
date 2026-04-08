@@ -10,6 +10,7 @@ export interface JournalPost {
   date: string;
   readTime: number;
   featured: boolean;
+  relatedProductSlugs?: string[];
 }
 
 export const journalPosts: JournalPost[] = [
@@ -55,6 +56,11 @@ A few things to know if you're considering an églomisé piece:
     date: "2026-03-20",
     readTime: 5,
     featured: true,
+    relatedProductSlugs: [
+      "haunted-castle-eglomise-mirror",
+      "dark-raven-queen-mirror",
+      "dark-fairy-tale-mirror",
+    ],
   },
   {
     id: "2",
@@ -96,6 +102,11 @@ This is the tradition Mila Treasures Atelier works within. Every piece tells a s
     date: "2026-03-18",
     readTime: 6,
     featured: true,
+    relatedProductSlugs: [
+      "dark-fairy-tale-mirror",
+      "gothic-gold-leaf-wall-art",
+      "gothic-enchantress-art-book",
+    ],
   },
   {
     id: "3",
@@ -135,6 +146,11 @@ This is not inefficiency — it's the whole point. When you pick up a trinket bo
     date: "2026-03-15",
     readTime: 6,
     featured: false,
+    relatedProductSlugs: [
+      "gothic-heart-trinket-box",
+      "gothic-dragon-trinket-box",
+      "gothic-enchantress-art-book",
+    ],
   },
   {
     id: "4",
@@ -176,6 +192,11 @@ There's something satisfying about tracking a gothic dragon box as it travels fr
     date: "2026-03-12",
     readTime: 5,
     featured: false,
+    relatedProductSlugs: [
+      "gothic-dragon-trinket-box",
+      "haunted-castle-eglomise-mirror",
+      "baroque-castle-frame",
+    ],
   },
   {
     id: "5",
@@ -227,6 +248,12 @@ The rule is simple: let the piece be the drama. Everything else can be quiet.`,
     date: "2026-03-08",
     readTime: 5,
     featured: false,
+    relatedProductSlugs: [
+      "haunted-castle-eglomise-mirror",
+      "dark-fairy-tale-mirror",
+      "gothic-heart-trinket-box",
+      "witch-hands-crystal-ball",
+    ],
   },
 ];
 
