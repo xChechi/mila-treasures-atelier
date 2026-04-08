@@ -150,6 +150,27 @@ export default function ProductDetailClient({
 
             {/* CTA */}
             <div className="mt-auto space-y-4">
+              {/* Social proof right above buy button */}
+              {reviews.length > 0 && (
+                <div className="flex items-center justify-center gap-2 py-2 border-t border-b border-gold/8">
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={`cta-star-${i}`}
+                        size={12}
+                        className={
+                          i < Math.round(averageRating)
+                            ? "text-gold/60 fill-gold/60"
+                            : "text-foreground/15"
+                        }
+                      />
+                    ))}
+                  </div>
+                  <span className="font-inter text-xs text-foreground/40">
+                    {averageRating.toFixed(1)} from {reviews.length} {reviews.length === 1 ? "collector" : "collectors"}
+                  </span>
+                </div>
+              )}
               {!product.inStock ? (
                 <button
                   disabled
