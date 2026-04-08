@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
-import Link from "next/link";
 import { ExternalLink, Eye, Star } from "lucide-react";
 import type { Product, ProductBadge } from "@/data/products";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
@@ -25,6 +25,7 @@ export default function ProductCard({
   onQuickView?: (product: Product) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -67,7 +68,10 @@ export default function ProductCard({
         </div>
 
         {/* Golden picture frame — entire card links to product detail */}
-        <Link href={`/shop/${product.slug}`} className="relative block bg-dark-3/80 border border-gold/15 group-hover:border-gold/30 transition-all duration-700 shadow-lg group-hover:shadow-[0_8px_40px_rgba(201,168,76,0.08)] cursor-pointer">
+        <div
+          onClick={() => router.push(`/shop/${product.slug}`)}
+          className="relative bg-dark-3/80 border border-gold/15 group-hover:border-gold/30 transition-all duration-700 shadow-lg group-hover:shadow-[0_8px_40px_rgba(201,168,76,0.08)] cursor-pointer"
+        >
           {/* Frame corners */}
           <div className="absolute -top-[2px] -left-[2px] w-6 h-6 border-t-2 border-l-2 border-gold/40 group-hover:border-gold/70 transition-colors duration-500" />
           <div className="absolute -top-[2px] -right-[2px] w-6 h-6 border-t-2 border-r-2 border-gold/40 group-hover:border-gold/70 transition-colors duration-500" />
@@ -185,7 +189,7 @@ export default function ProductCard({
               )}
             </div>
           </div>
-        </Link>
+        </div>
       </motion.div>
     </motion.div>
   );
