@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import { etsyLink, ETSY_SHOP_URL } from "@/lib/etsy";
 
 export default function BrandStory() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -143,6 +145,25 @@ export default function BrandStory() {
                   Ships Worldwide
                 </span>
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-10"
+            >
+              <a
+                href={etsyLink(ETSY_SHOP_URL, "brand-story")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-2 px-8 py-3.5 border border-burgundy/50 bg-burgundy/10 hover:bg-burgundy/80 transition-all duration-300"
+              >
+                <span className="font-inter text-sm tracking-[0.15em] uppercase text-foreground/80 group-hover:text-white transition-colors duration-300">
+                  Visit Etsy Shop
+                </span>
+                <ExternalLink size={14} className="text-gold/40 group-hover:text-white transition-colors duration-300" />
+              </a>
             </motion.div>
           </div>
         </div>
