@@ -41,13 +41,35 @@ export default function Newsletter() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [tier, setTier] = useState<Tier>("standard");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!email) return;
+
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("https://formspree.io/f/mnjoepjb", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          tier,
+          _subject: `New ${tier === "vip" ? "VIP" : "Newsletter"} subscriber`,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to subscribe");
       setSubmitted(true);
       setEmail("");
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -186,9 +208,10 @@ export default function Newsletter() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Your email address"
                     required
-                    className="flex-1 px-5 py-3 bg-transparent border-b border-gold/15 focus:border-gold/40 text-foreground/70 font-inter text-sm placeholder:text-foreground/20 outline-none transition-colors duration-300 text-center"
+                    disabled={submitting}
+                    className="flex-1 px-5 py-3 bg-transparent border-b border-gold/15 focus:border-gold/40 text-foreground/70 font-inter text-sm placeholder:text-foreground/20 outline-none transition-colors duration-300 text-center disabled:opacity-50"
                   />
-                  <WaxSealButton onClick={() => {}} submitted={false} />
+                  <WaxSealButton onClick={() => {}} submitted={submitting} />
                 </>
               ) : (
                 <motion.div
@@ -207,6 +230,12 @@ export default function Newsletter() {
                 </motion.div>
               )}
             </motion.form>
+
+            {error && (
+              <p className="font-inter text-xs text-burgundy-light mt-4 text-center">
+                {error}
+              </p>
+            )}
 
             {!submitted && tier === "vip" && (
               <motion.p

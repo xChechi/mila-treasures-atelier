@@ -109,6 +109,8 @@ export default function ContactPageClient() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const formRef = useRef<HTMLDivElement>(null);
   const formInView = useInView(formRef, { once: true, margin: "-80px" });
@@ -124,7 +126,7 @@ export default function ContactPageClient() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs: FormErrors = {};
     if (!form.name.trim()) errs.name = "Name is required";
@@ -137,7 +139,29 @@ export default function ContactPageClient() {
       setErrors(errs);
       return;
     }
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError("");
+
+    try {
+      const res = await fetch("https://formspree.io/f/mzdknedp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to send");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -173,11 +197,8 @@ export default function ContactPageClient() {
                 <div className="w-1.5 h-1.5 rotate-45 bg-gold/40" />
                 <div className="w-12 h-px bg-gradient-to-l from-transparent to-gold/30" />
               </div>
-              <p className="font-inter text-sm text-foreground/40 mb-2">
+              <p className="font-inter text-sm text-foreground/40 mb-8">
                 Thank you for reaching out. We typically respond within 24–48 hours.
-              </p>
-              <p className="font-inter text-xs text-foreground/20 mb-8">
-                This is a demo — no message was actually sent.
               </p>
               <button
                 onClick={() => {
@@ -272,15 +293,18 @@ export default function ContactPageClient() {
 
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-12 py-4 bg-burgundy hover:bg-burgundy-light text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 transition-colors duration-300"
+                      disabled={submitting}
+                      className="w-full sm:w-auto px-12 py-4 bg-burgundy hover:bg-burgundy-light disabled:opacity-50 disabled:cursor-not-allowed text-white font-inter text-sm tracking-[0.15em] uppercase flex items-center justify-center gap-2 transition-colors duration-300"
                     >
                       <Send size={14} />
-                      Send Message
+                      {submitting ? "Sending..." : "Send Message"}
                     </button>
 
-                    <p className="font-inter text-[10px] text-foreground/20 tracking-wider">
-                      This is a demo — no message will be sent
-                    </p>
+                    {submitError && (
+                      <p className="font-inter text-xs text-burgundy-light">
+                        {submitError}
+                      </p>
+                    )}
                   </form>
                 </motion.div>
 
