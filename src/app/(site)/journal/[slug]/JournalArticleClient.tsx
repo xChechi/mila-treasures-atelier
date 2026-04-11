@@ -9,6 +9,7 @@ import type { JournalPost } from "@/data/journal";
 import { products } from "@/data/products";
 import { etsyLink } from "@/lib/etsy";
 import Breadcrumb from "@/components/ui/Breadcrumb";
+import CommentSection from "@/components/CommentSection";
 
 function renderContent(content: string) {
   const lines = content.split("\n");
@@ -322,6 +323,9 @@ export default function JournalArticleClient({ post, prevPost, nextPost }: Props
             </div>
           </div>
         </div>
+
+        {/* Comments */}
+        <CommentSection targetType="article" targetSlug={post.slug} />
 
         {/* Previous / Next navigation */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">

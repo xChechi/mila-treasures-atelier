@@ -14,6 +14,7 @@ import ProductReviews from "@/components/shop/ProductReviews";
 import ShareButtons from "@/components/shop/ShareButtons";
 import RecentlyViewed from "@/components/shop/RecentlyViewed";
 import EtsyBar from "@/components/shop/EtsyBar";
+import CommentSection from "@/components/CommentSection";
 import { useRecentlyViewedStore } from "@/store/recentlyViewed";
 import Link from "next/link";
 
@@ -210,6 +211,9 @@ export default function ProductDetailClient({
 
         {/* Reviews */}
         <ProductReviews reviews={reviews} averageRating={averageRating} />
+
+        {/* Comments */}
+        <CommentSection targetType="product" targetSlug={product.slug} />
 
         {/* Related Products */}
         <RelatedProducts products={relatedProducts} />
