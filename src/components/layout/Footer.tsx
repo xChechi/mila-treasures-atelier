@@ -142,15 +142,15 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="border-t border-foreground/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-inter text-xs text-foreground/40">
+          <p className="font-inter text-xs text-foreground/65">
             &copy; {new Date().getFullYear()} Mila Treasures Atelier. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="font-inter text-xs text-foreground/40">
+            <span className="font-inter text-xs text-foreground/65">
               Handcrafted in Bulgaria
             </span>
             <span className="text-gold/15">|</span>
-            <span className="font-inter text-xs text-foreground/40">
+            <span className="font-inter text-xs text-foreground/65">
               Ships Worldwide
             </span>
           </div>
