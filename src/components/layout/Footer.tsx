@@ -73,7 +73,7 @@ export default function Footer() {
               </h3>
               <p className="font-inter text-[9px] tracking-[0.35em] uppercase text-gold/70 mb-4">Atelier</p>
             </Link>
-            <p className="font-inter text-sm text-foreground/50 leading-relaxed max-w-xs mb-5">
+            <p className="font-inter text-sm text-foreground/75 leading-relaxed max-w-xs mb-5">
               Handcrafted one-of-a-kind pieces — jewel-toned goblets, original
               paintings, ornate trinket boxes, and botanical decor. Made with
               love in Bulgaria.
@@ -99,7 +99,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-inter text-sm text-foreground/50 hover:text-gold-light/70 transition-colors duration-300"
+                    className="font-inter text-sm text-foreground/75 hover:text-gold-light transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -121,7 +121,7 @@ export default function Footer() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 font-inter text-sm text-foreground/50 hover:text-gold-light/70 transition-colors duration-300"
+                      className="inline-flex items-center gap-1.5 font-inter text-sm text-foreground/75 hover:text-gold-light transition-colors duration-300"
                     >
                       {link.label}
                       <ExternalLink size={10} className="opacity-50" />
@@ -129,7 +129,7 @@ export default function Footer() {
                   ) : (
                     <Link
                       href={link.href}
-                      className="font-inter text-sm text-foreground/50 hover:text-gold-light/70 transition-colors duration-300"
+                      className="font-inter text-sm text-foreground/75 hover:text-gold-light transition-colors duration-300"
                     >
                       {link.label}
                     </Link>

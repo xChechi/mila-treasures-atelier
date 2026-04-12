@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { categories } from "@/data/products";
 
 // Real gothic door photos from Unsplash (verified)
@@ -42,14 +43,22 @@ function GothicDoorCard({
         <div className="relative aspect-[3/5] overflow-hidden">
           {/* Door photograph — clearly visible by default */}
           <div
-            className="absolute inset-0 bg-cover bg-center transition-all duration-700"
+            className="absolute inset-0 transition-all duration-700"
             style={{
-              backgroundImage: `url(${doorImage})`,
               filter: isHovered
                 ? "brightness(1.15) contrast(1.1) saturate(1.05)"
                 : "brightness(0.75) contrast(1.05) saturate(0.9)",
             }}
-          />
+          >
+            <Image
+              src={doorImage}
+              alt={category.name}
+              fill
+              loading="lazy"
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover object-center"
+            />
+          </div>
 
           {/* Subtle vignette */}
           <div className="absolute inset-0 shadow-[inset_0_0_40px_10px_rgba(0,0,0,0.4)]" />

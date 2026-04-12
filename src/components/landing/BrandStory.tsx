@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { etsyLink, ETSY_SHOP_URL } from "@/lib/etsy";
 
@@ -24,12 +25,13 @@ export default function BrandStory() {
         style={{ y: bgY }}
         className="absolute inset-0"
       >
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1560682350-050f2624e7b3?w=1920&q=80')",
-          }}
+        <Image
+          src="https://images.unsplash.com/photo-1560682350-050f2624e7b3?w=1920&q=80"
+          alt=""
+          fill
+          loading="lazy"
+          sizes="100vw"
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-dark-1/85" />
         <div className="absolute inset-0 bg-gradient-to-r from-dark-1 via-transparent to-dark-1" />
@@ -46,11 +48,13 @@ export default function BrandStory() {
             className="relative"
           >
             <div className="relative aspect-[3/4] max-w-md mx-auto lg:mx-0">
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-top"
-                style={{
-                  backgroundImage: "url('/images/milena-profile.webp')",
-                }}
+              <Image
+                src="/images/milena-profile.webp"
+                alt="Milena, the artist behind Mila Treasures Atelier"
+                fill
+                loading="lazy"
+                sizes="(max-width: 1024px) 100vw, 400px"
+                className="object-cover object-top"
               />
               {/* Frame effect */}
               <div className="absolute inset-0 border border-gold/20" />
@@ -92,20 +96,20 @@ export default function BrandStory() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="space-y-5 mb-10"
             >
-              <p className="font-inter text-base text-foreground/50 leading-relaxed">
+              <p className="font-inter text-base text-foreground/75 leading-relaxed">
                 Hi, I&apos;m Milena — a self-taught artist and maker based in Bulgaria.
                 I create one-of-a-kind pieces that live at the intersection of dark
                 romanticism and handcraft: jewel-toned fantasy goblets, original
                 paintings, ornate trinket boxes, and botanical decor.
               </p>
-              <p className="font-inter text-base text-foreground/50 leading-relaxed">
+              <p className="font-inter text-base text-foreground/75 leading-relaxed">
                 Every piece I make is completely unique. I don&apos;t mass-produce,
                 I don&apos;t use molds. Each goblet is hand-painted differently, each
                 portrait is a singular original, each box is lined by hand. When
                 something sells, it&apos;s gone forever — that&apos;s the nature of
                 real handcraft.
               </p>
-              <p className="font-inter text-base text-foreground/50 leading-relaxed">
+              <p className="font-inter text-base text-foreground/75 leading-relaxed">
                 My newest series incorporates real crushed herbs into painted
                 surfaces — part painting, part botanical object. You can find
                 everything in my Etsy shop, shipped worldwide from my atelier in

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { etsyLink, ETSY_SHOP_URL } from "@/lib/etsy";
 
@@ -73,14 +74,17 @@ export default function HeroSection() {
     >
       {/* Background with parallax */}
       <motion.div style={{ y: bgY }} className="absolute inset-0">
-        <div
-          className="absolute inset-0 bg-cover bg-center scale-110"
-          style={{
-            backgroundImage:
-              "url('/images/gothic-cathedral-vault.webp')",
-            filter: "sepia(0.3) brightness(0.7) contrast(1.15)",
-          }}
-        />
+        <div className="absolute inset-0 scale-110" style={{ filter: "sepia(0.3) brightness(0.7) contrast(1.15)" }}>
+          <Image
+            src="/images/gothic-cathedral-vault.webp"
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
         {/* Bottom gradient for text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-dark-1/90" />
         {/* Thin top edge fade for navbar blend */}
@@ -159,7 +163,7 @@ export default function HeroSection() {
           initial={{ opacity: 0 }}
           animate={loaded ? { opacity: 1 } : {}}
           transition={{ duration: 1.2, delay: 1.8 }}
-          className="font-playfair text-lg sm:text-xl text-foreground/50 italic max-w-xl mb-12"
+          className="font-playfair text-lg sm:text-xl text-foreground/75 italic max-w-xl mb-12"
         >
           Where darkness meets artistry. Unique handmade pieces — goblets,
           paintings, trinket boxes, and botanicals — crafted in Bulgaria.
