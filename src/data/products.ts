@@ -28,16 +28,14 @@ export interface Category {
   productCount: number;
 }
 
-const ETSY_SHOP = "https://www.etsy.com/shop/MilaTreasuresAtelier";
-
-// Individual listing URLs (remaining items link to shop until listed)
+// Individual listing URLs
 const ETSY_BOOK_BOX       = "https://www.etsy.com/listing/4464391947/";
 const ETSY_FAIRY_TALE     = "https://www.etsy.com/listing/4464398925/";
 const ETSY_BAROQUE_FRAME  = "https://www.etsy.com/listing/4464398461/";
 const ETSY_HEART_BOX      = "https://www.etsy.com/listing/4464465242/";
 const ETSY_CASTLE_MIRROR  = "https://www.etsy.com/listing/4471777010/";
 const ETSY_RAVEN_QUEEN    = "https://www.etsy.com/listing/4471791818/";
-const ETSY_CHALICE        = "https://www.etsy.com/listing/4476018508/";
+
 
 export const categories: Category[] = [
   {
@@ -45,7 +43,7 @@ export const categories: Category[] = [
     slug: "eglomise-art",
     description: "Reverse-glass paintings with mirror fragments — an 18th-century French technique where art lives beneath the glass",
     image: "/products/item-8.webp",
-    productCount: 4,
+    productCount: 3,
   },
   {
     name: "Framed Art & Decor",
@@ -59,14 +57,14 @@ export const categories: Category[] = [
     slug: "trinket-boxes",
     description: "Handcrafted decorative boxes with sculpted lids — for jewellery, keepsakes, or simply to exist beautifully",
     image: "/products/item-4.webp",
-    productCount: 2,
+    productCount: 1,
   },
   {
     name: "Sculptures & Decor",
     slug: "sculptures-decor",
     description: "Ceramic figurines, candle holders, and standalone sculptural pieces for gothic altar shelves and dark interiors",
     image: "/products/item-5.webp",
-    productCount: 2,
+    productCount: 0,
   },
 ];
 
@@ -88,24 +86,6 @@ export const products: Product[] = [
     badge: "bestseller",
     material: "Wood frame, resin sculpted elements, églomisé-style foil print, metallic paint",
     etsyUrl: ETSY_FAIRY_TALE,
-  },
-  {
-    id: "7",
-    name: "Gothic Gold Leaf Wall Art",
-    slug: "gothic-gold-leaf-wall-art",
-    price: 35,
-    category: "Églomisé Art",
-    categorySlug: "eglomise-art",
-    description: "She stands at the edge of the world — silhouetted against a burning moon, bats circling overhead, darkness alive around her. Sealed behind genuine gold leaf, she glows from within. This piece does not hang on a wall. It haunts it.\n\nA handmade gothic framed artwork created using the historic 18th-century églomisé technique — one of the most striking and labour-intensive methods in decorative art. Genuine gold leaf is applied behind the print on foil, creating the luminous amber glow that radiates from the piece like a candle held behind glass. No filter, no trick — that warmth is real.\n\nThe ornate baroque frame is hand-finished with 3D resin sculptures: a weeping angel on the upper left, a death queen figure surrounded by skulls on the lower left, blooming roses at the base. Finished in aged verdigris green-bronze with gold dry-brushing throughout.",
-    shortDescription: "Woman silhouette against a burning moon — genuine gold leaf églomisé art in an ornate verdigris baroque frame",
-    image: "/products/item-7.webp",
-    images: ["/products/item-7.webp"],
-    inStock: true,
-    featured: true,
-    badge: "new",
-    dimensions: "approx. 10.2 × 8.3 in (26 × 21 cm)",
-    material: "Genuine gold leaf, resin sculpted elements, acrylic paint, wood frame",
-    etsyUrl: ETSY_SHOP,
   },
   {
     id: "8",
@@ -197,60 +177,8 @@ export const products: Product[] = [
     material: "MDF wood, polymer clay, artificial moss, acrylic and metallic paint",
     etsyUrl: ETSY_HEART_BOX,
   },
-  {
-    id: "10",
-    name: "Gothic Dragon Trinket Box",
-    slug: "gothic-dragon-trinket-box",
-    price: 27,
-    category: "Trinket Boxes",
-    categorySlug: "trinket-boxes",
-    description: "A dragon stirs atop a stack of forbidden tomes, claws wrapped around a glowing orb, scales catching the last light of a dying fire. This is not just a box — it's a fragment of a dragon's hoard, frozen in time.\n\nHandmade gothic decorative box featuring a sculpted dragon perched on stacked ancient books, clutching a pearl orb. The dragon has intricately detailed spread wings, textured scales, and a commanding presence that anchors the entire piece.\n\nBuilt on a solid wood base with sculpted resin and polymer clay elements, finished with multiple layers of acrylic paint, metallic wax, and hand-applied teal verdigris patina. The crackle finish on the body reveals warm golden undertones beneath a dark brown surface — every crack and aged detail is deliberate. Four ornate claw-and-scroll feet elevate the box from the surface it rests on.",
-    shortDescription: "Dragon perched on forbidden tomes clutching a pearl orb — teal verdigris patina, crackle finish, ornate claw feet",
-    image: "/products/item-10.webp",
-    images: ["/products/item-10.webp"],
-    inStock: true,
-    featured: false,
-    badge: "new",
-    dimensions: "approx. 6.1 × 4.9 in (15.5 × 12.5 cm)",
-    material: "Wood, resin, polymer clay, acrylic paint, metallic wax, teal verdigris patina",
-    etsyUrl: ETSY_SHOP,
-  },
 
   // ─── Sculptures & Decor ─────────────────────────────────────────────────────
-  {
-    id: "5",
-    name: "Gothic Raven Candle Holder",
-    slug: "gothic-raven-candle-holder",
-    price: 64,
-    category: "Sculptures & Decor",
-    categorySlug: "sculptures-decor",
-    description: "Where shadow and moss reclaim what candlelight once held — this gothic raven candle holder rises from the dark like a forgotten altar, watching over your space with hollow, knowing eyes.\n\nHandcrafted on a solid wood base, this striking piece is decorated on three sides with richly detailed gothic prints: a dark sorceress surrounded by ravens, a moonlit haunted castle bathed in deep purple light, and a crescent-moon gothic tower shrouded in mist. The fourth side is draped in lush artificial moss cascading to the base, adorned with dried purple blooms, bare wire branches, and delicate cobwebs.\n\nCrowning the piece is a hand-sculpted ceramic raven designed to hold a candle — fully removable to accommodate a taper or cocktail candle in the hollow below. Place a candle inside and watch the printed panels come alive.",
-    shortDescription: "Gothic wood candle tower with ceramic raven crown — three printed panels, moss cascade, dried purple blooms",
-    image: "/products/item-5.webp",
-    images: ["/products/item-5.webp"],
-    inStock: true,
-    featured: false,
-    dimensions: "11.8 × 4.7 × 4.7 in (30 × 12 × 12 cm)",
-    material: "Solid wood, ceramic raven, art prints, artificial moss, dried flowers",
-    etsyUrl: ETSY_SHOP,
-  },
-  {
-    id: "6",
-    name: "Witch Hands Crystal Ball Sculpture",
-    slug: "witch-hands-crystal-ball",
-    price: 24,
-    category: "Sculptures & Decor",
-    categorySlug: "sculptures-decor",
-    description: "Two skeletal, clawed hands rise from the shadows — each finger arched with quiet menace, crimson-tipped nails catching the light — cradling a smooth orb as if stolen from some forgotten ritual. This is not decoration. This is presence.\n\nA handmade ceramic figurine of two witch hands gripping a crystal ball orb, mounted on an ornate pedestal base adorned with skull motifs, coiling serpents, and baroque scrollwork. Finished in deep matte black with hand-applied metallic gold and bronze accents and dark red gem details.\n\nEvery surface has been painted by hand using high-quality, non-toxic Dora metallic paints — the kind that give a rich, lustrous sheen without looking cheap or plasticky.",
-    shortDescription: "Ceramic witch hands cradling a crystal ball — skull pedestal base, matte black with gold and bronze patina",
-    image: "/products/item-6.webp",
-    images: ["/products/item-6.webp"],
-    inStock: true,
-    featured: false,
-    dimensions: "approx. 4.3 × 3.5 in (11 × 9 cm)",
-    material: "Ceramic casting, hand-painted with non-toxic metallic paints",
-    etsyUrl: ETSY_SHOP,
-  },
 ];
 
 export const testimonials = [

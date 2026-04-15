@@ -104,7 +104,7 @@ This is the tradition Mila Treasures Atelier works within. Every piece tells a s
     featured: true,
     relatedProductSlugs: [
       "dark-fairy-tale-mirror",
-      "gothic-gold-leaf-wall-art",
+
       "gothic-enchantress-art-book",
     ],
   },
@@ -148,7 +148,7 @@ This is not inefficiency — it's the whole point. When you pick up a trinket bo
     featured: false,
     relatedProductSlugs: [
       "gothic-heart-trinket-box",
-      "gothic-dragon-trinket-box",
+
       "gothic-enchantress-art-book",
     ],
   },
@@ -193,7 +193,7 @@ There's something satisfying about tracking a gothic dragon box as it travels fr
     readTime: 5,
     featured: false,
     relatedProductSlugs: [
-      "gothic-dragon-trinket-box",
+
       "haunted-castle-eglomise-mirror",
       "baroque-castle-frame",
     ],
@@ -252,7 +252,7 @@ The rule is simple: let the piece be the drama. Everything else can be quiet.`,
       "haunted-castle-eglomise-mirror",
       "dark-fairy-tale-mirror",
       "gothic-heart-trinket-box",
-      "witch-hands-crystal-ball",
+
     ],
   },
   {
@@ -299,7 +299,7 @@ Some things remain constant. Dark walls are still the best backdrop for gothic a
     featured: true,
     relatedProductSlugs: [
       "haunted-castle-eglomise-mirror",
-      "gothic-gold-leaf-wall-art",
+
       "baroque-castle-frame",
       "gothic-enchantress-art-book",
     ],
@@ -352,10 +352,10 @@ The best gothic gift isn't the most expensive or the most dramatic. It's the one
     featured: false,
     relatedProductSlugs: [
       "gothic-heart-trinket-box",
-      "gothic-dragon-trinket-box",
+
       "dark-fairy-tale-mirror",
       "gothic-enchantress-art-book",
-      "witch-hands-crystal-ball",
+
     ],
   },
   {
@@ -416,9 +416,9 @@ The most expensive decor is the kind you keep replacing. The most affordable is 
     featured: false,
     relatedProductSlugs: [
       "haunted-castle-eglomise-mirror",
-      "gothic-dragon-trinket-box",
+
       "dark-fairy-tale-mirror",
-      "gothic-gold-leaf-wall-art",
+
     ],
   },
   {
@@ -502,9 +502,9 @@ Dark academia should feel lived in, not decorated. Every object should look like
     featured: false,
     relatedProductSlugs: [
       "gothic-enchantress-art-book",
-      "gothic-raven-candle-holder",
+
       "baroque-castle-frame",
-      "witch-hands-crystal-ball",
+
     ],
   },
   {
@@ -567,7 +567,7 @@ Handmade gothic wall decor costs more upfront than mass-produced alternatives. B
       "haunted-castle-eglomise-mirror",
       "dark-raven-queen-mirror",
       "dark-fairy-tale-mirror",
-      "gothic-gold-leaf-wall-art",
+
       "baroque-castle-frame",
     ],
   },
@@ -634,10 +634,10 @@ That's not a slogan. That's economics.`,
     readTime: 8,
     featured: false,
     relatedProductSlugs: [
-      "gothic-raven-candle-holder",
+
       "gothic-heart-trinket-box",
       "haunted-castle-eglomise-mirror",
-      "gothic-dragon-trinket-box",
+
     ],
   },
 ];

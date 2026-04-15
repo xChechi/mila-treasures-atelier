@@ -118,82 +118,6 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 5: Gothic Raven Candle Holder ──────────────────────────────────
-  {
-    id: "r11",
-    productId: "5",
-    author: "Astrid H.",
-    location: "Sweden",
-    rating: 5,
-    text: "When you light a candle inside this, the three panels glow like stained glass. The moss cascades beautifully. One of those pieces that makes a room feel like a completely different world.",
-    date: "2026-03-22",
-    verified: true,
-  },
-  {
-    id: "r12",
-    productId: "5",
-    author: "Jo W.",
-    location: "United Kingdom",
-    rating: 5,
-    text: "The ceramic raven is the most charming thing. It sits on top looking absolutely furious and I love it. Candle flickers beautifully through the printed panels.",
-    date: "2026-02-18",
-    verified: true,
-  },
-
-  // ─── Product 6: Witch Hands Crystal Ball ────────────────────────────────────
-  {
-    id: "r13",
-    productId: "6",
-    author: "Petra M.",
-    location: "Czech Republic",
-    rating: 5,
-    text: "The metallic paint on this is extraordinary — deep matte black with gold and bronze highlights that catch every angle of light. It sits on my altar and gets compliments from everyone.",
-    date: "2026-03-10",
-    verified: true,
-  },
-  {
-    id: "r14",
-    productId: "6",
-    author: "Tara B.",
-    location: "Ireland",
-    rating: 5,
-    text: "Absolutely obsessed. The skull motifs on the pedestal, the serpent coils — every surface is detailed. For the price this is exceptional quality.",
-    date: "2026-02-28",
-    verified: true,
-  },
-  {
-    id: "r15",
-    productId: "6",
-    author: "Kim A.",
-    location: "United States",
-    rating: 4,
-    text: "Great little sculpture. The crimson nail tips are a very nice touch. A fraction heavier than I expected from ceramic but that just makes it feel more substantial.",
-    date: "2026-02-05",
-    verified: true,
-  },
-
-  // ─── Product 7: Gothic Gold Leaf Wall Art ───────────────────────────────────
-  {
-    id: "r16",
-    productId: "7",
-    author: "Vivienne C.",
-    location: "France",
-    rating: 5,
-    text: "That amber glow behind the silhouette is real — no filter. I've been staring at it for weeks. The weeping angel on the frame corner is incredibly detailed for its size.",
-    date: "2026-03-25",
-    verified: true,
-  },
-  {
-    id: "r17",
-    productId: "7",
-    author: "Hannah P.",
-    location: "United States",
-    rating: 5,
-    text: "The verdigris green-bronze frame is stunning. It looks like something you'd find in an antique shop for ten times the price. Milena's craftsmanship is on another level.",
-    date: "2026-03-08",
-    verified: true,
-  },
-
   // ─── Product 8: Haunted Castle Églomisé Mirror ──────────────────────────────
   {
     id: "r18",
@@ -248,37 +172,6 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 10: Gothic Dragon Trinket Box ──────────────────────────────────
-  {
-    id: "r23",
-    productId: "10",
-    author: "Freya N.",
-    location: "Denmark",
-    rating: 5,
-    text: "The teal verdigris patina and the crackle finish together look like a relic from a dragon's actual hoard. The claw feet are an inspired touch. My partner immediately tried to steal it.",
-    date: "2026-03-18",
-    verified: true,
-  },
-  {
-    id: "r24",
-    productId: "10",
-    author: "James O.",
-    location: "United Kingdom",
-    rating: 5,
-    text: "Bought for my D&D collection. The dragon clutching the pearl orb is exquisitely detailed — scales, wings, claws — all hand-painted. Exceptional for the price.",
-    date: "2026-03-05",
-    verified: true,
-  },
-  {
-    id: "r25",
-    productId: "10",
-    author: "Ana C.",
-    location: "Portugal",
-    rating: 4,
-    text: "Really lovely box. The dragon is the star — beautifully sculpted and painted. I wish the box interior was lined in velvet but the exterior is stunning.",
-    date: "2026-02-15",
-    verified: true,
-  },
 ];
 
 export function getReviewsByProduct(productId: string): Review[] {
