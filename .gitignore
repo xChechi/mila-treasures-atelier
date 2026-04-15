@@ -42,6 +42,12 @@ yarn-error.log*
 next-env.d.ts
 
 # screenshots and test images
+# Claude Code
+.claude/
+
+# Superpowers docs
+docs/superpowers/
+
 screenshot-*.png
 ss-*.png
 r2-*.png
