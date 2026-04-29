@@ -116,7 +116,7 @@ function GalleryProductCard({
           </div>
 
           {/* Product info — museum placard style */}
-          <div className="p-5 border-t border-gold/10 flex flex-col min-h-[140px]">
+          <div className="p-5 border-t border-gold/10 flex flex-col h-[160px]">
             <p className="font-inter text-[9px] tracking-[0.4em] uppercase text-gold/40 mb-2">
               {product.category}
             </p>
@@ -161,7 +161,7 @@ function GalleryProductCard({
 }
 
 export default function FeaturedProducts({ products }: { products: Product[] }) {
-  const featured = products.filter((p) => p.featured);
+  const featured = products.slice(-4);
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
