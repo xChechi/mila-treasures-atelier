@@ -5,8 +5,7 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { Clock, ArrowLeft, ArrowRight, Share2, ExternalLink } from "lucide-react";
 import Image from "next/image";
-import type { JournalPost } from "@/data/journal";
-import { products } from "@/data/products";
+import type { JournalPost, Product } from "@/lib/data";
 import { etsyLink } from "@/lib/etsy";
 import Breadcrumb from "@/components/ui/Breadcrumb";
 import CommentSection from "@/components/CommentSection";
@@ -148,9 +147,10 @@ interface Props {
   post: JournalPost;
   prevPost: JournalPost | null;
   nextPost: JournalPost | null;
+  allProducts: Product[];
 }
 
-export default function JournalArticleClient({ post, prevPost, nextPost }: Props) {
+export default function JournalArticleClient({ post, prevPost, nextPost, allProducts }: Props) {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true });
   const contentRef = useRef<HTMLDivElement>(null);
@@ -275,8 +275,8 @@ export default function JournalArticleClient({ post, prevPost, nextPost }: Props
                 {/* Related products CTA */}
                 {post.relatedProductSlugs && post.relatedProductSlugs.length > 0 && (() => {
                   const relatedProducts = post.relatedProductSlugs
-                    .map(slug => products.find(p => p.slug === slug))
-                    .filter(Boolean) as typeof products;
+                    .map(slug => allProducts.find(p => p.slug === slug))
+                    .filter(Boolean) as Product[];
                   if (relatedProducts.length === 0) return null;
                   return (
                     <div className="mt-16 pt-8 border-t border-gold/10">

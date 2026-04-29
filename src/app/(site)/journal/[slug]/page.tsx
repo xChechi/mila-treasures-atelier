@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { journalPosts, getPostBySlug } from "@/data/journal";
+import { getProducts, getJournalPosts, getJournalPostBySlug } from "@/lib/data";
 import JournalArticleClient from "./JournalArticleClient";
 
-export function generateStaticParams() {
-  return journalPosts.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const posts = await getJournalPosts();
+  return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -13,7 +14,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getJournalPostBySlug(slug);
   if (!post) return {};
 
   return {
@@ -43,14 +44,14 @@ export default async function JournalPostPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const [posts, allProducts] = await Promise.all([getJournalPosts(), getProducts()]);
+  const post = await getJournalPostBySlug(slug);
 
   if (!post) notFound();
 
-  // Find adjacent posts for navigation
-  const currentIndex = journalPosts.findIndex((p) => p.slug === slug);
-  const prevPost = currentIndex < journalPosts.length - 1 ? journalPosts[currentIndex + 1] : null;
-  const nextPost = currentIndex > 0 ? journalPosts[currentIndex - 1] : null;
+  const currentIndex = posts.findIndex((p) => p.slug === slug);
+  const prevPost = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+  const nextPost = currentIndex > 0 ? posts[currentIndex - 1] : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -59,14 +60,8 @@ export default async function JournalPostPage({
     description: post.excerpt,
     image: post.coverImage,
     datePublished: post.date,
-    author: {
-      "@type": "Organization",
-      name: post.author,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Mila Treasures Atelier",
-    },
+    author: { "@type": "Organization", name: post.author },
+    publisher: { "@type": "Organization", name: "Mila Treasures Atelier" },
   };
 
   return (
@@ -75,7 +70,7 @@ export default async function JournalPostPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <JournalArticleClient post={post} prevPost={prevPost} nextPost={nextPost} />
+      <JournalArticleClient post={post} prevPost={prevPost} nextPost={nextPost} allProducts={allProducts} />
     </>
   );
 }

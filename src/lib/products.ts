@@ -1,40 +1,44 @@
-import { products, categories, type Product, type Category } from "@/data/products";
+import {
+  getProducts,
+  getProductBySlug as fetchProductBySlug,
+  type Product,
+} from "@/lib/data";
+import { categories as staticCategories, type Category } from "@/data/products";
 
-export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
+export type { Product, Category };
+
+export async function getProductBySlug(slug: string): Promise<Product | undefined> {
+  return fetchProductBySlug(slug);
 }
 
-export function getProductsByCategory(categorySlug: string): Product[] {
-  return products.filter((p) => p.categorySlug === categorySlug);
+export async function getProductsByCategory(categorySlug: string): Promise<Product[]> {
+  const all = await getProducts();
+  return all.filter((p) => p.categorySlug === categorySlug);
 }
 
 export function getCategoryBySlug(slug: string): Category | undefined {
-  return categories.find((c) => c.slug === slug);
+  return staticCategories.find((c) => c.slug === slug);
 }
 
-export function getRelatedProducts(
+export async function getRelatedProducts(
   excludeId: string,
   categorySlug: string,
   limit = 4,
   currentPrice?: number
-): Product[] {
-  const candidates = products.filter((p) => p.id !== excludeId);
+): Promise<Product[]> {
+  const all = await getProducts();
+  const candidates = all.filter((p) => p.id !== excludeId);
 
-  // Score each candidate: same category + close price = higher score
   const scored = candidates.map((p) => {
     let score = 0;
-    // Same category is the strongest signal
     if (p.categorySlug === categorySlug) score += 100;
-    // Similar price range (within 30%) adds relevance
     if (currentPrice) {
       const priceDiff = Math.abs(p.price - currentPrice) / currentPrice;
       if (priceDiff <= 0.15) score += 50;
       else if (priceDiff <= 0.30) score += 30;
       else if (priceDiff <= 0.50) score += 10;
     }
-    // Prefer in-stock items
     if (p.inStock) score += 20;
-    // Small random factor to keep it fresh
     score += Math.random() * 5;
     return { product: p, score };
   });
@@ -73,7 +77,6 @@ export function filterProducts(
   searchOrOptions: string | FilterOptions,
   categorySlug?: string
 ): Product[] {
-  // Support both old signature (search, categorySlug) and new FilterOptions
   const opts: FilterOptions = typeof searchOrOptions === "string"
     ? { search: searchOrOptions, categorySlug }
     : searchOrOptions;

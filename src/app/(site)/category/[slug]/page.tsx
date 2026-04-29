@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { products, categories } from "@/data/products";
-import { getCategoryBySlug, getProductsByCategory } from "@/lib/products";
+import { getProducts, getCategories } from "@/lib/data";
+import { getCategoryBySlug } from "@/lib/products";
 import CategoryPageClient from "./CategoryPageClient";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const categories = await getCategories();
   return categories.map((c) => ({ slug: c.slug }));
 }
 
@@ -39,14 +40,14 @@ export default async function CategoryPage({
 
   if (!category) notFound();
 
-  const categoryProducts = getProductsByCategory(slug);
-  const realCount = categoryProducts.length;
+  const allProducts = await getProducts();
+  const categoryProducts = allProducts.filter((p) => p.categorySlug === slug);
 
   return (
     <CategoryPageClient
       category={category}
       products={categoryProducts}
-      productCount={realCount}
+      productCount={categoryProducts.length}
     />
   );
 }

@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { revalidatePath } from "next/cache";
 import { isAuthenticated } from "@/lib/admin-auth";
 import { getSupabaseAdmin } from "@/lib/supabase-admin";
 
@@ -29,6 +30,7 @@ export async function POST(request: NextRequest) {
     .single();
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
+  revalidatePath("/", "layout");
   return Response.json(data, { status: 201 });
 }
 
@@ -48,6 +50,7 @@ export async function PUT(request: NextRequest) {
     .single();
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
+  revalidatePath("/", "layout");
   return Response.json(data);
 }
 
@@ -60,5 +63,6 @@ export async function DELETE(request: NextRequest) {
   const { error } = await getSupabaseAdmin().from("journal_posts").delete().eq("id", id);
 
   if (error) return Response.json({ error: error.message }, { status: 500 });
+  revalidatePath("/", "layout");
   return Response.json({ ok: true });
 }

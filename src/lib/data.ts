@@ -126,3 +126,41 @@ export async function getJournalPosts(): Promise<StaticJournalPost[]> {
     return staticPosts;
   }
 }
+
+// ─── Single-item lookups ────────────────────────────────────────────────────
+
+export async function getProductBySlug(slug: string): Promise<StaticProduct | undefined> {
+  const sb = getClient();
+  if (!sb) return staticProducts.find((p) => p.slug === slug);
+
+  try {
+    const { data, error } = await sb
+      .from("products")
+      .select("*")
+      .eq("slug", slug)
+      .single();
+
+    if (error || !data) return staticProducts.find((p) => p.slug === slug);
+    return mapProduct(data);
+  } catch {
+    return staticProducts.find((p) => p.slug === slug);
+  }
+}
+
+export async function getJournalPostBySlug(slug: string): Promise<StaticJournalPost | undefined> {
+  const sb = getClient();
+  if (!sb) return staticPosts.find((p) => p.slug === slug);
+
+  try {
+    const { data, error } = await sb
+      .from("journal_posts")
+      .select("*")
+      .eq("slug", slug)
+      .single();
+
+    if (error || !data) return staticPosts.find((p) => p.slug === slug);
+    return mapPost(data);
+  } catch {
+    return staticPosts.find((p) => p.slug === slug);
+  }
+}

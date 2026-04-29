@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { products, type Product } from "@/data/products";
+import type { Product } from "@/lib/data";
 import { filterProducts, sortProducts, getPriceRange, type SortOption } from "@/lib/products";
 import PageHeader from "@/components/ui/PageHeader";
 import ShopFilters from "@/components/shop/ShopFilters";
@@ -9,9 +9,8 @@ import ProductGrid from "@/components/shop/ProductGrid";
 import QuickViewModal from "@/components/shop/QuickViewModal";
 import RecentlyViewed from "@/components/shop/RecentlyViewed";
 
-const { min: PRICE_MIN, max: PRICE_MAX } = getPriceRange(products);
-
-export default function ShopPageClient() {
+export default function ShopPageClient({ products }: { products: Product[] }) {
+  const { min: PRICE_MIN, max: PRICE_MAX } = getPriceRange(products);
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
   const [sort, setSort] = useState<SortOption>("name-asc");
@@ -30,7 +29,7 @@ export default function ShopPageClient() {
       priceMax: priceRange[1] < PRICE_MAX ? priceRange[1] : undefined,
     });
     return sortProducts(results, sort);
-  }, [search, activeCategory, sort, material, inStockOnly, priceRange]);
+  }, [products, search, activeCategory, sort, material, inStockOnly, priceRange, PRICE_MIN, PRICE_MAX]);
 
   const handleQuickView = useCallback((product: Product) => {
     setQuickViewProduct(product);
@@ -45,6 +44,7 @@ export default function ShopPageClient() {
           description="Each piece is handcrafted and entirely unique — when it's gone, it's gone forever."
         />
         <ShopFilters
+          products={products}
           search={search}
           onSearchChange={setSearch}
           activeCategory={activeCategory}

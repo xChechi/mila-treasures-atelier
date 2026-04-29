@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { products } from "@/data/products";
-import { getProductBySlug, getRelatedProducts } from "@/lib/products";
+import { getProducts, getProductBySlug } from "@/lib/data";
+import { getRelatedProducts } from "@/lib/products";
 import { getReviewsByProduct, getAverageRating } from "@/data/reviews";
 import ProductDetailClient from "./ProductDetailClient";
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map((p) => ({ slug: p.slug }));
 }
 
@@ -15,7 +16,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
   if (!product) return {};
 
   return {
@@ -43,11 +44,11 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) notFound();
 
-  const related = getRelatedProducts(product.id, product.categorySlug, 4, product.price);
+  const related = await getRelatedProducts(product.id, product.categorySlug, 4, product.price);
   const productReviews = getReviewsByProduct(product.id);
   const avgRating = getAverageRating(product.id);
 

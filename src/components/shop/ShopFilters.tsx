@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 import { Search, SlidersHorizontal, X } from "lucide-react";
-import { categories, products } from "@/data/products";
+import { categories } from "@/data/products";
+import type { Product } from "@/lib/data";
 import { type SortOption, getUniqueMaterials, getPriceRange } from "@/lib/products";
 
-const allMaterials = getUniqueMaterials(products);
-const { min: PRICE_MIN, max: PRICE_MAX } = getPriceRange(products);
-
 interface ShopFiltersProps {
+  products: Product[];
   search: string;
   onSearchChange: (value: string) => void;
   activeCategory: string;
@@ -24,6 +23,7 @@ interface ShopFiltersProps {
 }
 
 export default function ShopFilters({
+  products,
   search,
   onSearchChange,
   activeCategory,
@@ -38,6 +38,8 @@ export default function ShopFilters({
   onPriceRangeChange,
 }: ShopFiltersProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const allMaterials = getUniqueMaterials(products);
+  const { min: PRICE_MIN, max: PRICE_MAX } = getPriceRange(products);
 
   const hasActiveFilters = material !== "" || inStockOnly || priceRange[0] > PRICE_MIN || priceRange[1] < PRICE_MAX;
 

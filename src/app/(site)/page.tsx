@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getProducts, getCategories } from "@/lib/data";
 import HeroSection from "@/components/landing/HeroSection";
 import FeaturedProducts from "@/components/landing/FeaturedProducts";
 import CategorySection from "@/components/landing/CategorySection";
@@ -12,14 +13,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function Home() {
+export default async function Home() {
+  const [products, categories] = await Promise.all([getProducts(), getCategories()]);
+
   return (
     <>
       <HeroSection />
       <SectionDivider />
-      <FeaturedProducts />
+      <FeaturedProducts products={products} />
       <SectionDivider />
-      <CategorySection />
+      <CategorySection categories={categories} />
       <SectionDivider />
       <BrandStory />
       <SectionDivider />

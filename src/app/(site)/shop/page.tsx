@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getProducts } from "@/lib/data";
 import ShopPageClient from "./ShopPageClient";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ShopPage() {
-  return <ShopPageClient />;
+export default async function ShopPage() {
+  const products = await getProducts();
+  return <ShopPageClient products={products} />;
 }

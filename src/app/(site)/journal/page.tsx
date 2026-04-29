@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getJournalPosts } from "@/lib/data";
 import JournalPageClient from "./JournalPageClient";
 
 export const metadata: Metadata = {
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function JournalPage() {
-  return <JournalPageClient />;
+export default async function JournalPage() {
+  const posts = await getJournalPosts();
+  return <JournalPageClient posts={posts} />;
 }

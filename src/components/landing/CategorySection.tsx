@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { categories } from "@/data/products";
+import type { Category } from "@/lib/data";
 
 // Real gothic door photos from Unsplash (verified)
 const doorImages = [
@@ -19,7 +19,7 @@ function GothicDoorCard({
   doorImage,
   index,
 }: {
-  category: (typeof categories)[0];
+  category: Category;
   doorImage: string;
   index: number;
 }) {
@@ -111,7 +111,7 @@ function GothicDoorCard({
   );
 }
 
-export default function CategorySection() {
+export default function CategorySection({ categories }: { categories: Category[] }) {
   const headingRef = useRef<HTMLDivElement>(null);
   const headingInView = useInView(headingRef, { once: true, margin: "-80px" });
 

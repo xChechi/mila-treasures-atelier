@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { Clock, ArrowRight } from "lucide-react";
-import { journalPosts, type JournalPost } from "@/data/journal";
+import type { JournalPost } from "@/lib/data";
 import PageHeader from "@/components/ui/PageHeader";
 
 const categories = ["All", "Workshop", "Culture", "Inspiration", "Behind the Scenes"];
@@ -145,14 +145,14 @@ function PostCard({ post, index }: { post: JournalPost; index: number }) {
   );
 }
 
-export default function JournalPageClient() {
+export default function JournalPageClient({ posts }: { posts: JournalPost[] }) {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  const featured = journalPosts.find((p) => p.featured);
+  const featured = posts.find((p) => p.featured);
   const filteredPosts =
     activeCategory === "All"
-      ? journalPosts
-      : journalPosts.filter((p) => p.category === activeCategory);
+      ? posts
+      : posts.filter((p) => p.category === activeCategory);
   const nonFeaturedPosts = filteredPosts.filter((p) => p.id !== featured?.id);
 
   return (

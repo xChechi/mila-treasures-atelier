@@ -5,18 +5,16 @@ import { useRouter } from "next/navigation";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { products } from "@/data/products";
+import type { Product } from "@/lib/data";
 import { ExternalLink, Eye, Star } from "lucide-react";
 import { getAverageRating, getReviewCount } from "@/data/reviews";
 import { etsyLink } from "@/lib/etsy";
-
-const featured = products.filter((p) => p.featured);
 
 function GalleryProductCard({
   product,
   index,
 }: {
-  product: (typeof products)[0];
+  product: Product;
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -162,7 +160,8 @@ function GalleryProductCard({
   );
 }
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ products }: { products: Product[] }) {
+  const featured = products.filter((p) => p.featured);
   const sectionRef = useRef<HTMLDivElement>(null);
   const headingInView = useInView(sectionRef, { once: true, margin: "-100px" });
 

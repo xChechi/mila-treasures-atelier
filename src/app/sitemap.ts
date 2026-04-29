@@ -1,10 +1,15 @@
 import type { MetadataRoute } from "next";
-import { products, categories } from "@/data/products";
-import { journalPosts } from "@/data/journal";
+import { getProducts, getCategories, getJournalPosts } from "@/lib/data";
 
 const BASE_URL = "https://milatreasuresatelier.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const [products, categories, journalPosts] = await Promise.all([
+    getProducts(),
+    getCategories(),
+    getJournalPosts(),
+  ]);
+
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1.0 },
     { url: `${BASE_URL}/shop`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
