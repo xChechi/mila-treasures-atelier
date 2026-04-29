@@ -45,7 +45,12 @@ const emptyProduct: Omit<Product, "id"> = {
   sort_order: 0,
 };
 
-// Categories fetched from Supabase in the component
+const defaultCategories = [
+  { name: "Églomisé Art", slug: "eglomise-art" },
+  { name: "Framed Art & Decor", slug: "framed-art" },
+  { name: "Trinket Boxes", slug: "trinket-boxes" },
+  { name: "Sculptures & Decor", slug: "sculptures-decor" },
+];
 
 const badgeOptions = [
   { value: "", label: "None" },
@@ -61,7 +66,7 @@ const labelClass = "block font-inter text-xs text-foreground/40 mb-1";
 
 export default function ProductsManager() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [categoryOptions, setCategoryOptions] = useState<{ name: string; slug: string }[]>([]);
+  const [categoryOptions, setCategoryOptions] = useState(defaultCategories);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<Product | (Omit<Product, "id"> & { id?: string }) | null>(null);
   const [saving, setSaving] = useState(false);
@@ -77,7 +82,9 @@ export default function ProductsManager() {
     if (prodRes.ok) setProducts(await prodRes.json());
     if (catRes.ok) {
       const cats = await catRes.json();
-      setCategoryOptions(cats.map((c: { name: string; slug: string }) => ({ name: c.name, slug: c.slug })));
+      if (cats.length > 0) {
+        setCategoryOptions(cats.map((c: { name: string; slug: string }) => ({ name: c.name, slug: c.slug })));
+      }
     }
     setLoading(false);
   }, []);
