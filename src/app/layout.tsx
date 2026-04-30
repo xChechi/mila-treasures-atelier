@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const SITE_URL = "https://milatreasuresatelier.com";
@@ -92,6 +94,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen flex flex-col bg-dark-1 text-foreground antialiased">
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

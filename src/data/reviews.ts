@@ -1,6 +1,6 @@
 export interface Review {
   id: string;
-  productId: string;
+  productSlug: string;
   author: string;
   location: string;
   rating: number;
@@ -10,10 +10,10 @@ export interface Review {
 }
 
 export const reviews: Review[] = [
-  // ─── Product 1: Gothic Enchantress Art Book ─────────────────────────────────
+  // ─── Gothic Enchantress Art Book ─────────────────────────────────
   {
     id: "r1",
-    productId: "1",
+    productSlug: "gothic-enchantress-art-book",
     author: "Cassandra M.",
     location: "United Kingdom",
     rating: 5,
@@ -23,7 +23,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r2",
-    productId: "1",
+    productSlug: "gothic-enchantress-art-book",
     author: "Lena V.",
     location: "Germany",
     rating: 5,
@@ -32,10 +32,10 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 2: Dark Fairy Tale Mirror Art ───────────────────────────────────
+  // ─── Dark Fairy Tale Mirror Art ───────────────────────────────────
   {
     id: "r3",
-    productId: "2",
+    productSlug: "dark-fairy-tale-mirror",
     author: "Sophie R.",
     location: "United States",
     rating: 5,
@@ -45,7 +45,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r4",
-    productId: "2",
+    productSlug: "dark-fairy-tale-mirror",
     author: "Natalie K.",
     location: "Canada",
     rating: 5,
@@ -55,7 +55,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r5",
-    productId: "2",
+    productSlug: "dark-fairy-tale-mirror",
     author: "Isabelle D.",
     location: "France",
     rating: 4,
@@ -64,10 +64,10 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 3: Baroque Castle Frame ────────────────────────────────────────
+  // ─── Baroque Castle Frame ────────────────────────────────────────
   {
     id: "r6",
-    productId: "3",
+    productSlug: "baroque-castle-frame",
     author: "Monika B.",
     location: "Poland",
     rating: 5,
@@ -77,7 +77,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r7",
-    productId: "3",
+    productSlug: "baroque-castle-frame",
     author: "Theresa L.",
     location: "Australia",
     rating: 5,
@@ -86,10 +86,10 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 4: Gothic Heart Trinket Box ────────────────────────────────────
+  // ─── Gothic Heart Trinket Box ────────────────────────────────────
   {
     id: "r8",
-    productId: "4",
+    productSlug: "gothic-heart-trinket-box",
     author: "Elisa F.",
     location: "Italy",
     rating: 5,
@@ -99,7 +99,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r9",
-    productId: "4",
+    productSlug: "gothic-heart-trinket-box",
     author: "Raven S.",
     location: "United States",
     rating: 5,
@@ -109,7 +109,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r10",
-    productId: "4",
+    productSlug: "gothic-heart-trinket-box",
     author: "Clara N.",
     location: "Netherlands",
     rating: 4,
@@ -118,10 +118,10 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 8: Haunted Castle Églomisé Mirror ──────────────────────────────
+  // ─── Haunted Castle Églomisé Mirror ──────────────────────────────
   {
     id: "r18",
-    productId: "8",
+    productSlug: "haunted-castle-eglomise-mirror",
     author: "Diana V.",
     location: "Romania",
     rating: 5,
@@ -131,7 +131,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r19",
-    productId: "8",
+    productSlug: "haunted-castle-eglomise-mirror",
     author: "Marta O.",
     location: "Spain",
     rating: 5,
@@ -141,7 +141,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r20",
-    productId: "8",
+    productSlug: "haunted-castle-eglomise-mirror",
     author: "Claire F.",
     location: "Belgium",
     rating: 5,
@@ -150,10 +150,10 @@ export const reviews: Review[] = [
     verified: true,
   },
 
-  // ─── Product 9: Dark Raven Queen Mirror Art ─────────────────────────────────
+  // ─── Dark Raven Queen Mirror Art ─────────────────────────────────
   {
     id: "r21",
-    productId: "9",
+    productSlug: "dark-raven-queen-mirror",
     author: "Sigrid T.",
     location: "Norway",
     rating: 5,
@@ -163,7 +163,7 @@ export const reviews: Review[] = [
   },
   {
     id: "r22",
-    productId: "9",
+    productSlug: "dark-raven-queen-mirror",
     author: "Bianca L.",
     location: "Brazil",
     rating: 5,
@@ -174,16 +174,16 @@ export const reviews: Review[] = [
 
 ];
 
-export function getReviewsByProduct(productId: string): Review[] {
-  return reviews.filter((r) => r.productId === productId);
+export function getReviewsByProduct(slug: string): Review[] {
+  return reviews.filter((r) => r.productSlug === slug);
 }
 
-export function getAverageRating(productId: string): number {
-  const productReviews = getReviewsByProduct(productId);
+export function getAverageRating(slug: string): number {
+  const productReviews = getReviewsByProduct(slug);
   if (productReviews.length === 0) return 0;
   return productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length;
 }
 
-export function getReviewCount(productId: string): number {
-  return reviews.filter((r) => r.productId === productId).length;
+export function getReviewCount(slug: string): number {
+  return reviews.filter((r) => r.productSlug === slug).length;
 }

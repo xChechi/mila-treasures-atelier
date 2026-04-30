@@ -25,8 +25,8 @@ interface QuickViewModalProps {
 export default function QuickViewModal({ product, isOpen, onClose }: QuickViewModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
 
-  const avgRating = product ? getAverageRating(product.id) : 0;
-  const reviewCount = product ? getReviewCount(product.id) : 0;
+  const avgRating = product ? getAverageRating(product.slug) : 0;
+  const reviewCount = product ? getReviewCount(product.slug) : 0;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

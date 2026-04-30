@@ -161,8 +161,8 @@ export default function ProductCard({
             </p>
             {/* Star rating — always rendered for consistent card height */}
             {(() => {
-              const avg = getAverageRating(product.id);
-              const count = getReviewCount(product.id);
+              const avg = getAverageRating(product.slug);
+              const count = getReviewCount(product.slug);
               return (
                 <div className="flex items-center gap-2 mb-3">
                   <div className="flex gap-0.5">

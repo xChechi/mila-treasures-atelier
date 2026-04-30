@@ -49,8 +49,8 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const related = await getRelatedProducts(product.id, product.categorySlug, 4, product.price);
-  const productReviews = getReviewsByProduct(product.id);
-  const avgRating = getAverageRating(product.id);
+  const productReviews = getReviewsByProduct(product.slug);
+  const avgRating = getAverageRating(product.slug);
 
   const jsonLd = {
     "@context": "https://schema.org",
